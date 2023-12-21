@@ -18,6 +18,9 @@ public class ConnectionPool {
 
     private static ConnectionPool instance;
 
+    private ConnectionPool() {
+    }
+
     public static synchronized ConnectionPool getInstance() throws SQLException {
         if (instance == null) {
             instance = new ConnectionPool();
