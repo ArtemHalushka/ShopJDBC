@@ -9,19 +9,30 @@ import java.util.List;
 public class ConnectionPool {
     private static List<Connection> availableConnections = new ArrayList<>();
     private static List<Connection> usedConnections = new ArrayList<>();
-    private final int MAX_CONNECTIONS = 5;
+    private final static int MAX_CONNECTIONS = 5;
 
-    public ConnectionPool() throws SQLException {
+    private static ConnectionPool instance;
+
+    public static synchronized ConnectionPool getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new ConnectionPool();
+            create();
+
+        }
+        return instance;
+    }
+
+    public static void create() throws SQLException {
         for (int count = 0; count < MAX_CONNECTIONS; count++) {
-            availableConnections.add(this.createConnection());
+            availableConnections.add(ConnectionPool.createConnection());
         }
     }
 
-    private Connection createConnection() throws SQLException {
+    private static Connection createConnection() throws SQLException {
         return DriverManager.getConnection(DBConfig.getDatabaseUrl(), DBConfig.getDatabaseUser(), DBConfig.getDatabasePassword());
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         if (availableConnections.size() == 0) {
             System.out.println("No any available connection, Try connect later.");
             return null;
@@ -32,7 +43,7 @@ public class ConnectionPool {
         }
     }
 
-    public boolean releaseConnection(Connection con) {
+    public static boolean releaseConnection(Connection con) {
         if (null != con) {
             usedConnections.remove(con);
             availableConnections.add(con);
@@ -41,7 +52,7 @@ public class ConnectionPool {
         return false;
     }
 
-    public int getFreeConnectionCount() {
+    public static int getFreeConnectionCount() {
         return availableConnections.size();
     }
 }

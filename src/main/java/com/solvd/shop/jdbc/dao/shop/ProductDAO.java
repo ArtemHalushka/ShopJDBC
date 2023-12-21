@@ -1,13 +1,9 @@
 package com.solvd.shop.jdbc.dao.shop;
 
 import com.solvd.shop.interafaces.shop.IProductDAO;
-import com.solvd.shop.models.people.Buyer;
-import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.people.Supplier;
 import com.solvd.shop.models.shop.Category;
-import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.models.shop.Product;
-import com.solvd.shop.models.shop.Status;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO implements IProductDAO<Product> {
@@ -97,11 +94,46 @@ public class ProductDAO implements IProductDAO<Product> {
 
     @Override
     public List<Product> getAll() {
-        return null;
+        List<Product> productList = new ArrayList<>();
+        String query = "SELECT * FROM products";
+        Connection conn = connectionPool.getConnection();
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Supplier supplier = new Supplier();
+                    Category category = new Category();
+                    supplier.setIdSupplier(resultSet.getInt("id_supplier"));
+                    category.setIdCategory(resultSet.getInt("id_category"));
+
+                    Product product = new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
+                    productList.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e);
+        }
+        return productList;
     }
 
     @Override
     public Product getByProductName(String name) {
+        String query = "SELECT * FROM products WHERE name = (?)";
+        Connection conn = connectionPool.getConnection();
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setString(1, name);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Supplier supplier = new Supplier();
+                    Category category = new Category();
+                    supplier.setIdSupplier(resultSet.getInt("id_supplier"));
+                    category.setIdCategory(resultSet.getInt("id_category"));
+
+                    return new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.info(e);
+        }
         return null;
     }
 }
