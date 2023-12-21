@@ -25,7 +25,6 @@ public class StatusService implements IStatusService<Status> {
         }
     }
 
-
     @Override
     public void insert(Status status) {
         statusDAO.insert(status);

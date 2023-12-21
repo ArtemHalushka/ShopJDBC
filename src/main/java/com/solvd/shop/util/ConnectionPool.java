@@ -1,5 +1,8 @@
 package com.solvd.shop.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -10,6 +13,8 @@ public class ConnectionPool {
     private static List<Connection> availableConnections = new ArrayList<>();
     private static List<Connection> usedConnections = new ArrayList<>();
     private final static int MAX_CONNECTIONS = 5;
+
+    private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 
     private static ConnectionPool instance;
 
@@ -34,7 +39,7 @@ public class ConnectionPool {
 
     public static Connection getConnection() {
         if (availableConnections.size() == 0) {
-            System.out.println("No any available connection, Try connect later.");
+            LOGGER.info("No any available connection, Try connect later.");
             return null;
         } else {
             Connection con = availableConnections.remove(availableConnections.size() - 1);
