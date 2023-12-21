@@ -6,15 +6,15 @@ public class Supplier {
 
     private int idSupplier;
     private String supplierName;
-    private Address idAddress;
+    private Address address;
 
     public Supplier() {
     }
 
-    public Supplier(int idSupplier, String supplierName, Address idAddress) {
+    public Supplier(int idSupplier, String supplierName, Address address) {
         this.idSupplier = idSupplier;
         this.supplierName = supplierName;
-        this.idAddress = idAddress;
+        this.address = address;
     }
 
     public int getIdSupplier() {
@@ -33,12 +33,12 @@ public class Supplier {
         this.supplierName = supplierName;
     }
 
-    public Address getIdAddress() {
-        return idAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setIdAddress(Address idAddress) {
-        this.idAddress = idAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Supplier {
         return "Supplier{" +
                 "idSupplier=" + idSupplier +
                 ", supplierName='" + supplierName + '\'' +
-                ", idAddress=" + idAddress +
+                ", idAddress=" + address +
                 '}';
     }
 }

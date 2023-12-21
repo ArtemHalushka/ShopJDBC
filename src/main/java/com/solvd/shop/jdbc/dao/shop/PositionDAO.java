@@ -32,6 +32,8 @@ public class PositionDAO implements IPositionDAO<Position> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -46,6 +48,8 @@ public class PositionDAO implements IPositionDAO<Position> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -58,6 +62,8 @@ public class PositionDAO implements IPositionDAO<Position> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -74,6 +80,8 @@ public class PositionDAO implements IPositionDAO<Position> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -93,6 +101,8 @@ public class PositionDAO implements IPositionDAO<Position> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return positionList;
     }
@@ -110,6 +120,8 @@ public class PositionDAO implements IPositionDAO<Position> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

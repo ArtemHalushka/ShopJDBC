@@ -31,6 +31,8 @@ public class StatusDAO implements IStatusDAO<Status> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -44,6 +46,8 @@ public class StatusDAO implements IStatusDAO<Status> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -56,6 +60,8 @@ public class StatusDAO implements IStatusDAO<Status> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -72,6 +78,8 @@ public class StatusDAO implements IStatusDAO<Status> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -91,6 +99,8 @@ public class StatusDAO implements IStatusDAO<Status> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return statusList;
     }
@@ -108,6 +118,8 @@ public class StatusDAO implements IStatusDAO<Status> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

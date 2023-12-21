@@ -1,8 +1,6 @@
 package com.solvd.shop.jdbc.dao.people;
 
 import com.solvd.shop.interafaces.people.IEmployeeDAO;
-import com.solvd.shop.models.address.Address;
-import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.shop.Position;
 import com.solvd.shop.util.ConnectionPool;
@@ -31,10 +29,12 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, employee.getName());
-            statement.setInt(2, employee.getIdPosition().getIdPosition());
+            statement.setInt(2, employee.getPosition().getIdPosition());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -44,11 +44,13 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, employee.getName());
-            statement.setInt(2, employee.getIdPosition().getIdPosition());
+            statement.setInt(2, employee.getPosition().getIdPosition());
             statement.setInt(3, employee.getIdEmployee());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -61,6 +63,8 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -79,6 +83,8 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -99,6 +105,8 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return employeeList;
     }
@@ -118,6 +126,8 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

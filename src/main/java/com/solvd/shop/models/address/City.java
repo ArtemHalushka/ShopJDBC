@@ -4,15 +4,15 @@ public class City {
 
     private int idCity;
     private String cityName;
-    private Country idCountry;
+    private Country country;
 
     public City() {
     }
 
-    public City(int idCity, String cityName, Country idCountry) {
+    public City(int idCity, String cityName, Country country) {
         this.idCity = idCity;
         this.cityName = cityName;
-        this.idCountry = idCountry;
+        this.country = country;
     }
 
     public int getIdCity() {
@@ -31,12 +31,12 @@ public class City {
         this.cityName = cityName;
     }
 
-    public Country getIdCountry() {
-        return idCountry;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setIdCountry(Country idCountry) {
-        this.idCountry = idCountry;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class City {
         return "City{" +
                 "idCity=" + idCity +
                 ", cityName='" + cityName + '\'' +
-                ", idCountry=" + idCountry +
+                ", idCountry=" + country +
                 '}';
     }
 }

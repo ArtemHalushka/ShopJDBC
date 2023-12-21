@@ -2,38 +2,38 @@ package com.solvd.shop.models.shop;
 
 public class OrderHasProduct {
 
-    private Order idOrder;
-    private Product idProduct;
+    private Order order;
+    private Product product;
 
     public OrderHasProduct() {
     }
 
-    public OrderHasProduct(Order idOrder, Product idProduct) {
-        this.idOrder = idOrder;
-        this.idProduct = idProduct;
+    public OrderHasProduct(Order order, Product product) {
+        this.order = order;
+        this.product = product;
     }
 
-    public Order getIdOrder() {
-        return idOrder;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setIdOrder(Order idOrder) {
-        this.idOrder = idOrder;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public Product getIdProduct() {
-        return idProduct;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setIdProduct(Product idProduct) {
-        this.idProduct = idProduct;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
     public String toString() {
         return "OrderHasProduct{" +
-                "idOrder=" + idOrder +
-                ", idProduct=" + idProduct +
+                "idOrder=" + order +
+                ", idProduct=" + product +
                 '}';
     }
 }

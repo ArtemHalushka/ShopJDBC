@@ -6,17 +6,17 @@ public class Address {
     private String firstLine;
     private String secondLine;
     private String zipCode;
-    private City idCity;
+    private City city;
 
     public Address() {
     }
 
-    public Address(int idAddress, String firstLine, String secondLine, String zipCode, City idCity) {
+    public Address(int idAddress, String firstLine, String secondLine, String zipCode, City city) {
         this.idAddress = idAddress;
         this.firstLine = firstLine;
         this.secondLine = secondLine;
         this.zipCode = zipCode;
-        this.idCity = idCity;
+        this.city = city;
     }
 
     public int getIdAddress() {
@@ -51,22 +51,11 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public City getIdCity() {
-        return idCity;
+    public City getCity() {
+        return city;
     }
 
-    public void setIdCity(City idCity) {
-        this.idCity = idCity;
-    }
-
-    @Override
-    public String toString() {
-        return "Address{" +
-                "idAddress=" + idAddress +
-                ", firstLine='" + firstLine + '\'' +
-                ", secondLine='" + secondLine + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", idCity=" + idCity +
-                '}';
+    public void setCity(City city) {
+        this.city = city;
     }
 }

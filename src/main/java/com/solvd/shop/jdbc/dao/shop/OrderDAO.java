@@ -28,13 +28,15 @@ public class OrderDAO implements IOrderDAO<Order> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setDate(1, order.getDate());
-            statement.setInt(2, order.getIdStatus().getIdStatus());
+            statement.setInt(2, order.getStatus().getIdStatus());
             statement.setDouble(3, order.getOrderTotal());
-            statement.setInt(4, order.getIdBuyer().getIdBuyer());
-            statement.setInt(5, order.getIdEmployee().getIdEmployee());
+            statement.setInt(4, order.getBuyer().getIdBuyer());
+            statement.setInt(5, order.getEmployee().getIdEmployee());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -44,14 +46,16 @@ public class OrderDAO implements IOrderDAO<Order> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setDate(1, order.getDate());
-            statement.setInt(2, order.getIdStatus().getIdStatus());
+            statement.setInt(2, order.getStatus().getIdStatus());
             statement.setDouble(3, order.getOrderTotal());
-            statement.setInt(4, order.getIdBuyer().getIdBuyer());
-            statement.setInt(5, order.getIdEmployee().getIdEmployee());
+            statement.setInt(4, order.getBuyer().getIdBuyer());
+            statement.setInt(5, order.getEmployee().getIdEmployee());
             statement.setInt(6, order.getIdOrder());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -64,6 +68,8 @@ public class OrderDAO implements IOrderDAO<Order> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -87,6 +93,8 @@ public class OrderDAO implements IOrderDAO<Order> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -113,6 +121,8 @@ public class OrderDAO implements IOrderDAO<Order> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return orderList;
     }
@@ -137,6 +147,8 @@ public class OrderDAO implements IOrderDAO<Order> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

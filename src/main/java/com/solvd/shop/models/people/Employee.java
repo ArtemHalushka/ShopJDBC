@@ -6,15 +6,15 @@ public class Employee {
 
     private int idEmployee;
     private String name;
-    private Position idPosition;
+    private Position position;
 
     public Employee() {
     }
 
-    public Employee(int idEmployee, String name, Position idPosition) {
+    public Employee(int idEmployee, String name, Position position) {
         this.idEmployee = idEmployee;
         this.name = name;
-        this.idPosition = idPosition;
+        this.position = position;
     }
 
     public int getIdEmployee() {
@@ -33,12 +33,12 @@ public class Employee {
         this.name = name;
     }
 
-    public Position getIdPosition() {
-        return idPosition;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setIdPosition(Position idPosition) {
-        this.idPosition = idPosition;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class Employee {
         return "Employee{" +
                 "idEmployee=" + idEmployee +
                 ", name='" + name + '\'' +
-                ", idPosition=" + idPosition +
+                ", idPosition=" + position +
                 '}';
     }
 }

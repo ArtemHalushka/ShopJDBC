@@ -28,10 +28,14 @@ public class AddressDAO implements IAddressDAO<Address> {
             statement.setString(1, address.getFirstLine());
             statement.setString(2, address.getSecondLine());
             statement.setString(3, address.getZipCode());
-            statement.setInt(4,address.getIdCity().getIdCity());
+            statement.setInt(4,address.getCity().getIdCity());
             statement.executeUpdate();
-        } catch (SQLException e) {
+
+        }
+        catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -43,11 +47,13 @@ public class AddressDAO implements IAddressDAO<Address> {
             statement.setString(1, address.getFirstLine());
             statement.setString(2, address.getSecondLine());
             statement.setString(3, address.getZipCode());
-            statement.setInt(4, address.getIdCity().getIdCity());
+            statement.setInt(4, address.getCity().getIdCity());
             statement.setInt(5, address.getIdAddress());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -60,6 +66,8 @@ public class AddressDAO implements IAddressDAO<Address> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -79,6 +87,8 @@ public class AddressDAO implements IAddressDAO<Address> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -100,6 +110,8 @@ public class AddressDAO implements IAddressDAO<Address> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return addressList;
     }
@@ -120,6 +132,8 @@ public class AddressDAO implements IAddressDAO<Address> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

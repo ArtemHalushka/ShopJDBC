@@ -31,6 +31,8 @@ public class CategoryDAO implements ICategoryDAO<Category> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -44,6 +46,8 @@ public class CategoryDAO implements ICategoryDAO<Category> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -56,6 +60,8 @@ public class CategoryDAO implements ICategoryDAO<Category> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -72,6 +78,8 @@ public class CategoryDAO implements ICategoryDAO<Category> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -91,6 +99,8 @@ public class CategoryDAO implements ICategoryDAO<Category> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return categoryList;
     }
@@ -109,6 +119,8 @@ public class CategoryDAO implements ICategoryDAO<Category> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

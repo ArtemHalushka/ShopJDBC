@@ -7,16 +7,16 @@ public class Buyer {
     private int idBuyer;
     private String name;
     private String phoneNumber;
-    private Address idAddress;
+    private Address address;
 
     public Buyer() {
     }
 
-    public Buyer(int idBuyer, String name, String phoneNumber, Address idAddress) {
+    public Buyer(int idBuyer, String name, String phoneNumber, Address address) {
         this.idBuyer = idBuyer;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.idAddress = idAddress;
+        this.address = address;
     }
 
     public int getIdBuyer() {
@@ -43,12 +43,12 @@ public class Buyer {
         this.phoneNumber = phoneNumber;
     }
 
-    public Address getIdAddress() {
-        return idAddress;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setIdAddress(Address idAddress) {
-        this.idAddress = idAddress;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Buyer {
                 "idBuyer=" + idBuyer +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", idAddress=" + idAddress +
+                ", idAddress=" + address +
                 '}';
     }
 }

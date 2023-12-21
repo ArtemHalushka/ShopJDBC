@@ -30,10 +30,12 @@ public class CityDAO implements ICityDAO<City> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, city.getCityName());
-            statement.setInt(2, city.getIdCountry().getIdCountry());
+            statement.setInt(2, city.getCountry().getIdCountry());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -43,11 +45,13 @@ public class CityDAO implements ICityDAO<City> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, city.getCityName());
-            statement.setInt(2, city.getIdCountry().getIdCountry());
+            statement.setInt(2, city.getCountry().getIdCountry());
             statement.setInt(3, city.getIdCity());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -60,6 +64,8 @@ public class CityDAO implements ICityDAO<City> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -78,6 +84,8 @@ public class CityDAO implements ICityDAO<City> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -97,6 +105,8 @@ public class CityDAO implements ICityDAO<City> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -117,6 +127,8 @@ public class CityDAO implements ICityDAO<City> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return cityList;
     }

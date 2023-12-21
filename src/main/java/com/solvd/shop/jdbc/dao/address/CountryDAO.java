@@ -31,6 +31,8 @@ public class CountryDAO implements ICountryDAO<Country> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -45,6 +47,8 @@ public class CountryDAO implements ICountryDAO<Country> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -57,6 +61,8 @@ public class CountryDAO implements ICountryDAO<Country> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -73,6 +79,8 @@ public class CountryDAO implements ICountryDAO<Country> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -91,6 +99,8 @@ public class CountryDAO implements ICountryDAO<Country> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return countryList;
     }
@@ -108,6 +118,8 @@ public class CountryDAO implements ICountryDAO<Country> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

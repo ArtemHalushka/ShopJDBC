@@ -1,29 +1,26 @@
 package com.solvd.shop.models.shop;
 
-import com.solvd.shop.models.people.Buyer;
-import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.people.Supplier;
 
-import java.util.Date;
 
 public class Product {
 
     private int idProduct;
     private String productName;
     private double price;
-    private Supplier idSupplier;
-    private Category idCategory;
+    private Supplier supplier;
+    private Category category;
     private int availableQuantity;
 
     public Product() {
     }
 
-    public Product(int idProduct, String productName, double price, Supplier idSupplier, Category idCategory, int availableQuantity) {
+    public Product(int idProduct, String productName, double price, Supplier supplier, Category category, int availableQuantity) {
         this.idProduct = idProduct;
         this.productName = productName;
         this.price = price;
-        this.idSupplier = idSupplier;
-        this.idCategory = idCategory;
+        this.supplier = supplier;
+        this.category = category;
         this.availableQuantity = availableQuantity;
     }
 
@@ -51,20 +48,20 @@ public class Product {
         this.price = price;
     }
 
-    public Supplier getIdSupplier() {
-        return idSupplier;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setIdSupplier(Supplier idSupplier) {
-        this.idSupplier = idSupplier;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
-    public Category getIdCategory() {
-        return idCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setIdCategory(Category idCategory) {
-        this.idCategory = idCategory;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getAvailableQuantity() {
@@ -81,8 +78,8 @@ public class Product {
                 "idProduct=" + idProduct +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
-                ", idSupplier=" + idSupplier +
-                ", idCategory=" + idCategory +
+                ", idSupplier=" + supplier +
+                ", idCategory=" + category +
                 ", availableQuantity=" + availableQuantity +
                 '}';
     }

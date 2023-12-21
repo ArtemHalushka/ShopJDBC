@@ -31,12 +31,14 @@ public class ProductDAO implements IProductDAO<Product> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, product.getProductName());
             statement.setDouble(2, product.getPrice());
-            statement.setInt(3, product.getIdSupplier().getIdSupplier());
-            statement.setInt(4, product.getIdCategory().getIdCategory());
+            statement.setInt(3, product.getSupplier().getIdSupplier());
+            statement.setInt(4, product.getCategory().getIdCategory());
             statement.setInt(5, product.getAvailableQuantity());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -47,14 +49,16 @@ public class ProductDAO implements IProductDAO<Product> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, product.getProductName());
             statement.setDouble(2, product.getPrice());
-            statement.setInt(3, product.getIdSupplier().getIdSupplier());
-            statement.setInt(4, product.getIdCategory().getIdCategory());
+            statement.setInt(3, product.getSupplier().getIdSupplier());
+            statement.setInt(4, product.getCategory().getIdCategory());
             statement.setInt(5, product.getAvailableQuantity());
             statement.setInt(6, product.getIdProduct());
 
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -67,6 +71,8 @@ public class ProductDAO implements IProductDAO<Product> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -88,6 +94,8 @@ public class ProductDAO implements IProductDAO<Product> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -111,6 +119,8 @@ public class ProductDAO implements IProductDAO<Product> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return productList;
     }
@@ -133,6 +143,8 @@ public class ProductDAO implements IProductDAO<Product> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

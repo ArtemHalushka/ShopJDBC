@@ -29,12 +29,14 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
         String query = "INSERT INTO orders_has_products (id_order, id_product) VALUES ((?), (?))";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, orderHasProduct.getIdOrder().getIdOrder());
-            statement.setInt(2, orderHasProduct.getIdProduct().getIdProduct());
+            statement.setInt(1, orderHasProduct.getOrder().getIdOrder());
+            statement.setInt(2, orderHasProduct.getProduct().getIdProduct());
 
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -43,11 +45,13 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
         String query = "UPDATE orders_has_products SET id_product = (?) WHERE id_order = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, orderHasProduct.getIdProduct().getIdProduct());
-            statement.setInt(2, orderHasProduct.getIdOrder().getIdOrder());
+            statement.setInt(1, orderHasProduct.getProduct().getIdProduct());
+            statement.setInt(2, orderHasProduct.getOrder().getIdOrder());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -56,10 +60,12 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
         String query = "DELETE FROM orders_has_products WHERE id_order = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, orderHasProduct.getIdOrder().getIdOrder());
+            statement.setInt(1, orderHasProduct.getOrder().getIdOrder());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -80,6 +86,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -102,6 +110,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return orderHasProductList;
     }
@@ -125,6 +135,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return orderHasProductList;
     }

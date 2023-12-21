@@ -30,10 +30,12 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, buyer.getName());
             statement.setString(2, buyer.getPhoneNumber());
-            statement.setInt(3, buyer.getIdAddress().getIdAddress());
+            statement.setInt(3, buyer.getAddress().getIdAddress());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -44,11 +46,13 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, buyer.getName());
             statement.setString(2, buyer.getPhoneNumber());
-            statement.setInt(3, buyer.getIdAddress().getIdAddress());
+            statement.setInt(3, buyer.getAddress().getIdAddress());
             statement.setInt(4, buyer.getIdBuyer());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -61,6 +65,8 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -79,6 +85,8 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -99,6 +107,8 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return buyerList;
     }
@@ -118,6 +128,8 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }

@@ -9,21 +9,21 @@ public class Order {
 
     private int idOrder;
     private Date date;
-    private Status idStatus;
+    private Status status;
     private double orderTotal;
-    private Buyer idBuyer;
-    private Employee idEmployee;
+    private Buyer buyer;
+    private Employee employee;
 
     public Order() {
     }
 
-    public Order(int idOrder, Date date, Status idStatus, double orderTotal, Buyer idBuyer, Employee idEmployee) {
+    public Order(int idOrder, Date date, Status status, double orderTotal, Buyer buyer, Employee employee) {
         this.idOrder = idOrder;
         this.date = date;
-        this.idStatus = idStatus;
+        this.status = status;
         this.orderTotal = orderTotal;
-        this.idBuyer = idBuyer;
-        this.idEmployee = idEmployee;
+        this.buyer = buyer;
+        this.employee = employee;
     }
 
     public int getIdOrder() {
@@ -42,12 +42,12 @@ public class Order {
         this.date = date;
     }
 
-    public Status getIdStatus() {
-        return idStatus;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setIdStatus(Status idStatus) {
-        this.idStatus = idStatus;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public double getOrderTotal() {
@@ -58,20 +58,20 @@ public class Order {
         this.orderTotal = orderTotal;
     }
 
-    public Buyer getIdBuyer() {
-        return idBuyer;
+    public Buyer getBuyer() {
+        return buyer;
     }
 
-    public void setIdBuyer(Buyer idBuyer) {
-        this.idBuyer = idBuyer;
+    public void setBuyer(Buyer buyer) {
+        this.buyer = buyer;
     }
 
-    public Employee getIdEmployee() {
-        return idEmployee;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setIdEmployee(Employee idEmployee) {
-        this.idEmployee = idEmployee;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @Override
@@ -79,10 +79,10 @@ public class Order {
         return "Order{" +
                 "idOrder=" + idOrder +
                 ", date=" + date +
-                ", idStatus=" + idStatus +
+                ", idStatus=" + status +
                 ", orderTotal=" + orderTotal +
-                ", idBuyer=" + idBuyer +
-                ", idEmployee=" + idEmployee +
+                ", idBuyer=" + buyer +
+                ", idEmployee=" + employee +
                 '}';
     }
 }

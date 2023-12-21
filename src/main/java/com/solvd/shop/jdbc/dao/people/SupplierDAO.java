@@ -29,10 +29,12 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, supplier.getSupplierName());
-            statement.setInt(2, supplier.getIdAddress().getIdAddress());
+            statement.setInt(2, supplier.getAddress().getIdAddress());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -42,11 +44,13 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, supplier.getSupplierName());
-            statement.setInt(2, supplier.getIdAddress().getIdAddress());
+            statement.setInt(2, supplier.getAddress().getIdAddress());
             statement.setInt(3, supplier.getIdSupplier());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -59,6 +63,8 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
     }
 
@@ -77,6 +83,8 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
@@ -97,6 +105,8 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return supplierList;
     }
@@ -116,6 +126,8 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             }
         } catch (SQLException e) {
             LOGGER.info(e);
+        } finally {
+            connectionPool.releaseConnection(conn);
         }
         return null;
     }
