@@ -8,6 +8,11 @@ public class Category {
     public Category() {
     }
 
+    public Category(int idCategory, String categoryName) {
+        this.idCategory = idCategory;
+        this.categoryName = categoryName;
+    }
+
     public int getIdCategory() {
         return idCategory;
     }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IBaseDAO<Entity> {
 
-    void insert(Entity entity);
+    void insert (Entity entity);
 
     void update(Entity entity);
 

@@ -1,17 +1,8 @@
 package com.solvd.shop.interafaces.address;
 
 import com.solvd.shop.interafaces.IBaseDAO;
-import com.solvd.shop.models.address.City;
 
-import java.util.List;
-
-public interface ICityDAO extends IBaseDAO {
+public interface ICityDAO<City> extends IBaseDAO<City> {
 
     City getByCityName(String cityName);
-
-    @Override
-    City getByID(int id);
-
-    @Override
-    List<City> getAll();
 }

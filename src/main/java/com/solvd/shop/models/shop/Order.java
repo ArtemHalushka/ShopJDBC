@@ -3,7 +3,7 @@ package com.solvd.shop.models.shop;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Order {
 

@@ -1,18 +1,10 @@
 package com.solvd.shop.interafaces.shop;
 
 import com.solvd.shop.interafaces.IBaseDAO;
-import com.solvd.shop.models.shop.Order;
 
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
-public interface IOrderDAO extends IBaseDAO {
+public interface IOrderDAO<Order> extends IBaseDAO<Order> {
 
     Order getByDate(Date date);
-
-    @Override
-    Order getByID(int id);
-
-    @Override
-    List<Order> getAll();
 }

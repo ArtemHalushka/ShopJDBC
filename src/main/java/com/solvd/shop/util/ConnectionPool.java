@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionPool {
-    private List<Connection> availableConnections = new ArrayList<>();
-    private List<Connection> usedConnections = new ArrayList<>();
+    private static List<Connection> availableConnections = new ArrayList<>();
+    private static List<Connection> usedConnections = new ArrayList<>();
     private final int MAX_CONNECTIONS = 5;
 
     public ConnectionPool() throws SQLException {
@@ -23,7 +23,7 @@ public class ConnectionPool {
 
     public Connection getConnection() {
         if (availableConnections.size() == 0) {
-            System.out.println("All connections are Used !!");
+            System.out.println("No any available connection, Try connect later.");
             return null;
         } else {
             Connection con = availableConnections.remove(availableConnections.size() - 1);
