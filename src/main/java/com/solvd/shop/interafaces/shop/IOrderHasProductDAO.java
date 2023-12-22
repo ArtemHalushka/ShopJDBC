@@ -1,10 +1,13 @@
 package com.solvd.shop.interafaces.shop;
 
 import com.solvd.shop.interafaces.IBaseDAO;
+import com.solvd.shop.models.shop.OrderHasProduct;
 
 import java.util.List;
 
-public interface IOrderHasProductDAO<OrderHasProduct> extends IBaseDAO<OrderHasProduct> {
+public interface IOrderHasProductDAO<OrderHasProduct, Product> extends IBaseDAO<OrderHasProduct> {
 
-    List<OrderHasProduct> getAllByProductId(int id);
-}
+    List<Product> getAllByOrderId(int id);
+
+
+    }

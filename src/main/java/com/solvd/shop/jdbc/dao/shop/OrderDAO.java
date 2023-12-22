@@ -4,6 +4,7 @@ import com.solvd.shop.interafaces.shop.IOrderDAO;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.shop.Order;
+import com.solvd.shop.models.shop.Product;
 import com.solvd.shop.models.shop.Status;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
@@ -103,6 +104,7 @@ public class OrderDAO implements IOrderDAO<Order> {
     @Override
     public List<Order> getAll() {
         List<Order> orderList = new ArrayList<>();
+
         String query = "SELECT * FROM orders";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {

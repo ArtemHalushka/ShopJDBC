@@ -1,6 +1,8 @@
 package com.solvd.shop.jdbc.dao.shop;
 
 import com.solvd.shop.interafaces.shop.IOrderHasProductDAO;
+import com.solvd.shop.models.people.Supplier;
+import com.solvd.shop.models.shop.Category;
 import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.models.shop.OrderHasProduct;
 import com.solvd.shop.models.shop.Product;
@@ -15,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> {
+public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, Product> {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(OrderHasProductDAO.class);
@@ -117,20 +119,21 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
     }
 
     @Override
-    public List<OrderHasProduct> getAllByProductId(int id) {
-        List<OrderHasProduct> orderHasProductList = new ArrayList<>();
-        String query = "SELECT * FROM orders_has_products WHERE id_product = (?)";
+    public List<Product> getAllByOrderId(int id) {
+        List<Product> productList = new ArrayList<>();
+        String query = "SELECT * FROM orders_has_products WHERE id_order = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Order order = new Order();
-                    Product product = new Product();
-                    order.setOrderId(resultSet.getInt("id_order"));
-                    product.setProductId(resultSet.getInt("id_product"));
-                    OrderHasProduct orderHasProduct = new OrderHasProduct(order, product);
-                    orderHasProductList.add(orderHasProduct);
+                    Supplier supplier = new Supplier();
+                    Category category = new Category();
+                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
+                    category.setCategoryId(resultSet.getInt("id_category"));
+
+                    Product product = new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
+                    productList.add(product);
                 }
             }
         } catch (SQLException e) {
@@ -138,6 +141,6 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
         } finally {
             connectionPool.releaseConnection(conn);
         }
-        return orderHasProductList;
+        return productList;
     }
 }

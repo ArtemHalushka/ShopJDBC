@@ -4,6 +4,7 @@ import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Order {
 
@@ -13,6 +14,7 @@ public class Order {
     private double orderTotal;
     private Buyer buyer;
     private Employee employee;
+    private List<Product> products;
 
     public Order() {
     }
@@ -24,6 +26,14 @@ public class Order {
         this.orderTotal = orderTotal;
         this.buyer = buyer;
         this.employee = employee;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public int getOrderId() {

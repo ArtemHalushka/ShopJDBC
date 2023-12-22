@@ -1,5 +1,7 @@
 package com.solvd.shop.models.shop;
 
+import java.util.List;
+
 public class OrderHasProduct {
 
     private Order order;
@@ -8,7 +10,7 @@ public class OrderHasProduct {
     public OrderHasProduct() {
     }
 
-    public OrderHasProduct(Order order, Product product) {
+    public OrderHasProduct(Order order, Product products) {
         this.order = order;
         this.product = product;
     }
