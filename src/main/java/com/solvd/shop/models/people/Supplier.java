@@ -4,25 +4,25 @@ import com.solvd.shop.models.address.Address;
 
 public class Supplier {
 
-    private int idSupplier;
+    private int supplierId;
     private String supplierName;
     private Address address;
 
     public Supplier() {
     }
 
-    public Supplier(int idSupplier, String supplierName, Address address) {
-        this.idSupplier = idSupplier;
+    public Supplier(int supplierId, String supplierName, Address address) {
+        this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.address = address;
     }
 
-    public int getIdSupplier() {
-        return idSupplier;
+    public int getSupplierId() {
+        return supplierId;
     }
 
-    public void setIdSupplier(int idSupplier) {
-        this.idSupplier = idSupplier;
+    public void setSupplierId(int supplierId) {
+        this.supplierId = supplierId;
     }
 
     public String getSupplierName() {
@@ -44,7 +44,7 @@ public class Supplier {
     @Override
     public String toString() {
         return "Supplier{" +
-                "idSupplier=" + idSupplier +
+                "idSupplier=" + supplierId +
                 ", supplierName='" + supplierName + '\'' +
                 ", idAddress=" + address +
                 '}';

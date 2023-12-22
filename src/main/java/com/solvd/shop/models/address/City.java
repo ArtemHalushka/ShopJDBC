@@ -2,25 +2,25 @@ package com.solvd.shop.models.address;
 
 public class City {
 
-    private int idCity;
+    private int cityId;
     private String cityName;
     private Country country;
 
     public City() {
     }
 
-    public City(int idCity, String cityName, Country country) {
-        this.idCity = idCity;
+    public City(int cityId, String cityName, Country country) {
+        this.cityId = cityId;
         this.cityName = cityName;
         this.country = country;
     }
 
-    public int getIdCity() {
-        return idCity;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setIdCity(int idCity) {
-        this.idCity = idCity;
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     public String getCityName() {
@@ -42,7 +42,7 @@ public class City {
     @Override
     public String toString() {
         return "City{" +
-                "idCity=" + idCity +
+                "idCity=" + cityId +
                 ", cityName='" + cityName + '\'' +
                 ", idCountry=" + country +
                 '}';

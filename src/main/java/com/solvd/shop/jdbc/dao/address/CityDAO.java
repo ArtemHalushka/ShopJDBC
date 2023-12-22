@@ -30,7 +30,7 @@ public class CityDAO implements ICityDAO<City> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, city.getCityName());
-            statement.setInt(2, city.getCountry().getIdCountry());
+            statement.setInt(2, city.getCountry().getCountryId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -45,8 +45,8 @@ public class CityDAO implements ICityDAO<City> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, city.getCityName());
-            statement.setInt(2, city.getCountry().getIdCountry());
-            statement.setInt(3, city.getIdCity());
+            statement.setInt(2, city.getCountry().getCountryId());
+            statement.setInt(3, city.getCityId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -60,7 +60,7 @@ public class CityDAO implements ICityDAO<City> {
         String query = "DELETE FROM cities WHERE id_city = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, city.getIdCity());
+            statement.setInt(1, city.getCityId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -78,7 +78,7 @@ public class CityDAO implements ICityDAO<City> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Country country = new Country();
-                    country.setIdCountry(resultSet.getInt("id_country"));
+                    country.setCountryId(resultSet.getInt("id_country"));
                     return new City(resultSet.getInt("id_city"), resultSet.getString("city"), country);
                 }
             }
@@ -99,7 +99,7 @@ public class CityDAO implements ICityDAO<City> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Country country = new Country();
-                    country.setIdCountry(resultSet.getInt("id_country"));
+                    country.setCountryId(resultSet.getInt("id_country"));
                     return new City(resultSet.getInt("id_city"), resultSet.getString("city"), country);
                 }
             }
@@ -120,7 +120,7 @@ public class CityDAO implements ICityDAO<City> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Country country = new Country();
-                    country.setIdCountry(resultSet.getInt("id_country"));
+                    country.setCountryId(resultSet.getInt("id_country"));
                     City city =  new City(resultSet.getInt("id_city"), resultSet.getString("city"), country);
                     cityList.add(city);
                 }

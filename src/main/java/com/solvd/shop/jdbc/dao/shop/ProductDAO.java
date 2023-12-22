@@ -31,8 +31,8 @@ public class ProductDAO implements IProductDAO<Product> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, product.getProductName());
             statement.setDouble(2, product.getPrice());
-            statement.setInt(3, product.getSupplier().getIdSupplier());
-            statement.setInt(4, product.getCategory().getIdCategory());
+            statement.setInt(3, product.getSupplier().getSupplierId());
+            statement.setInt(4, product.getCategory().getCategoryId());
             statement.setInt(5, product.getAvailableQuantity());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -49,10 +49,10 @@ public class ProductDAO implements IProductDAO<Product> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, product.getProductName());
             statement.setDouble(2, product.getPrice());
-            statement.setInt(3, product.getSupplier().getIdSupplier());
-            statement.setInt(4, product.getCategory().getIdCategory());
+            statement.setInt(3, product.getSupplier().getSupplierId());
+            statement.setInt(4, product.getCategory().getCategoryId());
             statement.setInt(5, product.getAvailableQuantity());
-            statement.setInt(6, product.getIdProduct());
+            statement.setInt(6, product.getProductId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -67,7 +67,7 @@ public class ProductDAO implements IProductDAO<Product> {
         String query = "DELETE FROM products WHERE id_product = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, product.getIdProduct());
+            statement.setInt(1, product.getProductId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -86,8 +86,8 @@ public class ProductDAO implements IProductDAO<Product> {
                 while (resultSet.next()) {
                     Supplier supplier = new Supplier();
                     Category category = new Category();
-                    supplier.setIdSupplier(resultSet.getInt("id_supplier"));
-                    category.setIdCategory(resultSet.getInt("id_category"));
+                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
+                    category.setCategoryId(resultSet.getInt("id_category"));
 
                     return new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
                 }
@@ -110,8 +110,8 @@ public class ProductDAO implements IProductDAO<Product> {
                 while (resultSet.next()) {
                     Supplier supplier = new Supplier();
                     Category category = new Category();
-                    supplier.setIdSupplier(resultSet.getInt("id_supplier"));
-                    category.setIdCategory(resultSet.getInt("id_category"));
+                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
+                    category.setCategoryId(resultSet.getInt("id_category"));
 
                     Product product = new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
                     productList.add(product);
@@ -135,8 +135,8 @@ public class ProductDAO implements IProductDAO<Product> {
                 while (resultSet.next()) {
                     Supplier supplier = new Supplier();
                     Category category = new Category();
-                    supplier.setIdSupplier(resultSet.getInt("id_supplier"));
-                    category.setIdCategory(resultSet.getInt("id_category"));
+                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
+                    category.setCategoryId(resultSet.getInt("id_category"));
 
                     return new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
                 }

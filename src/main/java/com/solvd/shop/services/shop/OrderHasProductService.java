@@ -1,6 +1,6 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IOrderHasProductService;
+import com.solvd.shop.interafaces.shop.IOrderHasProductDAO;
 import com.solvd.shop.jdbc.dao.shop.OrderHasProductDAO;
 import com.solvd.shop.models.shop.OrderHasProduct;
 import com.solvd.shop.util.ConnectionPool;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderHasProductService implements IOrderHasProductService<OrderHasProduct> {
+public class OrderHasProductService implements IOrderHasProductDAO<OrderHasProduct> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(OrderHasProductService.class);

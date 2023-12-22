@@ -42,7 +42,7 @@ public class CategoryDAO implements ICategoryDAO<Category> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, category.getCategoryName());
-            statement.setInt(2, category.getIdCategory());
+            statement.setInt(2, category.getCategoryId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -56,7 +56,7 @@ public class CategoryDAO implements ICategoryDAO<Category> {
         String query = "DELETE FROM categories WHERE id_category = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, category.getIdCategory());
+            statement.setInt(1, category.getCategoryId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);

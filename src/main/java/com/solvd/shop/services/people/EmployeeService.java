@@ -1,6 +1,6 @@
 package com.solvd.shop.services.people;
 
-import com.solvd.shop.interafaces.people.IEmployeeService;
+import com.solvd.shop.interafaces.people.IEmployeeDAO;
 import com.solvd.shop.jdbc.dao.people.EmployeeDAO;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.util.ConnectionPool;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-public class EmployeeService implements IEmployeeService<Employee> {
+public class EmployeeService implements IEmployeeDAO<Employee> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(EmployeeService.class);

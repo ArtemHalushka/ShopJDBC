@@ -29,8 +29,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
         String query = "INSERT INTO orders_has_products (id_order, id_product) VALUES ((?), (?))";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, orderHasProduct.getOrder().getIdOrder());
-            statement.setInt(2, orderHasProduct.getProduct().getIdProduct());
+            statement.setInt(1, orderHasProduct.getOrder().getOrderId());
+            statement.setInt(2, orderHasProduct.getProduct().getProductId());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -45,8 +45,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
         String query = "UPDATE orders_has_products SET id_product = (?) WHERE id_order = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, orderHasProduct.getProduct().getIdProduct());
-            statement.setInt(2, orderHasProduct.getOrder().getIdOrder());
+            statement.setInt(1, orderHasProduct.getProduct().getProductId());
+            statement.setInt(2, orderHasProduct.getOrder().getOrderId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -60,7 +60,7 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
         String query = "DELETE FROM orders_has_products WHERE id_order = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, orderHasProduct.getOrder().getIdOrder());
+            statement.setInt(1, orderHasProduct.getOrder().getOrderId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -79,8 +79,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
                 while (resultSet.next()) {
                     Order order = new Order();
                     Product product = new Product();
-                    order.setIdOrder(resultSet.getInt("id_order"));
-                    product.setIdProduct(resultSet.getInt("id_product"));
+                    order.setOrderId(resultSet.getInt("id_order"));
+                    product.setProductId(resultSet.getInt("id_product"));
                     return new OrderHasProduct(order, product);
                 }
             }
@@ -102,8 +102,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
                 while (resultSet.next()) {
                     Order order = new Order();
                     Product product = new Product();
-                    order.setIdOrder(resultSet.getInt("id_order"));
-                    product.setIdProduct(resultSet.getInt("id_product"));
+                    order.setOrderId(resultSet.getInt("id_order"));
+                    product.setProductId(resultSet.getInt("id_product"));
                     OrderHasProduct orderHasProduct = new OrderHasProduct(order, product);
                     orderHasProductList.add(orderHasProduct);
                 }
@@ -127,8 +127,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct> 
                 while (resultSet.next()) {
                     Order order = new Order();
                     Product product = new Product();
-                    order.setIdOrder(resultSet.getInt("id_order"));
-                    product.setIdProduct(resultSet.getInt("id_product"));
+                    order.setOrderId(resultSet.getInt("id_order"));
+                    product.setProductId(resultSet.getInt("id_product"));
                     OrderHasProduct orderHasProduct = new OrderHasProduct(order, product);
                     orderHasProductList.add(orderHasProduct);
                 }

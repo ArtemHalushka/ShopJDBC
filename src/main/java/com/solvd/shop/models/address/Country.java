@@ -2,23 +2,23 @@ package com.solvd.shop.models.address;
 
 public class Country {
 
-    private int idCountry;
+    private int countryId;
     private String countryName;
 
     public Country() {
     }
 
-    public Country(int idCountry, String countryName) {
-        this.idCountry = idCountry;
+    public Country(int countryId, String countryName) {
+        this.countryId = countryId;
         this.countryName = countryName;
     }
 
-    public int getIdCountry() {
-        return idCountry;
+    public int getCountryId() {
+        return countryId;
     }
 
-    public void setIdCountry(int idCountry) {
-        this.idCountry = idCountry;
+    public void setCountryId(int countryId) {
+        this.countryId = countryId;
     }
 
     public String getCountryName() {
@@ -32,7 +32,7 @@ public class Country {
     @Override
     public String toString() {
         return "Country{" +
-                "idCountry=" + idCountry +
+                "idCountry=" + countryId +
                 ", countryName='" + countryName + '\'' +
                 '}';
     }

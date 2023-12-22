@@ -44,7 +44,7 @@ public class PositionDAO implements IPositionDAO<Position> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, position.getPositionName());
             statement.setDouble(2, position.getSalary());
-            statement.setInt(3, position.getIdPosition());
+            statement.setInt(3, position.getPositionId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -58,7 +58,7 @@ public class PositionDAO implements IPositionDAO<Position> {
         String query = "DELETE FROM positions WHERE id_position = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, position.getIdPosition());
+            statement.setInt(1, position.getPositionId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);

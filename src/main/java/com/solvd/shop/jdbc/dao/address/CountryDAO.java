@@ -43,7 +43,7 @@ public class CountryDAO implements ICountryDAO<Country> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, country.getCountryName());
-            statement.setInt(2, country.getIdCountry());
+            statement.setInt(2, country.getCountryId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -57,7 +57,7 @@ public class CountryDAO implements ICountryDAO<Country> {
         String query = "DELETE FROM countries WHERE id_country = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, country.getIdCountry());
+            statement.setInt(1, country.getCountryId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);

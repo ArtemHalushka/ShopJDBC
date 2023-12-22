@@ -1,6 +1,6 @@
 package com.solvd.shop.services.address;
 
-import com.solvd.shop.interafaces.address.ICountryService;
+import com.solvd.shop.interafaces.address.ICountryDAO;
 import com.solvd.shop.jdbc.dao.address.CountryDAO;
 import com.solvd.shop.models.address.Country;
 import com.solvd.shop.util.ConnectionPool;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CountryService implements ICountryService<Country> {
+public class CountryService implements ICountryDAO<Country> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(CountryService.class);

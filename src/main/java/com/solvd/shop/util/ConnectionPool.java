@@ -36,8 +36,14 @@ public class ConnectionPool {
         }
     }
 
-    private static Connection createConnection() throws SQLException {
-        return DriverManager.getConnection(DBConfig.getDatabaseUrl(), DBConfig.getDatabaseUser(), DBConfig.getDatabasePassword());
+    private static Connection createConnection() {
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(DBConfig.getDatabaseUrl(), DBConfig.getDatabaseUser(), DBConfig.getDatabasePassword());
+        } catch (SQLException e) {
+            LOGGER.info(e);
+        }
+        return conn;
     }
 
     public static Connection getConnection() {

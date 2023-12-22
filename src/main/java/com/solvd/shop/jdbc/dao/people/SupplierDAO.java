@@ -29,7 +29,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, supplier.getSupplierName());
-            statement.setInt(2, supplier.getAddress().getIdAddress());
+            statement.setInt(2, supplier.getAddress().getAddressId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -44,8 +44,8 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, supplier.getSupplierName());
-            statement.setInt(2, supplier.getAddress().getIdAddress());
-            statement.setInt(3, supplier.getIdSupplier());
+            statement.setInt(2, supplier.getAddress().getAddressId());
+            statement.setInt(3, supplier.getSupplierId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -59,7 +59,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
         String query = "DELETE FROM suppliers WHERE id_supplier = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, supplier.getIdSupplier());
+            statement.setInt(1, supplier.getSupplierId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -77,7 +77,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Address address = new Address();
-                    address.setIdAddress(resultSet.getInt("id_address"));
+                    address.setAddressId(resultSet.getInt("id_address"));
                     return new Supplier(resultSet.getInt("id_supplier"), resultSet.getString("supplier"), address);
                 }
             }
@@ -98,7 +98,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Address address = new Address();
-                    address.setIdAddress(resultSet.getInt("id_address"));
+                    address.setAddressId(resultSet.getInt("id_address"));
                     Supplier supplier = new Supplier(resultSet.getInt("id_supplier"), resultSet.getString("supplier"), address);
                     supplierList.add(supplier);
                 }
@@ -120,7 +120,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Address address = new Address();
-                    address.setIdAddress(resultSet.getInt("id_address"));
+                    address.setAddressId(resultSet.getInt("id_address"));
                     return new Supplier(resultSet.getInt("id_supplier"), resultSet.getString("supplier"), address);
                 }
             }

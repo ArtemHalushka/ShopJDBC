@@ -1,6 +1,6 @@
 package com.solvd.shop.services.people;
 
-import com.solvd.shop.interafaces.people.IBuyerService;
+import com.solvd.shop.interafaces.people.IBuyerDAO;
 import com.solvd.shop.jdbc.dao.people.BuyerDAO;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.util.ConnectionPool;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BuyerService implements IBuyerService<Buyer> {
+public class BuyerService implements IBuyerDAO<Buyer> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(BuyerService.class);

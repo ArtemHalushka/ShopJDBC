@@ -7,7 +7,7 @@ import java.sql.Date;
 
 public class Order {
 
-    private int idOrder;
+    private int orderId;
     private Date date;
     private Status status;
     private double orderTotal;
@@ -17,8 +17,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(int idOrder, Date date, Status status, double orderTotal, Buyer buyer, Employee employee) {
-        this.idOrder = idOrder;
+    public Order(int orderId, Date date, Status status, double orderTotal, Buyer buyer, Employee employee) {
+        this.orderId = orderId;
         this.date = date;
         this.status = status;
         this.orderTotal = orderTotal;
@@ -26,12 +26,12 @@ public class Order {
         this.employee = employee;
     }
 
-    public int getIdOrder() {
-        return idOrder;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setIdOrder(int idOrder) {
-        this.idOrder = idOrder;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public Date getDate() {
@@ -77,7 +77,7 @@ public class Order {
     @Override
     public String toString() {
         return "Order{" +
-                "idOrder=" + idOrder +
+                "idOrder=" + orderId +
                 ", date=" + date +
                 ", idStatus=" + status +
                 ", orderTotal=" + orderTotal +

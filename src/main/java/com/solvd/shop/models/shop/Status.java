@@ -2,23 +2,23 @@ package com.solvd.shop.models.shop;
 
 public class Status {
 
-    private int idStatus;
+    private int statusId;
     private String statusName;
 
     public Status() {
     }
 
-    public Status(int idStatus, String statusName) {
-        this.idStatus = idStatus;
+    public Status(int statusId, String statusName) {
+        this.statusId = statusId;
         this.statusName = statusName;
     }
 
-    public int getIdStatus() {
-        return idStatus;
+    public int getStatusId() {
+        return statusId;
     }
 
-    public void setIdStatus(int idStatus) {
-        this.idStatus = idStatus;
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
     public String getStatusName() {
@@ -32,7 +32,7 @@ public class Status {
     @Override
     public String toString() {
         return "Status{" +
-                "idStatus=" + idStatus +
+                "idStatus=" + statusId +
                 ", statusName='" + statusName + '\'' +
                 '}';
     }

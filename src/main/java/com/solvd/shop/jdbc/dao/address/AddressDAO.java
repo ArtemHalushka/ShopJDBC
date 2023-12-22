@@ -28,7 +28,7 @@ public class AddressDAO implements IAddressDAO<Address> {
             statement.setString(1, address.getFirstLine());
             statement.setString(2, address.getSecondLine());
             statement.setString(3, address.getZipCode());
-            statement.setInt(4,address.getCity().getIdCity());
+            statement.setInt(4,address.getCity().getCityId());
             statement.executeUpdate();
 
         }
@@ -47,8 +47,8 @@ public class AddressDAO implements IAddressDAO<Address> {
             statement.setString(1, address.getFirstLine());
             statement.setString(2, address.getSecondLine());
             statement.setString(3, address.getZipCode());
-            statement.setInt(4, address.getCity().getIdCity());
-            statement.setInt(5, address.getIdAddress());
+            statement.setInt(4, address.getCity().getCityId());
+            statement.setInt(5, address.getAddressId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -62,7 +62,7 @@ public class AddressDAO implements IAddressDAO<Address> {
         String query = "DELETE FROM addresses WHERE id_address = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, address.getIdAddress());
+            statement.setInt(1, address.getAddressId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -80,7 +80,7 @@ public class AddressDAO implements IAddressDAO<Address> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     City city = new City();
-                    city.setIdCity(resultSet.getInt("id_city"));
+                    city.setCityId(resultSet.getInt("id_city"));
                     return new Address(resultSet.getInt("id_address"), resultSet.getString("first_line"),
                             resultSet.getString("second_line"), resultSet.getString("zip_code"), city);
                 }
@@ -102,7 +102,7 @@ public class AddressDAO implements IAddressDAO<Address> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     City city = new City();
-                    city.setIdCity(resultSet.getInt("id_city"));
+                    city.setCityId(resultSet.getInt("id_city"));
                     Address address = new Address(resultSet.getInt("id_address"), resultSet.getString("first_line"),
                             resultSet.getString("second_line"), resultSet.getString("zip_code"), city);
                     addressList.add(address);
@@ -125,7 +125,7 @@ public class AddressDAO implements IAddressDAO<Address> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     City city = new City();
-                    city.setIdCity(resultSet.getInt("id_city"));
+                    city.setCityId(resultSet.getInt("id_city"));
                     return new Address(resultSet.getInt("id_address"), resultSet.getString("first_line"),
                             resultSet.getString("second_line"), resultSet.getString("zip_code"), city);
                 }

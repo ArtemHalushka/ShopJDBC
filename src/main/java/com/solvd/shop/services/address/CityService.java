@@ -1,6 +1,6 @@
 package com.solvd.shop.services.address;
 
-import com.solvd.shop.interafaces.address.ICityService;
+import com.solvd.shop.interafaces.address.ICityDAO;
 import com.solvd.shop.jdbc.dao.address.CityDAO;
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.util.ConnectionPool;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CityService implements ICityService<City> {
+public class CityService implements ICityDAO<City> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(CityService.class);

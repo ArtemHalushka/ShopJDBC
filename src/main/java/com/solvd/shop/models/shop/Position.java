@@ -2,25 +2,25 @@ package com.solvd.shop.models.shop;
 
 public class Position {
 
-    private int idPosition;
+    private int positionId;
     private String positionName;
     private double salary;
 
     public Position() {
     }
 
-    public Position(int idPosition, String positionName, double salary) {
-        this.idPosition = idPosition;
+    public Position(int positionId, String positionName, double salary) {
+        this.positionId = positionId;
         this.positionName = positionName;
         this.salary = salary;
     }
 
-    public int getIdPosition() {
-        return idPosition;
+    public int getPositionId() {
+        return positionId;
     }
 
-    public void setIdPosition(int idPosition) {
-        this.idPosition = idPosition;
+    public void setPositionId(int positionId) {
+        this.positionId = positionId;
     }
 
     public String getPositionName() {
@@ -42,7 +42,7 @@ public class Position {
     @Override
     public String toString() {
         return "Position{" +
-                "idPosition=" + idPosition +
+                "idPosition=" + positionId +
                 ", positionName='" + positionName + '\'' +
                 ", salary=" + salary +
                 '}';

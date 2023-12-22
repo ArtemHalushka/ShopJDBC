@@ -28,10 +28,10 @@ public class OrderDAO implements IOrderDAO<Order> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setDate(1, order.getDate());
-            statement.setInt(2, order.getStatus().getIdStatus());
+            statement.setInt(2, order.getStatus().getStatusId());
             statement.setDouble(3, order.getOrderTotal());
-            statement.setInt(4, order.getBuyer().getIdBuyer());
-            statement.setInt(5, order.getEmployee().getIdEmployee());
+            statement.setInt(4, order.getBuyer().getBuyerId());
+            statement.setInt(5, order.getEmployee().getEmployeeId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -46,11 +46,11 @@ public class OrderDAO implements IOrderDAO<Order> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setDate(1, order.getDate());
-            statement.setInt(2, order.getStatus().getIdStatus());
+            statement.setInt(2, order.getStatus().getStatusId());
             statement.setDouble(3, order.getOrderTotal());
-            statement.setInt(4, order.getBuyer().getIdBuyer());
-            statement.setInt(5, order.getEmployee().getIdEmployee());
-            statement.setInt(6, order.getIdOrder());
+            statement.setInt(4, order.getBuyer().getBuyerId());
+            statement.setInt(5, order.getEmployee().getEmployeeId());
+            statement.setInt(6, order.getOrderId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -64,7 +64,7 @@ public class OrderDAO implements IOrderDAO<Order> {
         String query = "DELETE FROM orders WHERE id_order = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, order.getIdOrder());
+            statement.setInt(1, order.getOrderId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -84,9 +84,9 @@ public class OrderDAO implements IOrderDAO<Order> {
                     Status status = new Status();
                     Buyer buyer = new Buyer();
                     Employee employee = new Employee();
-                    status.setIdStatus(resultSet.getInt("id_status"));
-                    buyer.setIdBuyer(resultSet.getInt("id_buyer"));
-                    employee.setIdEmployee(resultSet.getInt("id_employee"));
+                    status.setStatusId(resultSet.getInt("id_status"));
+                    buyer.setBuyerId(resultSet.getInt("id_buyer"));
+                    employee.setEmployeeId(resultSet.getInt("id_employee"));
 
                     return new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee);
                 }
@@ -111,9 +111,9 @@ public class OrderDAO implements IOrderDAO<Order> {
                     Status status = new Status();
                     Buyer buyer = new Buyer();
                     Employee employee = new Employee();
-                    status.setIdStatus(resultSet.getInt("id_status"));
-                    buyer.setIdBuyer(resultSet.getInt("id_buyer"));
-                    employee.setIdEmployee(resultSet.getInt("id_employee"));
+                    status.setStatusId(resultSet.getInt("id_status"));
+                    buyer.setBuyerId(resultSet.getInt("id_buyer"));
+                    employee.setEmployeeId(resultSet.getInt("id_employee"));
 
                     Order order = new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee);
                     orderList.add(order);
@@ -138,9 +138,9 @@ public class OrderDAO implements IOrderDAO<Order> {
                     Status status = new Status();
                     Buyer buyer = new Buyer();
                     Employee employee = new Employee();
-                    status.setIdStatus(resultSet.getInt("id_status"));
-                    buyer.setIdBuyer(resultSet.getInt("id_buyer"));
-                    employee.setIdEmployee(resultSet.getInt("id_employee"));
+                    status.setStatusId(resultSet.getInt("id_status"));
+                    buyer.setBuyerId(resultSet.getInt("id_buyer"));
+                    employee.setEmployeeId(resultSet.getInt("id_employee"));
 
                     return new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee);
                 }

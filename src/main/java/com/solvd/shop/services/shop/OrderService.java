@@ -1,6 +1,6 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IOrderService;
+import com.solvd.shop.interafaces.shop.IOrderDAO;
 import com.solvd.shop.jdbc.dao.shop.OrderDAO;
 import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.util.ConnectionPool;
@@ -11,7 +11,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
-public class OrderService implements IOrderService<Order> {
+public class OrderService implements IOrderDAO<Order> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(OrderService.class);

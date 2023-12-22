@@ -29,7 +29,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, employee.getName());
-            statement.setInt(2, employee.getPosition().getIdPosition());
+            statement.setInt(2, employee.getPosition().getPositionId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -44,8 +44,8 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, employee.getName());
-            statement.setInt(2, employee.getPosition().getIdPosition());
-            statement.setInt(3, employee.getIdEmployee());
+            statement.setInt(2, employee.getPosition().getPositionId());
+            statement.setInt(3, employee.getEmployeeId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -59,7 +59,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
         String query = "DELETE FROM employees WHERE id_employee = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, employee.getIdEmployee());
+            statement.setInt(1, employee.getEmployeeId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -77,7 +77,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Position position = new Position();
-                    position.setIdPosition(resultSet.getInt("id_position"));
+                    position.setPositionId(resultSet.getInt("id_position"));
                     return new Employee(resultSet.getInt("id_employee"), resultSet.getString("name"), position);
                 }
             }
@@ -98,7 +98,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Position position = new Position();
-                    position.setIdPosition(resultSet.getInt("id_position"));
+                    position.setPositionId(resultSet.getInt("id_position"));
                     Employee employee = new Employee(resultSet.getInt("id_employee"), resultSet.getString("name"), position);
                     employeeList.add(employee);
                 }
@@ -120,7 +120,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Position position = new Position();
-                    position.setIdPosition(resultSet.getInt("id_position"));
+                    position.setPositionId(resultSet.getInt("id_position"));
                     return new Employee(resultSet.getInt("id_employee"), resultSet.getString("name"), position);
                 }
             }

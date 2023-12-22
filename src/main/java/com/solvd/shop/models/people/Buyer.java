@@ -4,7 +4,7 @@ import com.solvd.shop.models.address.Address;
 
 public class Buyer {
 
-    private int idBuyer;
+    private int buyerId;
     private String name;
     private String phoneNumber;
     private Address address;
@@ -12,19 +12,19 @@ public class Buyer {
     public Buyer() {
     }
 
-    public Buyer(int idBuyer, String name, String phoneNumber, Address address) {
-        this.idBuyer = idBuyer;
+    public Buyer(int buyerId, String name, String phoneNumber, Address address) {
+        this.buyerId = buyerId;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
     }
 
-    public int getIdBuyer() {
-        return idBuyer;
+    public int getBuyerId() {
+        return buyerId;
     }
 
-    public void setIdBuyer(int idBuyer) {
-        this.idBuyer = idBuyer;
+    public void setBuyerId(int buyerId) {
+        this.buyerId = buyerId;
     }
 
     public String getName() {
@@ -54,7 +54,7 @@ public class Buyer {
     @Override
     public String toString() {
         return "Buyer{" +
-                "idBuyer=" + idBuyer +
+                "idBuyer=" + buyerId +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", idAddress=" + address +

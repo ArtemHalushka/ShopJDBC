@@ -5,7 +5,7 @@ import com.solvd.shop.models.people.Supplier;
 
 public class Product {
 
-    private int idProduct;
+    private int productId;
     private String productName;
     private double price;
     private Supplier supplier;
@@ -15,8 +15,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(int idProduct, String productName, double price, Supplier supplier, Category category, int availableQuantity) {
-        this.idProduct = idProduct;
+    public Product(int productId, String productName, double price, Supplier supplier, Category category, int availableQuantity) {
+        this.productId = productId;
         this.productName = productName;
         this.price = price;
         this.supplier = supplier;
@@ -24,12 +24,12 @@ public class Product {
         this.availableQuantity = availableQuantity;
     }
 
-    public int getIdProduct() {
-        return idProduct;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setIdProduct(int idProduct) {
-        this.idProduct = idProduct;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
@@ -75,7 +75,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "idProduct=" + idProduct +
+                "idProduct=" + productId +
                 ", productName='" + productName + '\'' +
                 ", price=" + price +
                 ", idSupplier=" + supplier +

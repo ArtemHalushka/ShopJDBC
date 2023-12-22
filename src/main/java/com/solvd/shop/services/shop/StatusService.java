@@ -1,6 +1,6 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IStatusService;
+import com.solvd.shop.interafaces.shop.IStatusDAO;
 import com.solvd.shop.jdbc.dao.shop.StatusDAO;
 import com.solvd.shop.models.shop.Status;
 import com.solvd.shop.util.ConnectionPool;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-public class StatusService implements IStatusService<Status> {
+public class StatusService implements IStatusDAO<Status> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(StatusService.class);

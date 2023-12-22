@@ -1,6 +1,6 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IPositionService;
+import com.solvd.shop.interafaces.shop.IPositionDAO;
 import com.solvd.shop.jdbc.dao.shop.PositionDAO;
 import com.solvd.shop.models.shop.Position;
 import com.solvd.shop.util.ConnectionPool;
@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.sql.SQLException;
 import java.util.List;
 
-public class PositionService implements IPositionService<Position> {
+public class PositionService implements IPositionDAO<Position> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(PositionService.class);

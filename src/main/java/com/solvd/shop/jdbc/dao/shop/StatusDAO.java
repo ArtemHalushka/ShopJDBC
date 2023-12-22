@@ -42,7 +42,7 @@ public class StatusDAO implements IStatusDAO<Status> {
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, status.getStatusName());
-            statement.setInt(2, status.getIdStatus());
+            statement.setInt(2, status.getStatusId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -56,7 +56,7 @@ public class StatusDAO implements IStatusDAO<Status> {
         String query = "DELETE FROM statuses WHERE id_status = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, status.getIdStatus());
+            statement.setInt(1, status.getStatusId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);

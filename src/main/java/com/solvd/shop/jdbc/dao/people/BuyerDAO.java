@@ -30,7 +30,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, buyer.getName());
             statement.setString(2, buyer.getPhoneNumber());
-            statement.setInt(3, buyer.getAddress().getIdAddress());
+            statement.setInt(3, buyer.getAddress().getAddressId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -46,8 +46,8 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, buyer.getName());
             statement.setString(2, buyer.getPhoneNumber());
-            statement.setInt(3, buyer.getAddress().getIdAddress());
-            statement.setInt(4, buyer.getIdBuyer());
+            statement.setInt(3, buyer.getAddress().getAddressId());
+            statement.setInt(4, buyer.getBuyerId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -61,7 +61,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
         String query = "DELETE FROM buyers WHERE id_buyer = (?)";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
-            statement.setInt(1, buyer.getIdBuyer());
+            statement.setInt(1, buyer.getBuyerId());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.info(e);
@@ -79,7 +79,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Address address = new Address();
-                    address.setIdAddress(resultSet.getInt("id_address"));
+                    address.setAddressId(resultSet.getInt("id_address"));
                     return new Buyer(resultSet.getInt("id_buyer"), resultSet.getString("name"), resultSet.getString("phone_number"), address);
                 }
             }
@@ -100,7 +100,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Address address = new Address();
-                    address.setIdAddress(resultSet.getInt("id_address"));
+                    address.setAddressId(resultSet.getInt("id_address"));
                     Buyer buyer = new Buyer(resultSet.getInt("id_buyer"), resultSet.getString("name"), resultSet.getString("phone_number"), address);
                     buyerList.add(buyer);
                 }
@@ -122,7 +122,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     Address address = new Address();
-                    address.setIdAddress(resultSet.getInt("id_address"));
+                    address.setAddressId(resultSet.getInt("id_address"));
                     return new Buyer(resultSet.getInt("id_buyer"), resultSet.getString("name"), resultSet.getString("phone_number"), address);
                 }
             }

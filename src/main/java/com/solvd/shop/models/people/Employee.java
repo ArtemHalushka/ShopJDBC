@@ -4,25 +4,25 @@ import com.solvd.shop.models.shop.Position;
 
 public class Employee {
 
-    private int idEmployee;
+    private int employeeId;
     private String name;
     private Position position;
 
     public Employee() {
     }
 
-    public Employee(int idEmployee, String name, Position position) {
-        this.idEmployee = idEmployee;
+    public Employee(int employeeId, String name, Position position) {
+        this.employeeId = employeeId;
         this.name = name;
         this.position = position;
     }
 
-    public int getIdEmployee() {
-        return idEmployee;
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void setIdEmployee(int idEmployee) {
-        this.idEmployee = idEmployee;
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getName() {
@@ -44,7 +44,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "idEmployee=" + idEmployee +
+                "idEmployee=" + employeeId +
                 ", name='" + name + '\'' +
                 ", idPosition=" + position +
                 '}';
