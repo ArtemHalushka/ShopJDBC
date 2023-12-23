@@ -127,12 +127,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Supplier supplier = new Supplier();
-                    Category category = new Category();
-                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
-                    category.setCategoryId(resultSet.getInt("id_category"));
-
-                    Product product = new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
+                    Product product = new Product();
+                    product.setProductId(resultSet.getInt("id_product"));
                     productList.add(product);
                 }
             }

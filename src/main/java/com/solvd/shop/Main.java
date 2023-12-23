@@ -2,8 +2,10 @@ package com.solvd.shop;
 
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.models.address.Country;
+import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.services.address.CityService;
 import com.solvd.shop.services.address.CountryService;
+import com.solvd.shop.services.shop.OrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,11 +19,20 @@ public class Main {
 
         CityService cityService = new CityService();
 
+        Country moldova = new Country(10, "Moldova");
+
         City city = cityService.getByID(2);
 
         CountryService countryService = new CountryService();
 
+        countryService.insert(moldova);
+
+        OrderService orderService = new OrderService();
+
+        Order order = orderService.getByID(2);
+
         Country country = countryService.getByID(2);
+        LOGGER.info(order);
         LOGGER.info(city.toString());
         LOGGER.info(country.toString());
     }
