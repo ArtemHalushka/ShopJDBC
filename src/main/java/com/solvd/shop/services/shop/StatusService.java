@@ -1,57 +1,72 @@
 package com.solvd.shop.services.shop;
 
 import com.solvd.shop.interfaces.shop.IStatusDAO;
-import com.solvd.shop.jdbc.dao.shop.StatusDAO;
 import com.solvd.shop.models.shop.Status;
-import com.solvd.shop.util.ConnectionPool;
+import com.solvd.shop.util.MyBatisConfig;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class StatusService implements IStatusDAO<Status> {
 
-    private static ConnectionPool connectionPool;
+    private static SqlSessionFactory sqlSessionFactory;
     private static final Logger LOGGER = LogManager.getLogger(StatusService.class);
+    private static IStatusDAO batisDAO;
 
-    private static final StatusDAO statusDAO = new StatusDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
+    public StatusService() {
+        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
+    }
+    @Override
+    public void insert(Status status) {
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IStatusDAO.class);
+            batisDAO.insert(status);
+            sqlSession.commit();
         }
     }
 
     @Override
-    public void insert(Status status) {
-        statusDAO.insert(status);
-    }
-
-    @Override
     public void update(Status status) {
-        statusDAO.update(status);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IStatusDAO.class);
+            batisDAO.update(status);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void delete(Status status) {
-        statusDAO.delete(status);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IStatusDAO.class);
+            batisDAO.delete(status);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public Status getByID(int id) {
-        return statusDAO.getByID(id);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IStatusDAO.class);
+            return (Status) batisDAO.getByID(id);
+        }
     }
 
     @Override
     public List<Status> getAll() {
-        return statusDAO.getAll();
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IStatusDAO.class);
+            return batisDAO.getAll();
+        }
     }
 
     @Override
     public Status getByStatusName(String name) {
-        return statusDAO.getByStatusName(name);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IStatusDAO.class);
+            return (Status) batisDAO.getByStatusName(name);
+        }
     }
 }

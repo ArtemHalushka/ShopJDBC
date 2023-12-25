@@ -1,57 +1,73 @@
 package com.solvd.shop.services.shop;
 
 import com.solvd.shop.interfaces.shop.IProductDAO;
-import com.solvd.shop.jdbc.dao.shop.ProductDAO;
 import com.solvd.shop.models.shop.Product;
-import com.solvd.shop.util.ConnectionPool;
+import com.solvd.shop.util.MyBatisConfig;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class ProductService implements IProductDAO<Product> {
 
-    private static ConnectionPool connectionPool;
+    private static SqlSessionFactory sqlSessionFactory;
     private static final Logger LOGGER = LogManager.getLogger(ProductService.class);
+    private static IProductDAO batisDAO;
 
-    private static final ProductDAO productDAO = new ProductDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
+    public ProductService() {
+        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
     }
 
     @Override
     public void insert(Product product) {
-        productDAO.insert(product);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IProductDAO.class);
+            batisDAO.insert(product);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void update(Product product) {
-        productDAO.update(product);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IProductDAO.class);
+            batisDAO.update(product);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void delete(Product product) {
-        productDAO.delete(product);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IProductDAO.class);
+            batisDAO.delete(product);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public Product getByID(int id) {
-        return productDAO.getByID(id);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IProductDAO.class);
+            return (Product) batisDAO.getByID(id);
+        }
     }
 
     @Override
     public List<Product> getAll() {
-        return productDAO.getAll();
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IProductDAO.class);
+            return batisDAO.getAll();
+        }
     }
 
     @Override
     public Product getByProductName(String name) {
-        return productDAO.getByProductName(name);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IProductDAO.class);
+            return (Product) batisDAO.getByProductName(name);
+        }
     }
 }

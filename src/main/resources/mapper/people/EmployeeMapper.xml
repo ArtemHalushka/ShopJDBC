@@ -8,7 +8,7 @@
         <result property="name" column="name"/>
         <association property="position" column="id_position"
                      javaType="com.solvd.shop.models.shop.Position"
-                     select="com.solvd.shop.mapper.shop.PositionMapper.getByID"
+                     select="com.solvd.shop.interfaces.shop.IPositionDAO.getByID"
                      fetchType="eager"/>
     </resultMap>
 

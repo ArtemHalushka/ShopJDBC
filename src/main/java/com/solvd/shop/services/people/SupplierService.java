@@ -1,58 +1,73 @@
 package com.solvd.shop.services.people;
 
 import com.solvd.shop.interfaces.people.ISupplierDAO;
-import com.solvd.shop.jdbc.dao.people.SupplierDAO;
 import com.solvd.shop.models.people.Supplier;
-import com.solvd.shop.util.ConnectionPool;
+import com.solvd.shop.util.MyBatisConfig;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class SupplierService implements ISupplierDAO<Supplier> {
 
-    private static ConnectionPool connectionPool;
+    private static SqlSessionFactory sqlSessionFactory;
     private static final Logger LOGGER = LogManager.getLogger(SupplierService.class);
+    private static ISupplierDAO batisDAO;
 
-    private static final SupplierDAO supplierDAO = new SupplierDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
+    public SupplierService() {
+        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
     }
-
 
     @Override
     public void insert(Supplier supplier) {
-        supplierDAO.insert(supplier);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(ISupplierDAO.class);
+            batisDAO.insert(supplier);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void update(Supplier supplier) {
-        supplierDAO.update(supplier);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(ISupplierDAO.class);
+            batisDAO.update(supplier);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void delete(Supplier supplier) {
-        supplierDAO.delete(supplier);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(ISupplierDAO.class);
+            batisDAO.delete(supplier);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public Supplier getByID(int id) {
-        return supplierDAO.getByID(id);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(ISupplierDAO.class);
+            return (Supplier) batisDAO.getByID(id);
+        }
     }
 
     @Override
     public List<Supplier> getAll() {
-        return supplierDAO.getAll();
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(ISupplierDAO.class);
+            return batisDAO.getAll();
+        }
     }
 
     @Override
     public Supplier getByName(String name) {
-        return supplierDAO.getByName(name);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(ISupplierDAO.class);
+            return (Supplier) batisDAO.getByName(name);
+        }
     }
 }

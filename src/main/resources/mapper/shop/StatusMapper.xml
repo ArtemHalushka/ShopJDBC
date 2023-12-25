@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.solvd.shop.mapper.shop.IStatusDAO">
+<mapper namespace="com.solvd.shop.interfaces.shop.IStatusDAO">
 
     <resultMap id="StatusMap" type="com.solvd.shop.models.shop.Status">
         <id property="statusId" column="id_status"/>

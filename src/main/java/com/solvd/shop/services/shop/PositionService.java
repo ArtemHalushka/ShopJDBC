@@ -1,57 +1,73 @@
 package com.solvd.shop.services.shop;
 
 import com.solvd.shop.interfaces.shop.IPositionDAO;
-import com.solvd.shop.jdbc.dao.shop.PositionDAO;
 import com.solvd.shop.models.shop.Position;
-import com.solvd.shop.util.ConnectionPool;
+import com.solvd.shop.util.MyBatisConfig;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class PositionService implements IPositionDAO<Position> {
 
-    private static ConnectionPool connectionPool;
+    private static SqlSessionFactory sqlSessionFactory;
     private static final Logger LOGGER = LogManager.getLogger(PositionService.class);
+    private static IPositionDAO batisDAO;
 
-    private static final PositionDAO positionDAO = new PositionDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
+    public PositionService() {
+        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
     }
 
     @Override
     public void insert(Position position) {
-        positionDAO.insert(position);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IPositionDAO.class);
+            batisDAO.insert(position);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void update(Position position) {
-        positionDAO.update(position);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IPositionDAO.class);
+            batisDAO.update(position);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void delete(Position position) {
-        positionDAO.delete(position);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IPositionDAO.class);
+            batisDAO.delete(position);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public Position getByID(int id) {
-        return positionDAO.getByID(id);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IPositionDAO.class);
+            return (Position) batisDAO.getByID(id);
+        }
     }
 
     @Override
     public List<Position> getAll() {
-        return positionDAO.getAll();
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IPositionDAO.class);
+            return batisDAO.getAll();
+        }
     }
 
     @Override
     public Position getBySalary(double salary) {
-        return positionDAO.getBySalary(salary);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IPositionDAO.class);
+            return (Position) batisDAO.getBySalary(salary);
+        }
     }
 }

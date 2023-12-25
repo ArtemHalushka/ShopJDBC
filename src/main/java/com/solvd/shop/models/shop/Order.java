@@ -19,6 +19,16 @@ public class Order {
     public Order() {
     }
 
+    public Order(int orderId, Date date, Status status, double orderTotal, Buyer buyer, Employee employee, List<Product> products) {
+        this.orderId = orderId;
+        this.date = date;
+        this.status = status;
+        this.orderTotal = orderTotal;
+        this.buyer = buyer;
+        this.employee = employee;
+        this.products = products;
+    }
+
     public Order(int orderId, Date date, Status status, double orderTotal, Buyer buyer, Employee employee) {
         this.orderId = orderId;
         this.date = date;
@@ -27,6 +37,7 @@ public class Order {
         this.buyer = buyer;
         this.employee = employee;
     }
+
 
     public List<Product> getProducts() {
         return products;

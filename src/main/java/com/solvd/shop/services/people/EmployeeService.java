@@ -1,57 +1,74 @@
 package com.solvd.shop.services.people;
 
 import com.solvd.shop.interfaces.people.IEmployeeDAO;
-import com.solvd.shop.jdbc.dao.people.EmployeeDAO;
 import com.solvd.shop.models.people.Employee;
-import com.solvd.shop.util.ConnectionPool;
+import com.solvd.shop.util.MyBatisConfig;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class EmployeeService implements IEmployeeDAO<Employee> {
 
-    private static ConnectionPool connectionPool;
+    private static SqlSessionFactory sqlSessionFactory;
     private static final Logger LOGGER = LogManager.getLogger(EmployeeService.class);
+    private static IEmployeeDAO batisDAO;
 
-    private static final EmployeeDAO employeeDAO = new EmployeeDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
+    public EmployeeService() {
+        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
     }
 
     @Override
     public void insert(Employee employee) {
-        employeeDAO.insert(employee);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IEmployeeDAO.class);
+            batisDAO.insert(employee);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void update(Employee employee) {
-        employeeDAO.update(employee);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IEmployeeDAO.class);
+            batisDAO.update(employee);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void delete(Employee employee) {
-        employeeDAO.delete(employee);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IEmployeeDAO.class);
+            batisDAO.delete(employee);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public Employee getByID(int id) {
-        return employeeDAO.getByID(id);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IEmployeeDAO.class);
+            return (Employee) batisDAO.getByID(id);
+        }
     }
 
     @Override
     public List<Employee> getAll() {
-        return employeeDAO.getAll();
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IEmployeeDAO.class);
+            return batisDAO.getAll();
+        }
     }
 
     @Override
     public Employee getByName(String name) {
-        return employeeDAO.getByName(name);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IEmployeeDAO.class);
+            return (Employee) batisDAO.getByName(name);
+        }
     }
+
 }
