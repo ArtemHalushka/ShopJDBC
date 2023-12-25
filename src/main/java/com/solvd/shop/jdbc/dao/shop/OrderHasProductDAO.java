@@ -1,8 +1,6 @@
 package com.solvd.shop.jdbc.dao.shop;
 
-import com.solvd.shop.interafaces.shop.IOrderHasProductDAO;
-import com.solvd.shop.models.people.Supplier;
-import com.solvd.shop.models.shop.Category;
+import com.solvd.shop.interfaces.shop.IOrderHasProductDAO;
 import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.models.shop.OrderHasProduct;
 import com.solvd.shop.models.shop.Product;

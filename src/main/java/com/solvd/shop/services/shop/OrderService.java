@@ -1,6 +1,6 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IOrderDAO;
+import com.solvd.shop.interfaces.shop.IOrderDAO;
 import com.solvd.shop.jdbc.dao.shop.OrderDAO;
 import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.util.ConnectionPool;

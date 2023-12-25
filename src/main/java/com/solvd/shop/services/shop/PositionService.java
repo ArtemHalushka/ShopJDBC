@@ -1,6 +1,6 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IPositionDAO;
+import com.solvd.shop.interfaces.shop.IPositionDAO;
 import com.solvd.shop.jdbc.dao.shop.PositionDAO;
 import com.solvd.shop.models.shop.Position;
 import com.solvd.shop.util.ConnectionPool;

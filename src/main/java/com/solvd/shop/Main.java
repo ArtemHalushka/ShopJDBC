@@ -1,8 +1,10 @@
 package com.solvd.shop;
 
+import com.solvd.shop.models.address.Address;
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.models.address.Country;
 import com.solvd.shop.models.shop.Order;
+import com.solvd.shop.services.address.AddressService;
 import com.solvd.shop.services.address.CityService;
 import com.solvd.shop.services.address.CountryService;
 import com.solvd.shop.services.shop.OrderService;
@@ -31,6 +33,11 @@ public class Main {
 
         Order order = orderService.getByID(2);
 
+        AddressService addressService = new AddressService();
+
+        Address address = new Address(10, "adsada", "adsadasda", "dasdawda", city);
+
+        addressService.insert(address);
         Country country = countryService.getByID(2);
         LOGGER.info(order);
         LOGGER.info(city.toString());

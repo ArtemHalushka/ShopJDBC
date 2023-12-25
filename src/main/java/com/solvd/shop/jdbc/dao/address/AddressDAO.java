@@ -1,6 +1,6 @@
 package com.solvd.shop.jdbc.dao.address;
 
-import com.solvd.shop.interafaces.address.IAddressDAO;
+import com.solvd.shop.interfaces.address.IAddressDAO;
 import com.solvd.shop.models.address.Address;
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.util.ConnectionPool;

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.address.ICityDAO">
+
+    <resultMap id="CityMap" type="com.solvd.shop.models.address.City">
+        <id property="cityId" column="id_city"/>
+        <result property="cityName" column="city"/>
+        <association property="country" column="id_country"
+                     javaType="com.solvd.shop.models.address.Country"
+                     select="com.solvd.shop.mapper.address.CountryMapper.getByID"
+                     fetchType="eager"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.address.City">
+        INSERT INTO cities (city, id_country)
+        VALUES (#{cityName}, #{country.countryId})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.address.City">
+        UPDATE cities
+        SET city       = #{cityName},
+            id_country = #{country.countryId}
+        WHERE id_city = #{cityId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.address.City">
+        DELETE
+        FROM cities
+        WHERE id_city = #{cityId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="CityMap">
+        SELECT *
+        FROM cities
+        WHERE id_city = #{id}
+    </select>
+
+    <select id="getAll" resultMap="CityMap">
+        SELECT *
+        FROM cities
+    </select>
+
+    <select id="getByCityName" parameterType="java.lang.String" resultMap="CityMap">
+        SELECT *
+        FROM cities
+        WHERE city = #{cityName}
+    </select>
+
+</mapper>
+

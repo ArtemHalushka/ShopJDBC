@@ -1,6 +1,6 @@
 package com.solvd.shop.jdbc.dao.people;
 
-import com.solvd.shop.interafaces.people.IBuyerDAO;
+import com.solvd.shop.interfaces.people.IBuyerDAO;
 import com.solvd.shop.models.address.Address;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.util.ConnectionPool;

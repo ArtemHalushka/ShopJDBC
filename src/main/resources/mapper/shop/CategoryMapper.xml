@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.shop.ICategoryDAO">
+
+    <resultMap id="CategoryMap" type="com.solvd.shop.models.shop.Category">
+        <id property="categoryId" column="id_category"/>
+        <result property="categoryName" column="category"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.shop.Category">
+        INSERT INTO categories (category)
+        VALUES (#{categoryName})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.shop.Category">
+        UPDATE categories
+        SET category = #{categoryName}
+        WHERE id_category = #{categoryId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.shop.Category">
+        DELETE
+        FROM categories
+        WHERE id_category = #{categoryId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="CategoryMap">
+        SELECT *
+        FROM categories
+        WHERE id_category = #{id}
+    </select>
+
+    <select id="getAll" resultMap="CategoryMap">
+        SELECT *
+        FROM categories
+    </select>
+
+    <select id="getByCategoryName" parameterType="java.lang.String" resultMap="CategoryMap">
+        SELECT *
+        FROM categories
+        WHERE category = #{categoryName}
+    </select>
+
+</mapper>
+

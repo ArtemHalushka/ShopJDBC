@@ -1,7 +1,5 @@
 package com.solvd.shop.models.shop;
 
-import java.util.List;
-
 public class OrderHasProduct {
 
     private Order order;

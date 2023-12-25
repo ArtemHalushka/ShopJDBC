@@ -1,10 +1,9 @@
 package com.solvd.shop.jdbc.dao.shop;
 
-import com.solvd.shop.interafaces.shop.IOrderDAO;
+import com.solvd.shop.interfaces.shop.IOrderDAO;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.shop.Order;
-import com.solvd.shop.models.shop.Product;
 import com.solvd.shop.models.shop.Status;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
