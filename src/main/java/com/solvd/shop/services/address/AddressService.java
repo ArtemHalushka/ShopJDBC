@@ -1,8 +1,8 @@
 package com.solvd.shop.services.address;
 
 import com.solvd.shop.interfaces.address.IAddressDAO;
-import com.solvd.shop.models.address.Address;
 import com.solvd.shop.mybatis.dao.address.AddressDAO;
+import com.solvd.shop.models.address.Address;
 import com.solvd.shop.util.ConnectionPool;
 
 import java.util.List;
