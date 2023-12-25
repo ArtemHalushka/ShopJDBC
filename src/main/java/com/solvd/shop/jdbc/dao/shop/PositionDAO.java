@@ -1,6 +1,6 @@
 package com.solvd.shop.jdbc.dao.shop;
 
-import com.solvd.shop.interafaces.shop.IPositionDAO;
+import com.solvd.shop.interfaces.shop.IPositionDAO;
 import com.solvd.shop.models.shop.Position;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;

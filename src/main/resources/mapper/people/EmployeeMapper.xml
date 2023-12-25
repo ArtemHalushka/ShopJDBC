@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.people.IEmployeeDAO">
+
+    <resultMap id="EmployeeMap" type="com.solvd.shop.models.people.Employee">
+        <id property="employeeId" column="id_employee"/>
+        <result property="name" column="name"/>
+        <association property="position" column="id_position"
+                     javaType="com.solvd.shop.models.shop.Position"
+                     select="com.solvd.shop.mapper.shop.PositionMapper.getByID"
+                     fetchType="eager"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.people.Employee">
+        INSERT INTO employees (name, id_position)
+        VALUES (#{name}, #{position.positionId})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.people.Employee">
+        UPDATE employees
+        SET name        = #{name},
+            id_position = #{position.positionId}
+        WHERE id_employee = #{employeeId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.people.Employee">
+        DELETE
+        FROM employees
+        WHERE id_employee = #{employeeId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="EmployeeMap">
+        SELECT *
+        FROM employees
+        WHERE id_employee = #{id}
+    </select>
+
+    <select id="getAll" resultMap="EmployeeMap">
+        SELECT *
+        FROM employees
+    </select>
+
+    <select id="getByName" parameterType="java.lang.String" resultMap="EmployeeMap">
+        SELECT *
+        FROM employees
+        WHERE name = #{name}
+    </select>
+
+</mapper>

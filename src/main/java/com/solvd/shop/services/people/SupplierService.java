@@ -1,6 +1,6 @@
 package com.solvd.shop.services.people;
 
-import com.solvd.shop.interafaces.people.ISupplierDAO;
+import com.solvd.shop.interfaces.people.ISupplierDAO;
 import com.solvd.shop.jdbc.dao.people.SupplierDAO;
 import com.solvd.shop.models.people.Supplier;
 import com.solvd.shop.util.ConnectionPool;

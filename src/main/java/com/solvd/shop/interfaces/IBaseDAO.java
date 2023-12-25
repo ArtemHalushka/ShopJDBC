@@ -1,4 +1,4 @@
-package com.solvd.shop.interafaces;
+package com.solvd.shop.interfaces;
 
 import java.util.List;
 
