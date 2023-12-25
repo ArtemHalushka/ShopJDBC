@@ -3,7 +3,9 @@ package com.solvd.shop.services.shop;
 import com.solvd.shop.interfaces.shop.IOrderHasProductDAO;
 import com.solvd.shop.models.shop.OrderHasProduct;
 import com.solvd.shop.models.shop.Product;
-import com.solvd.shop.util.ConnectionPool;
+import com.solvd.shop.util.MyBatisConfig;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.solvd.shop.mybatis.dao.shop.OrderHasProductDAO;
@@ -12,37 +14,63 @@ import java.util.List;
 
 public class OrderHasProductService implements IOrderHasProductDAO<OrderHasProduct, Product> {
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private static SqlSessionFactory sqlSessionFactory;
     private static final Logger LOGGER = LogManager.getLogger(OrderHasProductService.class);
-    private static final OrderHasProductDAO batisDAO = new OrderHasProductDAO();
+    private static IOrderHasProductDAO batisDAO;
+
+    public OrderHasProductService() {
+        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
+    }
+
 
     @Override
     public void insert(OrderHasProduct orderHasProduct) {
-        batisDAO.insert(orderHasProduct);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IOrderHasProductDAO.class);
+            batisDAO.insert(orderHasProduct);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void update(OrderHasProduct orderHasProduct) {
-        batisDAO.update(orderHasProduct);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IOrderHasProductDAO.class);
+            batisDAO.update(orderHasProduct);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public void delete(OrderHasProduct orderHasProduct) {
-        batisDAO.delete(orderHasProduct);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IOrderHasProductDAO.class);
+            batisDAO.delete(orderHasProduct);
+            sqlSession.commit();
+        }
     }
 
     @Override
     public OrderHasProduct getByID(int id) {
-        return batisDAO.getByID(id);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IOrderHasProductDAO.class);
+            return (OrderHasProduct) batisDAO.getByID(id);
+        }
     }
 
     @Override
     public List<OrderHasProduct> getAll() {
-        return batisDAO.getAll();
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IOrderHasProductDAO.class);
+            return batisDAO.getAll();
+        }
     }
 
     @Override
     public List<Product> getAllByOrderId(int id) {
-        return batisDAO.getAllByOrderId(id);
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            batisDAO = sqlSession.getMapper(IOrderHasProductDAO.class);
+            return batisDAO.getAllByOrderId(id);
+        }
     }
 }

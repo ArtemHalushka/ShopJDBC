@@ -1,9 +1,13 @@
 package com.solvd.shop;
 
 import com.solvd.shop.models.shop.Order;
+import com.solvd.shop.models.shop.Product;
 import com.solvd.shop.services.shop.OrderService;
+import com.solvd.shop.services.shop.ProductService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
 
 public class Main {
 
@@ -12,9 +16,13 @@ public class Main {
     public static void main(String[] args) {
 
         OrderService orderService = new OrderService();
+        ProductService productService = new ProductService();
 
-        Order order = orderService.getByID(2);
+        List<Product> product = productService.getAll();
+        List<Order> orders = orderService.getAll();
 
-        LOGGER.info(order);
+        LOGGER.info(product);
+        LOGGER.info(orders);
+
     }
 }

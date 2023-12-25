@@ -8,7 +8,7 @@
         <result property="supplierName" column="supplier"/>
         <association property="address" column="id_address"
                      javaType="com.solvd.shop.models.address.Address"
-                     select="com.solvd.shop.mapper.address.AddressMapper.getByID"
+                     select="com.solvd.shop.interfaces.address.IAddressDAO.getByID"
                      fetchType="eager"/>
     </resultMap>
 

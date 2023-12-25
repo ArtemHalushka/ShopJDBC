@@ -9,22 +9,22 @@
         <result property="orderTotal" column="order_total"/>
         <association property="status" column="id_status"
                      javaType="com.solvd.shop.models.shop.Status"
-                     select="com.solvd.shop.mapper.shop.StatusMapper.getByID"
+                     select="com.solvd.shop.interfaces.shop.IStatusDAO.getByID"
                      fetchType="eager"/>
         <association property="buyer" column="id_buyer"
                      javaType="com.solvd.shop.models.people.Buyer"
-                     select="com.solvd.shop.mapper.people.BuyerMapper.getByID"
+                     select="com.solvd.shop.interfaces.people.IBuyerDAO.getByID"
                      fetchType="eager"/>
         <association property="employee" column="id_employee"
                      javaType="com.solvd.shop.models.people.Employee"
-                     select="com.solvd.shop.mapper.people.EmployeeMapper.getByID"
+                     select="com.solvd.shop.interfaces.people.IEmployeeDAO.getByID"
                      fetchType="eager"/>
         <collection
                 property="products"
                 column="id_order"
                 javaType="List"
-                ofType="Product"
-                select="com.solvd.shop.mapper.shop.OrderHasProductMapper.getAllByOrderID"
+                ofType="com.solvd.shop.models.shop.Product"
+                select="com.solvd.shop.interfaces.shop.IOrderHasProductDAO.getAllByOrderId"
                 fetchType="eager"
         />
     </resultMap>

@@ -10,11 +10,11 @@
         <result property="availableQuantity" column="available_quantity"/>
         <association property="supplier" column="id_supplier"
                      javaType="com.solvd.shop.models.people.Supplier"
-                     select="com.solvd.shop.mapper.people.SupplierMapper.getByID"
+                     select="com.solvd.shop.interfaces.people.ISupplierDAO.getByID"
                      fetchType="eager"/>
         <association property="category" column="id_category"
                      javaType="com.solvd.shop.models.shop.Category"
-                     select="com.solvd.shop.mapper.shop.CategoryMapper.getByID"
+                     select="com.solvd.shop.interfaces.shop.ICategoryDAO.getByID"
                      fetchType="eager"/>
     </resultMap>
 

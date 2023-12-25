@@ -6,11 +6,26 @@
     <resultMap id="OrderHasProductMap" type="com.solvd.shop.models.shop.OrderHasProduct">
         <association property="order" column="id_order"
                      javaType="com.solvd.shop.models.shop.Order"
-                     select="com.solvd.shop.mapper.shop.OrderMapper.getByID"
+                     select="com.solvd.shop.interfaces.shop.IOrderDAO.getByID"
                      fetchType="eager"/>
         <association property="product" column="id_product"
                      javaType="com.solvd.shop.models.shop.Product"
-                     select="com.solvd.shop.mapper.shop.ProductMapper.getByID"
+                     select="com.solvd.shop.interfaces.shop.IProductDAO.getByID"
+                     fetchType="eager"/>
+    </resultMap>
+
+    <resultMap id="ProductMap" type="com.solvd.shop.models.shop.Product">
+        <id property="productId" column="id_product"/>
+        <result property="productName" column="name"/>
+        <result property="price" column="price"/>
+        <result property="availableQuantity" column="available_quantity"/>
+        <association property="supplier" column="id_supplier"
+                     javaType="com.solvd.shop.models.people.Supplier"
+                     select="com.solvd.shop.interfaces.people.ISupplierDAO.getByID"
+                     fetchType="eager"/>
+        <association property="category" column="id_category"
+                     javaType="com.solvd.shop.models.shop.Category"
+                     select="com.solvd.shop.interfaces.shop.ICategoryDAO.getByID"
                      fetchType="eager"/>
     </resultMap>
 
@@ -34,7 +49,7 @@
     <select id="getByID" parameterType="java.lang.Integer" resultMap="OrderHasProductMap">
         SELECT *
         FROM orders_has_products
-        WHERE id_order = #{order.orderId}
+        WHERE id_order = #{id}
     </select>
 
     <select id="getAll" resultMap="OrderHasProductMap">
@@ -42,11 +57,10 @@
         FROM orders_has_products
     </select>
 
-    <select id="getAllByOrderId" parameterType="java.lang.String" resultMap="OrderHasProductMap">
+    <select id="getAllByOrderId" parameterType="java.lang.Integer" resultMap="ProductMap">
         SELECT *
         FROM orders_has_products
-        WHERE id_order = #{order.orderId}
+        WHERE id_order = #{id}
     </select>
-
 </mapper>
 
