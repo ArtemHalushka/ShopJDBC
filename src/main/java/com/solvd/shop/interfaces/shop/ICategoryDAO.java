@@ -1,6 +1,6 @@
-package com.solvd.shop.interafaces.shop;
+package com.solvd.shop.interfaces.shop;
 
-import com.solvd.shop.interafaces.IBaseDAO;
+import com.solvd.shop.interfaces.IBaseDAO;
 
 public interface ICategoryDAO<Category> extends IBaseDAO<Category> {
 

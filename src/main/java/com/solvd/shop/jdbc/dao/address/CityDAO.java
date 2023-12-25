@@ -1,6 +1,6 @@
 package com.solvd.shop.jdbc.dao.address;
 
-import com.solvd.shop.interafaces.address.ICityDAO;
+import com.solvd.shop.interfaces.address.ICityDAO;
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.models.address.Country;
 import com.solvd.shop.util.ConnectionPool;
@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CityDAO implements ICityDAO<City> {
-
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(CityDAO.class);

@@ -1,6 +1,6 @@
 package com.solvd.shop.jdbc.dao.people;
 
-import com.solvd.shop.interafaces.people.IEmployeeDAO;
+import com.solvd.shop.interfaces.people.IEmployeeDAO;
 import com.solvd.shop.jdbc.dao.shop.PositionDAO;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.shop.Position;

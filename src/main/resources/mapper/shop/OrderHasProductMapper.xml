@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.shop.IOrderHasProductDAO">
+
+    <resultMap id="OrderHasProductMap" type="com.solvd.shop.models.shop.OrderHasProduct">
+        <association property="order" column="id_order"
+                     javaType="com.solvd.shop.models.shop.Order"
+                     select="com.solvd.shop.mapper.shop.OrderMapper.getByID"
+                     fetchType="eager"/>
+        <association property="product" column="id_product"
+                     javaType="com.solvd.shop.models.shop.Product"
+                     select="com.solvd.shop.mapper.shop.ProductMapper.getByID"
+                     fetchType="eager"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.shop.OrderHasProduct">
+        INSERT INTO orders_has_products (id_order, id_product)
+        VALUES (#{order.orderId}, #{product.productId})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.shop.OrderHasProduct">
+        UPDATE orders_has_products
+        SET id_product = #{product.productId}
+        WHERE id_order = #{order.orderId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.shop.OrderHasProduct">
+        DELETE
+        FROM orders_has_products
+        WHERE id_order = #{order.orderId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="OrderHasProductMap">
+        SELECT *
+        FROM orders_has_products
+        WHERE id_order = #{order.orderId}
+    </select>
+
+    <select id="getAll" resultMap="OrderHasProductMap">
+        SELECT *
+        FROM orders_has_products
+    </select>
+
+    <select id="getAllByOrderId" parameterType="java.lang.String" resultMap="OrderHasProductMap">
+        SELECT *
+        FROM orders_has_products
+        WHERE id_order = #{order.orderId}
+    </select>
+
+</mapper>
+

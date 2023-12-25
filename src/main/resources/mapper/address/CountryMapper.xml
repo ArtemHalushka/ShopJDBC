@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.address.ICountryDAO">
+
+    <resultMap id="CountryMap" type="com.solvd.shop.models.address.Country">
+        <id property="countryId" column="id_country"/>
+        <result property="countryName" column="country"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.address.Country">
+        INSERT INTO countries (country)
+        VALUES (#{countryName})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.address.Country">
+        UPDATE countries
+        SET country = #{countryName}
+        WHERE id_country = #{countryId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.address.Country">
+        DELETE
+        FROM countries
+        WHERE id_country = #{countryId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="CountryMap">
+        SELECT *
+        FROM countries
+        WHERE id_country = #{id}
+    </select>
+
+    <select id="getAll" resultMap="CountryMap">
+        SELECT *
+        FROM countries
+    </select>
+
+    <select id="getByCountryName" parameterType="java.lang.String" resultMap="CountryMap">
+        SELECT *
+        FROM countries
+        WHERE country = #{countryName}
+    </select>
+
+</mapper>
+

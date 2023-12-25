@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.shop.IOrderDAO">
+
+    <resultMap id="OrderMap" type="com.solvd.shop.models.shop.Order">
+        <id property="orderId" column="id_order"/>
+        <result property="date" column="date"/>
+        <result property="orderTotal" column="order_total"/>
+        <association property="status" column="id_status"
+                     javaType="com.solvd.shop.models.shop.Status"
+                     select="com.solvd.shop.mapper.shop.StatusMapper.getByID"
+                     fetchType="eager"/>
+        <association property="buyer" column="id_buyer"
+                     javaType="com.solvd.shop.models.people.Buyer"
+                     select="com.solvd.shop.mapper.people.BuyerMapper.getByID"
+                     fetchType="eager"/>
+        <association property="employee" column="id_employee"
+                     javaType="com.solvd.shop.models.people.Employee"
+                     select="com.solvd.shop.mapper.people.EmployeeMapper.getByID"
+                     fetchType="eager"/>
+        <collection
+                property="products"
+                column="id_order"
+                javaType="List"
+                ofType="Product"
+                select="com.solvd.shop.mapper.shop.OrderHasProductMapper.getAllByOrderID"
+                fetchType="eager"
+        />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.shop.Order">
+        INSERT INTO orders (date, id_status, order_total, id_buyer, id_employee)
+        VALUES (#{date}, #{status.statusId}, #{orderTotal}, #{buyer.buyerId}, #{employee.employeeId})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.shop.Order">
+        UPDATE orders
+        SET date        = #{date},
+            id_status   = #{status.statusId},
+            order_total = #{orderTotal},
+            id_buyer    = #{buyer.buyerId},
+            id_employee = #{employee.employeeId}
+        WHERE id_order = #{orderId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.shop.Order">
+        DELETE
+        FROM orders
+        WHERE id_order = #{orderId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="OrderMap">
+        SELECT *
+        FROM orders
+        WHERE id_order = #{id}
+    </select>
+
+    <select id="getAll" resultMap="OrderMap">
+        SELECT *
+        FROM orders
+    </select>
+
+    <select id="getByDate" parameterType="java.sql.Date" resultMap="OrderMap">
+        SELECT *
+        FROM orders
+        WHERE date = #{date}
+    </select>
+
+</mapper>
+

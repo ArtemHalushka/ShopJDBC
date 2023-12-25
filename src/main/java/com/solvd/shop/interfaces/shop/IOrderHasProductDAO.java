@@ -1,7 +1,6 @@
-package com.solvd.shop.interafaces.shop;
+package com.solvd.shop.interfaces.shop;
 
-import com.solvd.shop.interafaces.IBaseDAO;
-import com.solvd.shop.models.shop.OrderHasProduct;
+import com.solvd.shop.interfaces.IBaseDAO;
 
 import java.util.List;
 
