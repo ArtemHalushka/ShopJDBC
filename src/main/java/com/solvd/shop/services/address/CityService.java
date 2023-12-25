@@ -1,11 +1,11 @@
 package com.solvd.shop.services.address;
 
 import com.solvd.shop.interfaces.address.ICityDAO;
+import com.solvd.shop.mybatis.dao.address.CityDAO;
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.solvd.shop.mybatis.dao.address.CityDAO;
 
 import java.util.List;
 
