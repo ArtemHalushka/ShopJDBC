@@ -2,73 +2,42 @@ package com.solvd.shop.services.address;
 
 import com.solvd.shop.interfaces.address.IAddressDAO;
 import com.solvd.shop.models.address.Address;
-import com.solvd.shop.util.MyBatisConfig;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.address.AddressDAO;
 
 import java.util.List;
 
 public class AddressService implements IAddressDAO<Address> {
 
-    private static SqlSessionFactory sqlSessionFactory;
-    private static final Logger LOGGER = LogManager.getLogger(AddressService.class);
-    private static IAddressDAO batisDAO;
-
-    public AddressService() {
-        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
-
-    }
+    private static final AddressDAO batisDAO = new AddressDAO();
 
     @Override
     public void insert(Address address) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IAddressDAO.class);
-            batisDAO.insert(address);
-            sqlSession.commit();
-        }
+        batisDAO.insert(address);
     }
 
     @Override
     public void update(Address address) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IAddressDAO.class);
-            batisDAO.update(address);
-            sqlSession.commit();
-        }
+        batisDAO.update(address);
     }
 
     @Override
     public void delete(Address address) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IAddressDAO.class);
-            batisDAO.delete(address);
-            sqlSession.commit();
-        }
+        batisDAO.delete(address);
     }
 
     @Override
     public Address getByID(int id) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IAddressDAO.class);
-            return (Address) batisDAO.getByID(id);
-        }
+        return batisDAO.getByID(id);
+
     }
 
     @Override
     public List<Address> getAll() {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IAddressDAO.class);
-            return batisDAO.getAll();
-        }
+        return batisDAO.getAll();
     }
 
     @Override
     public Address getByFirstLine(String firstLine) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IAddressDAO.class);
-            return (Address) batisDAO.getByFirstLine(firstLine);
-        }
+        return batisDAO.getByFirstLine(firstLine);
     }
 }

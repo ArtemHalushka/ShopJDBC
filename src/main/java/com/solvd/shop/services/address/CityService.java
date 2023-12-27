@@ -2,72 +2,41 @@ package com.solvd.shop.services.address;
 
 import com.solvd.shop.interfaces.address.ICityDAO;
 import com.solvd.shop.models.address.City;
-import com.solvd.shop.util.MyBatisConfig;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.address.CityDAO;
 
 import java.util.List;
 
 public class CityService implements ICityDAO<City> {
 
-    private static SqlSessionFactory sqlSessionFactory;
-    private static final Logger LOGGER = LogManager.getLogger(CityService.class);
-    private static ICityDAO batisDAO;
-
-    public CityService() {
-        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
-    }
+    private static final CityDAO batisDAO = new CityDAO();
 
     @Override
     public void insert(City city) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICityDAO.class);
-            batisDAO.insert(city);
-            sqlSession.commit();
-        }
+        batisDAO.insert(city);
     }
-
 
     @Override
     public void update(City city) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICityDAO.class);
-            batisDAO.update(city);
-            sqlSession.commit();
-        }
+        batisDAO.update(city);
     }
+
     @Override
     public void delete(City city) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICityDAO.class);
-            batisDAO.delete(city);
-            sqlSession.commit();
-        }
+        batisDAO.delete(city);
     }
 
     @Override
     public City getByID(int id) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICityDAO.class);
-            return (City) batisDAO.getByID(id);
-        }
+        return batisDAO.getByID(id);
     }
 
     @Override
     public List<City> getAll() {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICityDAO.class);
-            return batisDAO.getAll();
-        }
+        return batisDAO.getAll();
     }
 
     @Override
     public City getByCityName(String cityName) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICityDAO.class);
-            return (City) batisDAO.getByCityName(cityName);
-        }
+        return batisDAO.getByCityName(cityName);
     }
 }

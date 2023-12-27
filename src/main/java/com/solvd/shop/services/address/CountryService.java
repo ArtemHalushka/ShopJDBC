@@ -2,79 +2,41 @@ package com.solvd.shop.services.address;
 
 import com.solvd.shop.interfaces.address.ICountryDAO;
 import com.solvd.shop.models.address.Country;
-import com.solvd.shop.util.MyBatisConfig;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.address.CountryDAO;
 
 import java.util.List;
 
 public class CountryService implements ICountryDAO<Country> {
 
-    private static final Logger LOGGER = LogManager.getLogger(CountryService.class);
-    private static SqlSessionFactory sqlSessionFactory;
-    private static ICountryDAO batisDAO;
-
-    public CountryService() {
-        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            this.batisDAO = sqlSession.getMapper(ICountryDAO.class);
-        }
-    }
+    private static final CountryDAO batisDAO = new CountryDAO();
 
     @Override
     public void insert(Country country) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICountryDAO.class);
-            batisDAO.insert(country);
-            sqlSession.commit();
-        }
+        batisDAO.insert(country);
     }
 
     @Override
     public void update(Country country) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICountryDAO.class);
-            batisDAO.update(country);
-            sqlSession.commit();
-        }
+        batisDAO.update(country);
     }
-
 
     @Override
     public void delete(Country country) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICountryDAO.class);
-            batisDAO.delete(country);
-            sqlSession.commit();
-        }
+        batisDAO.delete(country);
     }
-
 
     @Override
     public Country getByID(int id) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICountryDAO.class);
-            return (Country) batisDAO.getByID(id);
-        }
+        return batisDAO.getByID(id);
     }
-
-
 
     @Override
     public List<Country> getAll() {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICountryDAO.class);
-            return batisDAO.getAll();
-        }
+        return batisDAO.getAll();
     }
 
     @Override
     public Country getByCountryName(String countryName) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICountryDAO.class);
-            return (Country) batisDAO.getByCountryName(countryName);
-        }
+        return batisDAO.getByCountryName(countryName);
     }
 }
