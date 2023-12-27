@@ -1,7 +1,7 @@
 package com.solvd.shop.services.address;
 
 import com.solvd.shop.interfaces.address.IAddressDAO;
-import com.solvd.shop.jdbc.dao.address.AddressDAO;
+import com.solvd.shop.mybatis.dao.address.AddressDAO;
 import com.solvd.shop.models.address.Address;
 import com.solvd.shop.util.ConnectionPool;
 
@@ -10,8 +10,7 @@ import java.util.List;
 public class AddressService implements IAddressDAO<Address> {
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final AddressDAO addressDAO = new AddressDAO(connectionPool);
-    private static IAddressDAO batisDAO;
+    private static final AddressDAO batisDAO = new AddressDAO();
 
     @Override
     public void insert(Address address) {
@@ -30,7 +29,7 @@ public class AddressService implements IAddressDAO<Address> {
 
     @Override
     public Address getByID(int id) {
-        return (Address) batisDAO.getByID(id);
+        return batisDAO.getByID(id);
     }
 
     @Override
@@ -40,6 +39,6 @@ public class AddressService implements IAddressDAO<Address> {
 
     @Override
     public Address getByFirstLine(String firstLine) {
-        return (Address) batisDAO.getByFirstLine(firstLine);
+        return batisDAO.getByFirstLine(firstLine);
     }
 }
