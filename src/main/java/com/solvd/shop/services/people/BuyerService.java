@@ -2,73 +2,41 @@ package com.solvd.shop.services.people;
 
 import com.solvd.shop.interfaces.people.IBuyerDAO;
 import com.solvd.shop.models.people.Buyer;
-import com.solvd.shop.util.MyBatisConfig;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.people.BuyerDAO;
 
 import java.util.List;
 
 public class BuyerService implements IBuyerDAO<Buyer> {
 
-    private static SqlSessionFactory sqlSessionFactory;
-    private static final Logger LOGGER = LogManager.getLogger(BuyerService.class);
-    private static IBuyerDAO batisDAO;
-
-    public BuyerService() {
-        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
-
-    }
+    private static final BuyerDAO batisDAO = new BuyerDAO();
 
     @Override
     public void insert(Buyer buyer) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IBuyerDAO.class);
-            batisDAO.insert(buyer);
-            sqlSession.commit();
-        }
+        batisDAO.insert(buyer);
     }
 
     @Override
     public void update(Buyer buyer) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IBuyerDAO.class);
-            batisDAO.update(buyer);
-            sqlSession.commit();
-        }
+        batisDAO.update(buyer);
     }
 
     @Override
     public void delete(Buyer buyer) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IBuyerDAO.class);
-            batisDAO.delete(buyer);
-            sqlSession.commit();
-        }
+        batisDAO.delete(buyer);
     }
 
     @Override
     public Buyer getByID(int id) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()){
-            batisDAO = sqlSession.getMapper(IBuyerDAO.class);
-            return (Buyer) batisDAO.getByID(id);
-        }
+        return batisDAO.getByID(id);
     }
 
     @Override
     public List<Buyer> getAll() {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IBuyerDAO.class);
-            return batisDAO.getAll();
-        }
+        return batisDAO.getAll();
     }
 
     @Override
     public Buyer getByName(String name) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(IBuyerDAO.class);
-            return (Buyer) batisDAO.getByName(name);
-        }
+        return batisDAO.getByName(name);
     }
 }

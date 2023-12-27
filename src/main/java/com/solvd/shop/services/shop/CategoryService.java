@@ -2,73 +2,41 @@ package com.solvd.shop.services.shop;
 
 import com.solvd.shop.interfaces.shop.ICategoryDAO;
 import com.solvd.shop.models.shop.Category;
-import com.solvd.shop.util.MyBatisConfig;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import com.solvd.shop.mybatis.dao.shop.CategoryDAO;
 
 import java.util.List;
 
 public class CategoryService implements ICategoryDAO<Category> {
 
-    private static SqlSessionFactory sqlSessionFactory;
-    private static final Logger LOGGER = LogManager.getLogger(CategoryService.class);
-    private static ICategoryDAO batisDAO;
-
-    public CategoryService() {
-        sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
-    }
+    private static final CategoryDAO batisDAO = new CategoryDAO();
 
     @Override
     public void insert(Category category) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICategoryDAO.class);
-            batisDAO.insert(category);
-            sqlSession.commit();
-        }
+        batisDAO.insert(category);
     }
 
     @Override
     public void update(Category category) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICategoryDAO.class);
-            batisDAO.update(category);
-            sqlSession.commit();
-        }
+        batisDAO.update(category);
     }
 
     @Override
     public void delete(Category category) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICategoryDAO.class);
-            batisDAO.delete(category);
-            sqlSession.commit();
-        }
+        batisDAO.delete(category);
     }
 
     @Override
     public Category getByID(int id) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICategoryDAO.class);
-            return (Category) batisDAO.getByID(id);
-        }
+        return batisDAO.getByID(id);
     }
 
     @Override
     public List<Category> getAll() {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICategoryDAO.class);
-            return batisDAO.getAll();
-        }
+        return batisDAO.getAll();
     }
 
     @Override
     public Category getByCategoryName(String name) {
-        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-            batisDAO = sqlSession.getMapper(ICategoryDAO.class);
-            return (Category) batisDAO.getByCategoryName(name);
-        }
+        return batisDAO.getByCategoryName(name);
     }
 }
