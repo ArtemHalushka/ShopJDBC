@@ -6,7 +6,6 @@ import com.solvd.shop.models.address.City;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.List;
 
 public class CityService implements ICityDAO<City> {

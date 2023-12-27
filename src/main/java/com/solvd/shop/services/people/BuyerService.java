@@ -11,7 +11,6 @@ import java.util.List;
 
 public class BuyerService implements IBuyerDAO<Buyer> {
 
-
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(BuyerService.class);
     private static final BuyerDAO batisDAO = new BuyerDAO();
