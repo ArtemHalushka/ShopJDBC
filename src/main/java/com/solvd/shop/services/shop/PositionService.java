@@ -1,11 +1,11 @@
 package com.solvd.shop.services.shop;
 
 import com.solvd.shop.interfaces.shop.IPositionDAO;
-import com.solvd.shop.jdbc.dao.shop.PositionDAO;
 import com.solvd.shop.models.shop.Position;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.shop.PositionDAO;
 
 import java.util.List;
 
@@ -13,36 +13,35 @@ public class PositionService implements IPositionDAO<Position> {
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(PositionService.class);
-
-    private static final PositionDAO positionDAO = new PositionDAO(connectionPool);
+    private static final PositionDAO batisDAO = new PositionDAO();
 
     @Override
     public void insert(Position position) {
-        positionDAO.insert(position);
+        batisDAO.insert(position);
     }
 
     @Override
     public void update(Position position) {
-        positionDAO.update(position);
+        batisDAO.update(position);
     }
 
     @Override
     public void delete(Position position) {
-        positionDAO.delete(position);
+        batisDAO.delete(position);
     }
 
     @Override
     public Position getByID(int id) {
-        return positionDAO.getByID(id);
+        return batisDAO.getByID(id);
     }
 
     @Override
     public List<Position> getAll() {
-        return positionDAO.getAll();
+        return batisDAO.getAll();
     }
 
     @Override
     public Position getBySalary(double salary) {
-        return positionDAO.getBySalary(salary);
+        return batisDAO.getBySalary(salary);
     }
 }
