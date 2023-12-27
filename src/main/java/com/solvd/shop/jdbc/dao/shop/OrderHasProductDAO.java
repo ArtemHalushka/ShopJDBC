@@ -1,8 +1,6 @@
 package com.solvd.shop.jdbc.dao.shop;
 
 import com.solvd.shop.interafaces.shop.IOrderHasProductDAO;
-import com.solvd.shop.models.people.Supplier;
-import com.solvd.shop.models.shop.Category;
 import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.models.shop.OrderHasProduct;
 import com.solvd.shop.models.shop.Product;
@@ -21,9 +19,13 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(OrderHasProductDAO.class);
+    private final OrderDAO orderDAO;
+    private final ProductDAO productDAO;
 
     public OrderHasProductDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.orderDAO = new OrderDAO(connectionPool);
+        this.productDAO = new ProductDAO(connectionPool);
     }
 
     @Override
@@ -79,10 +81,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Order order = new Order();
-                    Product product = new Product();
-                    order.setOrderId(resultSet.getInt("id_order"));
-                    product.setProductId(resultSet.getInt("id_product"));
+                    Order order = orderDAO.getByID(resultSet.getInt("id_order"));
+                    Product product = productDAO.getByID(resultSet.getInt("id_product"));
                     return new OrderHasProduct(order, product);
                 }
             }
@@ -102,10 +102,8 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Order order = new Order();
-                    Product product = new Product();
-                    order.setOrderId(resultSet.getInt("id_order"));
-                    product.setProductId(resultSet.getInt("id_product"));
+                    Order order = orderDAO.getByID(resultSet.getInt("id_order"));
+                    Product product = productDAO.getByID(resultSet.getInt("id_product"));
                     OrderHasProduct orderHasProduct = new OrderHasProduct(order, product);
                     orderHasProductList.add(orderHasProduct);
                 }
@@ -127,8 +125,7 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Product product = new Product();
-                    product.setProductId(resultSet.getInt("id_product"));
+                    Product product = productDAO.getByID(resultSet.getInt("id_product"));
                     productList.add(product);
                 }
             }

@@ -1,6 +1,7 @@
 package com.solvd.shop.jdbc.dao.people;
 
 import com.solvd.shop.interafaces.people.IBuyerDAO;
+import com.solvd.shop.jdbc.dao.address.AddressDAO;
 import com.solvd.shop.models.address.Address;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.util.ConnectionPool;
@@ -18,9 +19,11 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(BuyerDAO.class);
+    private final AddressDAO addressDAO;
 
     public BuyerDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.addressDAO = new AddressDAO(connectionPool);
     }
 
     @Override
@@ -78,8 +81,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Address address = new Address();
-                    address.setAddressId(resultSet.getInt("id_address"));
+                    Address address = addressDAO.getByID(resultSet.getInt("id_address"));
                     return new Buyer(resultSet.getInt("id_buyer"), resultSet.getString("name"), resultSet.getString("phone_number"), address);
                 }
             }
@@ -99,8 +101,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Address address = new Address();
-                    address.setAddressId(resultSet.getInt("id_address"));
+                    Address address = addressDAO.getByID(resultSet.getInt("id_address"));
                     Buyer buyer = new Buyer(resultSet.getInt("id_buyer"), resultSet.getString("name"), resultSet.getString("phone_number"), address);
                     buyerList.add(buyer);
                 }
@@ -121,8 +122,7 @@ public class BuyerDAO implements IBuyerDAO<Buyer> {
             statement.setString(1, name);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Address address = new Address();
-                    address.setAddressId(resultSet.getInt("id_address"));
+                    Address address = addressDAO.getByID(resultSet.getInt("id_address"));
                     return new Buyer(resultSet.getInt("id_buyer"), resultSet.getString("name"), resultSet.getString("phone_number"), address);
                 }
             }

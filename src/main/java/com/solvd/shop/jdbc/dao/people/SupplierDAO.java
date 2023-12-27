@@ -1,6 +1,7 @@
 package com.solvd.shop.jdbc.dao.people;
 
 import com.solvd.shop.interafaces.people.ISupplierDAO;
+import com.solvd.shop.jdbc.dao.address.AddressDAO;
 import com.solvd.shop.models.address.Address;
 import com.solvd.shop.models.people.Supplier;
 import com.solvd.shop.util.ConnectionPool;
@@ -18,9 +19,11 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(SupplierDAO.class);
+    private final AddressDAO addressDAO;
 
     public SupplierDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.addressDAO = new AddressDAO(connectionPool);
     }
 
     @Override
@@ -76,8 +79,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Address address = new Address();
-                    address.setAddressId(resultSet.getInt("id_address"));
+                    Address address = addressDAO.getByID(resultSet.getInt("id_address"));
                     return new Supplier(resultSet.getInt("id_supplier"), resultSet.getString("supplier"), address);
                 }
             }
@@ -97,8 +99,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Address address = new Address();
-                    address.setAddressId(resultSet.getInt("id_address"));
+                    Address address = addressDAO.getByID(resultSet.getInt("id_address"));
                     Supplier supplier = new Supplier(resultSet.getInt("id_supplier"), resultSet.getString("supplier"), address);
                     supplierList.add(supplier);
                 }
@@ -119,8 +120,7 @@ public class SupplierDAO implements ISupplierDAO<Supplier> {
             statement.setString(1, name);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Address address = new Address();
-                    address.setAddressId(resultSet.getInt("id_address"));
+                    Address address = addressDAO.getByID(resultSet.getInt("id_address"));
                     return new Supplier(resultSet.getInt("id_supplier"), resultSet.getString("supplier"), address);
                 }
             }

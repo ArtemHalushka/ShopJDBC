@@ -15,9 +15,6 @@ public class OrderService implements IOrderDAO<Order> {
 
     private static ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(OrderService.class);
-
-    private static final OrderHasProductService orderHasProductService = new OrderHasProductService();
-
     private static final OrderDAO orderDAO = new OrderDAO(connectionPool);
 
     static {
@@ -45,24 +42,16 @@ public class OrderService implements IOrderDAO<Order> {
 
     @Override
     public Order getByID(int id) {
-        Order order = orderDAO.getByID(id);
-        order.setProducts(orderHasProductService.getAllByOrderId(id));
-        return order;
+        return orderDAO.getByID(id);
     }
 
     @Override
     public List<Order> getAll() {
-        List<Order> orders = orderDAO.getAll();
-        for (Order order : orders) {
-            order.setProducts(orderHasProductService.getAllByOrderId(order.getOrderId()));
-        }
-        return orders;
+        return orderDAO.getAll();
     }
 
     @Override
     public Order getByDate(Date date) {
-        Order order = orderDAO.getByDate(date);
-        order.setProducts(orderHasProductService.getAllByOrderId(order.getOrderId()));
-        return order;
+        return orderDAO.getByDate(date);
     }
 }

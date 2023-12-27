@@ -1,6 +1,7 @@
 package com.solvd.shop.jdbc.dao.people;
 
 import com.solvd.shop.interafaces.people.IEmployeeDAO;
+import com.solvd.shop.jdbc.dao.shop.PositionDAO;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.shop.Position;
 import com.solvd.shop.util.ConnectionPool;
@@ -18,9 +19,11 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(EmployeeDAO.class);
+    private final PositionDAO positionDAO;
 
     public EmployeeDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.positionDAO = new PositionDAO(connectionPool);
     }
 
     @Override
@@ -76,8 +79,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Position position = new Position();
-                    position.setPositionId(resultSet.getInt("id_position"));
+                    Position position = positionDAO.getByID(resultSet.getInt("id_position"));
                     return new Employee(resultSet.getInt("id_employee"), resultSet.getString("name"), position);
                 }
             }
@@ -97,8 +99,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Position position = new Position();
-                    position.setPositionId(resultSet.getInt("id_position"));
+                    Position position = positionDAO.getByID(resultSet.getInt("id_position"));
                     Employee employee = new Employee(resultSet.getInt("id_employee"), resultSet.getString("name"), position);
                     employeeList.add(employee);
                 }
@@ -119,8 +120,7 @@ public class EmployeeDAO implements IEmployeeDAO<Employee> {
             statement.setString(1, name);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Position position = new Position();
-                    position.setPositionId(resultSet.getInt("id_position"));
+                    Position position = positionDAO.getByID(resultSet.getInt("id_position"));
                     return new Employee(resultSet.getInt("id_employee"), resultSet.getString("name"), position);
                 }
             }

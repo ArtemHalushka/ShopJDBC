@@ -19,14 +19,16 @@ public class CityDAO implements ICityDAO<City> {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(CityDAO.class);
+    private final CountryDAO countryDAO;
 
     public CityDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.countryDAO = new CountryDAO(connectionPool);
     }
 
     @Override
     public void insert(City city) {
-        String query = "INSERT INTO cities (city, id_contry) VALUES ((?), (?))";
+        String query = "INSERT INTO cities (city, id_country) VALUES ((?), (?))";
         Connection conn = connectionPool.getConnection();
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, city.getCityName());
@@ -77,8 +79,7 @@ public class CityDAO implements ICityDAO<City> {
             statement.setString(1, cityName);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Country country = new Country();
-                    country.setCountryId(resultSet.getInt("id_country"));
+                    Country country = countryDAO.getByID(resultSet.getInt("id_country"));
                     return new City(resultSet.getInt("id_city"), resultSet.getString("city"), country);
                 }
             }
@@ -98,8 +99,7 @@ public class CityDAO implements ICityDAO<City> {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Country country = new Country();
-                    country.setCountryId(resultSet.getInt("id_country"));
+                    Country country = countryDAO.getByID(resultSet.getInt("id_country"));
                     return new City(resultSet.getInt("id_city"), resultSet.getString("city"), country);
                 }
             }
@@ -119,9 +119,8 @@ public class CityDAO implements ICityDAO<City> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Country country = new Country();
-                    country.setCountryId(resultSet.getInt("id_country"));
-                    City city =  new City(resultSet.getInt("id_city"), resultSet.getString("city"), country);
+                    Country country = countryDAO.getByID(resultSet.getInt("id_country"));
+                    City city = new City(resultSet.getInt("id_city"), resultSet.getString("city"), country);
                     cityList.add(city);
                 }
             }

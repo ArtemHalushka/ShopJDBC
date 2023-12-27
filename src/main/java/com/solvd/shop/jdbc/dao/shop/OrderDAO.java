@@ -1,6 +1,8 @@
 package com.solvd.shop.jdbc.dao.shop;
 
 import com.solvd.shop.interafaces.shop.IOrderDAO;
+import com.solvd.shop.jdbc.dao.people.BuyerDAO;
+import com.solvd.shop.jdbc.dao.people.EmployeeDAO;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.shop.Order;
@@ -18,9 +20,17 @@ public class OrderDAO implements IOrderDAO<Order> {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(OrderDAO.class);
+    private final EmployeeDAO employeeDAO;
+    private final BuyerDAO buyerDAO;
+    private final StatusDAO statusDAO;
+    private final OrderHasProductDAO orderHasProductDAO;
 
     public OrderDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.employeeDAO = new EmployeeDAO(connectionPool);
+        this.buyerDAO = new BuyerDAO(connectionPool);
+        this.statusDAO = new StatusDAO(connectionPool);
+        this.orderHasProductDAO = new OrderHasProductDAO(connectionPool);
     }
 
     @Override
@@ -82,14 +92,11 @@ public class OrderDAO implements IOrderDAO<Order> {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Status status = new Status();
-                    Buyer buyer = new Buyer();
-                    Employee employee = new Employee();
-                    status.setStatusId(resultSet.getInt("id_status"));
-                    buyer.setBuyerId(resultSet.getInt("id_buyer"));
-                    employee.setEmployeeId(resultSet.getInt("id_employee"));
-
-                    return new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee);
+                    Status status = statusDAO.getByID(resultSet.getInt("id_status"));
+                    Buyer buyer = buyerDAO.getByID(resultSet.getInt("id_buyer"));
+                    Employee employee = employeeDAO.getByID(resultSet.getInt("id_employee"));
+                    List<Product> products = orderHasProductDAO.getAllByOrderId(resultSet.getInt("id_order"));
+                    return new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee, products);
                 }
             }
         } catch (SQLException e) {
@@ -110,14 +117,11 @@ public class OrderDAO implements IOrderDAO<Order> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Status status = new Status();
-                    Buyer buyer = new Buyer();
-                    Employee employee = new Employee();
-                    status.setStatusId(resultSet.getInt("id_status"));
-                    buyer.setBuyerId(resultSet.getInt("id_buyer"));
-                    employee.setEmployeeId(resultSet.getInt("id_employee"));
-
-                    Order order = new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee);
+                    Status status = statusDAO.getByID(resultSet.getInt("id_status"));
+                    Buyer buyer = buyerDAO.getByID(resultSet.getInt("id_buyer"));
+                    Employee employee = employeeDAO.getByID(resultSet.getInt("id_employee"));
+                    List<Product> products = orderHasProductDAO.getAllByOrderId(resultSet.getInt("id_order"));
+                    Order order = new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee, products);
                     orderList.add(order);
                 }
             }
@@ -137,14 +141,11 @@ public class OrderDAO implements IOrderDAO<Order> {
             statement.setDate(1, date);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Status status = new Status();
-                    Buyer buyer = new Buyer();
-                    Employee employee = new Employee();
-                    status.setStatusId(resultSet.getInt("id_status"));
-                    buyer.setBuyerId(resultSet.getInt("id_buyer"));
-                    employee.setEmployeeId(resultSet.getInt("id_employee"));
-
-                    return new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee);
+                    Status status = statusDAO.getByID(resultSet.getInt("id_status"));
+                    Buyer buyer = buyerDAO.getByID(resultSet.getInt("id_buyer"));
+                    Employee employee = employeeDAO.getByID(resultSet.getInt("id_employee"));
+                    List<Product> products = orderHasProductDAO.getAllByOrderId(resultSet.getInt("id_order"));
+                    return new Order(resultSet.getInt("id_order"), resultSet.getDate("date"), status, resultSet.getDouble("order_total"), buyer, employee, products);
                 }
             }
         } catch (SQLException e) {

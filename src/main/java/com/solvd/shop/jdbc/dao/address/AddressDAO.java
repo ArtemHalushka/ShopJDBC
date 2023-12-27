@@ -16,8 +16,11 @@ public class AddressDAO implements IAddressDAO<Address> {
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(AddressDAO.class);
 
+    private final CityDAO cityDAO;
+
     public AddressDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.cityDAO = new CityDAO(connectionPool);
     }
 
     @Override
@@ -79,8 +82,7 @@ public class AddressDAO implements IAddressDAO<Address> {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    City city = new City();
-                    city.setCityId(resultSet.getInt("id_city"));
+                    City city = cityDAO.getByID(resultSet.getInt("id_city"));
                     return new Address(resultSet.getInt("id_address"), resultSet.getString("first_line"),
                             resultSet.getString("second_line"), resultSet.getString("zip_code"), city);
                 }
@@ -101,8 +103,7 @@ public class AddressDAO implements IAddressDAO<Address> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    City city = new City();
-                    city.setCityId(resultSet.getInt("id_city"));
+                    City city = cityDAO.getByID(resultSet.getInt("id_city"));
                     Address address = new Address(resultSet.getInt("id_address"), resultSet.getString("first_line"),
                             resultSet.getString("second_line"), resultSet.getString("zip_code"), city);
                     addressList.add(address);
@@ -124,8 +125,7 @@ public class AddressDAO implements IAddressDAO<Address> {
             statement.setString(1, firstLine);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    City city = new City();
-                    city.setCityId(resultSet.getInt("id_city"));
+                    City city = cityDAO.getByID(resultSet.getInt("id_city"));
                     return new Address(resultSet.getInt("id_address"), resultSet.getString("first_line"),
                             resultSet.getString("second_line"), resultSet.getString("zip_code"), city);
                 }

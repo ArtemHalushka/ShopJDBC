@@ -1,6 +1,7 @@
 package com.solvd.shop.jdbc.dao.shop;
 
 import com.solvd.shop.interafaces.shop.IProductDAO;
+import com.solvd.shop.jdbc.dao.people.SupplierDAO;
 import com.solvd.shop.models.people.Supplier;
 import com.solvd.shop.models.shop.Category;
 import com.solvd.shop.models.shop.Product;
@@ -19,9 +20,12 @@ public class ProductDAO implements IProductDAO<Product> {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(ProductDAO.class);
-
+    private final CategoryDAO categoryDAO;
+    private final SupplierDAO supplierDAO;
     public ProductDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+        this.supplierDAO = new SupplierDAO(connectionPool);
+        this.categoryDAO = new CategoryDAO(connectionPool);
     }
 
     @Override
@@ -84,11 +88,8 @@ public class ProductDAO implements IProductDAO<Product> {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Supplier supplier = new Supplier();
-                    Category category = new Category();
-                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
-                    category.setCategoryId(resultSet.getInt("id_category"));
-
+                    Supplier supplier = supplierDAO.getByID(resultSet.getInt("id_supplier"));
+                    Category category = categoryDAO.getByID(resultSet.getInt("id_category"));
                     return new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
                 }
             }
@@ -108,11 +109,8 @@ public class ProductDAO implements IProductDAO<Product> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Supplier supplier = new Supplier();
-                    Category category = new Category();
-                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
-                    category.setCategoryId(resultSet.getInt("id_category"));
-
+                    Supplier supplier = supplierDAO.getByID(resultSet.getInt("id_supplier"));
+                    Category category = categoryDAO.getByID(resultSet.getInt("id_category"));
                     Product product = new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
                     productList.add(product);
                 }
@@ -133,11 +131,8 @@ public class ProductDAO implements IProductDAO<Product> {
             statement.setString(1, name);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Supplier supplier = new Supplier();
-                    Category category = new Category();
-                    supplier.setSupplierId(resultSet.getInt("id_supplier"));
-                    category.setCategoryId(resultSet.getInt("id_category"));
-
+                    Supplier supplier = supplierDAO.getByID(resultSet.getInt("id_supplier"));
+                    Category category = categoryDAO.getByID(resultSet.getInt("id_category"));
                     return new Product(resultSet.getInt("id_product"), resultSet.getString("name"), resultSet.getDouble("price"), supplier, category, resultSet.getInt("available_quantity"));
                 }
             }
