@@ -4,3 +4,4 @@ out/
 logs/
 target/
 dependency-reduced-pom.xml
+db.properties
