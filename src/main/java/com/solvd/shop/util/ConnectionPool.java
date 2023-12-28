@@ -12,7 +12,7 @@ import java.util.List;
 public class ConnectionPool {
     private static List<Connection> availableConnections = new ArrayList<>();
     private static List<Connection> usedConnections = new ArrayList<>();
-    private final static int MAX_CONNECTIONS = 5;
+    private final static int MAX_CONNECTIONS = 10;
 
     private static final Logger LOGGER = LogManager.getLogger(ConnectionPool.class);
 

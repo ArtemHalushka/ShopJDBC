@@ -19,13 +19,13 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = LogManager.getLogger(OrderHasProductDAO.class);
-    private final OrderDAO orderDAO;
-    private final ProductDAO productDAO;
+    private OrderDAO orderDAO;
+    private ProductDAO productDAO;
 
     public OrderHasProductDAO(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
-        this.orderDAO = new OrderDAO(connectionPool);
         this.productDAO = new ProductDAO(connectionPool);
+
     }
 
     @Override
@@ -135,5 +135,9 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
             connectionPool.releaseConnection(conn);
         }
         return productList;
+    }
+
+    public void setOrderDAO(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
     }
 }

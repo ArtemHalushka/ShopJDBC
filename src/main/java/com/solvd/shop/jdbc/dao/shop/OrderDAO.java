@@ -31,6 +31,7 @@ public class OrderDAO implements IOrderDAO<Order> {
         this.buyerDAO = new BuyerDAO(connectionPool);
         this.statusDAO = new StatusDAO(connectionPool);
         this.orderHasProductDAO = new OrderHasProductDAO(connectionPool);
+        this.orderHasProductDAO.setOrderDAO(this);
     }
 
     @Override
