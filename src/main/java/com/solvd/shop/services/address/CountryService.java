@@ -12,18 +12,9 @@ import java.util.List;
 
 public class CountryService implements ICountryDAO<Country> {
 
-    private static ConnectionPool connectionPool;
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(CountryService.class);
-
     private static final CountryDAO countryDAO = new CountryDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
-    }
 
     @Override
     public void insert(Country country) {

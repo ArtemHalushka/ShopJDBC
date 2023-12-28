@@ -7,24 +7,13 @@ import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class SupplierService implements ISupplierDAO<Supplier> {
 
-    private static ConnectionPool connectionPool;
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(SupplierService.class);
-
     private static final SupplierDAO supplierDAO = new SupplierDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
-    }
-
 
     @Override
     public void insert(Supplier supplier) {

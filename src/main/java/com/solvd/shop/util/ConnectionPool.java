@@ -21,7 +21,7 @@ public class ConnectionPool {
     private ConnectionPool() {
     }
 
-    public static synchronized ConnectionPool getInstance() throws SQLException {
+    public static synchronized ConnectionPool getInstance() {
         if (instance == null) {
             instance = new ConnectionPool();
             create();
@@ -30,7 +30,7 @@ public class ConnectionPool {
         return instance;
     }
 
-    public static void create() throws SQLException {
+    public static void create() {
         for (int count = 0; count < MAX_CONNECTIONS; count++) {
             availableConnections.add(ConnectionPool.createConnection());
         }

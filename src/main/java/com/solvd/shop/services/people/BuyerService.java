@@ -12,18 +12,10 @@ import java.util.List;
 
 public class BuyerService implements IBuyerDAO<Buyer> {
 
-    private static ConnectionPool connectionPool;
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(BuyerService.class);
 
     private static final BuyerDAO buyerDAO = new BuyerDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
-    }
 
     @Override
     public void insert(Buyer buyer) {

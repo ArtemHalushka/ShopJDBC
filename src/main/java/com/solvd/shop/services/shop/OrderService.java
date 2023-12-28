@@ -8,22 +8,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.List;
 
 public class OrderService implements IOrderDAO<Order> {
 
-    private static ConnectionPool connectionPool;
+    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(OrderService.class);
     private static final OrderDAO orderDAO = new OrderDAO(connectionPool);
-
-    static {
-        try {
-            connectionPool = ConnectionPool.getInstance();
-        } catch (SQLException e) {
-            LOGGER.info(e);
-        }
-    }
 
     @Override
     public void insert(Order order) {
