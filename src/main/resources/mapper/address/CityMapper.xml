@@ -8,7 +8,11 @@
         <result property="cityName" column="city"/>
         <association property="country" column="id_country"
                      javaType="com.solvd.shop.models.address.Country"
+<<<<<<< HEAD
                      select="com.solvd.shop.mapper.address.CountryMapper.getByID"
+=======
+                     select="com.solvd.shop.interfaces.address.ICountryDAO.getByID"
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
                      fetchType="eager"/>
     </resultMap>
 

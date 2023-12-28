@@ -10,7 +10,11 @@
         <result property="zipCode" column="zip_code"/>
         <association property="city" column="id_city"
                      javaType="com.solvd.shop.models.address.City"
+<<<<<<< HEAD
                      select="com.solvd.shop.mapper.address.CityMapper.getByID"
+=======
+                     select="com.solvd.shop.interfaces.address.ICityDAO.getByID"
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
                      fetchType="eager"/>
     </resultMap>
 

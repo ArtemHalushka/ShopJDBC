@@ -2,11 +2,10 @@ package com.solvd.shop.services.shop;
 
 import com.solvd.shop.interfaces.shop.IOrderDAO;
 import com.solvd.shop.models.shop.Order;
+import com.solvd.shop.mybatis.dao.shop.OrderDAO;
 import com.solvd.shop.util.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.solvd.shop.mybatis.dao.shop.OrderDAO;
-import com.solvd.shop.models.shop.Order;
 
 import java.sql.Date;
 import java.util.List;

@@ -20,6 +20,8 @@ public class Order {
     }
 
     public Order(int orderId, Date date, Status status, double orderTotal, Buyer buyer, Employee employee, List<Product> products) {
+<<<<<<< HEAD
+=======
         this.orderId = orderId;
         this.date = date;
         this.status = status;
@@ -28,6 +30,18 @@ public class Order {
         this.employee = employee;
         this.products = products;
     }
+
+    public Order(int orderId, Date date, Status status, double orderTotal, Buyer buyer, Employee employee) {
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
+        this.orderId = orderId;
+        this.date = date;
+        this.status = status;
+        this.orderTotal = orderTotal;
+        this.buyer = buyer;
+        this.employee = employee;
+        this.products = products;
+    }
+
 
     public List<Product> getProducts() {
         return products;

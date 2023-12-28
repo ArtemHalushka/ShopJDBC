@@ -6,11 +6,34 @@
     <resultMap id="OrderHasProductMap" type="com.solvd.shop.models.shop.OrderHasProduct">
         <association property="order" column="id_order"
                      javaType="com.solvd.shop.models.shop.Order"
+<<<<<<< HEAD
                      select="com.solvd.shop.mapper.shop.OrderMapper.getByID"
                      fetchType="eager"/>
         <association property="product" column="id_product"
                      javaType="com.solvd.shop.models.shop.Product"
                      select="com.solvd.shop.mapper.shop.ProductMapper.getByID"
+=======
+                     select="com.solvd.shop.interfaces.shop.IOrderDAO.getByID"
+                     fetchType="eager"/>
+        <association property="product" column="id_product"
+                     javaType="com.solvd.shop.models.shop.Product"
+                     select="com.solvd.shop.interfaces.shop.IProductDAO.getByID"
+                     fetchType="eager"/>
+    </resultMap>
+
+    <resultMap id="ProductMap" type="com.solvd.shop.models.shop.Product">
+        <id property="productId" column="id_product"/>
+        <result property="productName" column="name"/>
+        <result property="price" column="price"/>
+        <result property="availableQuantity" column="available_quantity"/>
+        <association property="supplier" column="id_supplier"
+                     javaType="com.solvd.shop.models.people.Supplier"
+                     select="com.solvd.shop.interfaces.people.ISupplierDAO.getByID"
+                     fetchType="eager"/>
+        <association property="category" column="id_category"
+                     javaType="com.solvd.shop.models.shop.Category"
+                     select="com.solvd.shop.interfaces.shop.ICategoryDAO.getByID"
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
                      fetchType="eager"/>
     </resultMap>
 
@@ -34,7 +57,11 @@
     <select id="getByID" parameterType="java.lang.Integer" resultMap="OrderHasProductMap">
         SELECT *
         FROM orders_has_products
+<<<<<<< HEAD
         WHERE id_order = #{order.orderId}
+=======
+        WHERE id_order = #{id}
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
     </select>
 
     <select id="getAll" resultMap="OrderHasProductMap">
@@ -42,11 +69,19 @@
         FROM orders_has_products
     </select>
 
+<<<<<<< HEAD
     <select id="getAllByOrderId" parameterType="java.lang.String" resultMap="OrderHasProductMap">
         SELECT *
         FROM orders_has_products
         WHERE id_order = #{order.orderId}
     </select>
 
+=======
+    <select id="getAllByOrderId" parameterType="java.lang.Integer" resultMap="ProductMap">
+        SELECT *
+        FROM orders_has_products
+        WHERE id_order = #{id}
+    </select>
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
 </mapper>
 

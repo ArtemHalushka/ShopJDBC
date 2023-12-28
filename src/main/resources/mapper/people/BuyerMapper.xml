@@ -9,7 +9,11 @@
         <result property="phoneNumber" column="phone_number"/>
         <association property="address" column="id_address"
                      javaType="com.solvd.shop.models.address.Address"
+<<<<<<< HEAD
                      select="com.solvd.shop.mapper.address.AddressMapper.getByID"
+=======
+                     select="com.solvd.shop.interfaces.address.IAddressDAO.getByID"
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
                      fetchType="eager"/>
     </resultMap>
 
