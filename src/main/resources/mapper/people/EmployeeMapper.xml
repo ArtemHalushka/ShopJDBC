@@ -8,7 +8,15 @@
         <result property="name" column="name"/>
         <association property="position" column="id_position"
                      javaType="com.solvd.shop.models.shop.Position"
+<<<<<<< HEAD
                      select="com.solvd.shop.mapper.shop.PositionMapper.getByID"
+=======
+<<<<<<< HEAD
+                     select="com.solvd.shop.mapper.shop.PositionMapper.getByID"
+=======
+                     select="com.solvd.shop.interfaces.shop.IPositionDAO.getByID"
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
+>>>>>>> 610c0023083158f5873647ca059930b054edbd00
                      fetchType="eager"/>
     </resultMap>
 

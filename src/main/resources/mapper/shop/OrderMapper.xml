@@ -9,6 +9,10 @@
         <result property="orderTotal" column="order_total"/>
         <association property="status" column="id_status"
                      javaType="com.solvd.shop.models.shop.Status"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 610c0023083158f5873647ca059930b054edbd00
                      select="com.solvd.shop.mapper.shop.StatusMapper.getByID"
                      fetchType="eager"/>
         <association property="buyer" column="id_buyer"
@@ -18,13 +22,37 @@
         <association property="employee" column="id_employee"
                      javaType="com.solvd.shop.models.people.Employee"
                      select="com.solvd.shop.mapper.people.EmployeeMapper.getByID"
+<<<<<<< HEAD
+=======
+=======
+                     select="com.solvd.shop.interfaces.shop.IStatusDAO.getByID"
+                     fetchType="eager"/>
+        <association property="buyer" column="id_buyer"
+                     javaType="com.solvd.shop.models.people.Buyer"
+                     select="com.solvd.shop.interfaces.people.IBuyerDAO.getByID"
+                     fetchType="eager"/>
+        <association property="employee" column="id_employee"
+                     javaType="com.solvd.shop.models.people.Employee"
+                     select="com.solvd.shop.interfaces.people.IEmployeeDAO.getByID"
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
+>>>>>>> 610c0023083158f5873647ca059930b054edbd00
                      fetchType="eager"/>
         <collection
                 property="products"
                 column="id_order"
                 javaType="List"
+<<<<<<< HEAD
                 ofType="Product"
                 select="com.solvd.shop.mapper.shop.OrderHasProductMapper.getAllByOrderID"
+=======
+<<<<<<< HEAD
+                ofType="Product"
+                select="com.solvd.shop.mapper.shop.OrderHasProductMapper.getAllByOrderID"
+=======
+                ofType="com.solvd.shop.models.shop.Product"
+                select="com.solvd.shop.interfaces.shop.IOrderHasProductDAO.getAllByOrderId"
+>>>>>>> 7ed9824819492cd35c8780fa4bb8b827efd99675
+>>>>>>> 610c0023083158f5873647ca059930b054edbd00
                 fetchType="eager"
         />
     </resultMap>
