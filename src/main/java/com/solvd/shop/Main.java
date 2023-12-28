@@ -16,7 +16,6 @@ public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws SQLException {
-
         CityService cityService = new CityService();
 
         Country moldova = new Country(10, "Moldova");
