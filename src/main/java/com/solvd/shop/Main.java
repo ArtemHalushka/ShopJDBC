@@ -16,13 +16,9 @@ public class Main {
     public static void main(String[] args) {
 
         OrderService orderService = new OrderService();
-        ProductService productService = new ProductService();
 
-        List<Product> product = productService.getAll();
         List<Order> orders = orderService.getAll();
 
-        LOGGER.info(product);
         LOGGER.info(orders);
-
     }
 }
