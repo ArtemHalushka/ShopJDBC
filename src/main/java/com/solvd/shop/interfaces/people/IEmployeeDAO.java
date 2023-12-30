@@ -1,6 +1,6 @@
-package com.solvd.shop.interafaces.people;
+package com.solvd.shop.interfaces.people;
 
-import com.solvd.shop.interafaces.IBaseDAO;
+import com.solvd.shop.interfaces.IBaseDAO;
 
 public interface IEmployeeDAO<Employee> extends IBaseDAO<Employee> {
 

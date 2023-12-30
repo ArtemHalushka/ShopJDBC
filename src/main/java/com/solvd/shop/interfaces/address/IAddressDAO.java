@@ -1,6 +1,6 @@
-package com.solvd.shop.interafaces.address;
+package com.solvd.shop.interfaces.address;
 
-import com.solvd.shop.interafaces.IBaseDAO;
+import com.solvd.shop.interfaces.IBaseDAO;
 
 public interface IAddressDAO<Address> extends IBaseDAO<Address> {
 

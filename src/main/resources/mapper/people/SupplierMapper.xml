@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.people.ISupplierDAO">
+
+    <resultMap id="SupplierMap" type="com.solvd.shop.models.people.Supplier">
+        <id property="supplierId" column="id_supplier"/>
+        <result property="supplierName" column="supplier"/>
+        <association property="address" column="id_address"
+                     javaType="com.solvd.shop.models.address.Address"
+                     select="com.solvd.shop.interfaces.address.IAddressDAO.getByID"
+                     fetchType="eager"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.people.Supplier">
+        INSERT INTO suppliers (supplier, id_address)
+        VALUES (#{supplierName}, #{address.addressId})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.people.Supplier">
+        UPDATE suppliers
+        SET supplier   = #{supplierName},
+            id_address = #{address.addressId}
+        WHERE id_supplier = #{supplierId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.people.Supplier">
+        DELETE
+        FROM suppliers
+        WHERE id_supplier = #{supplierId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="SupplierMap">
+        SELECT *
+        FROM suppliers
+        WHERE id_supplier = #{id}
+    </select>
+
+    <select id="getAll" resultMap="SupplierMap">
+        SELECT *
+        FROM suppliers
+    </select>
+
+    <select id="getByName" parameterType="java.lang.String" resultMap="SupplierMap">
+        SELECT *
+        FROM suppliers
+        WHERE supplier = #{name}
+    </select>
+
+</mapper>
+

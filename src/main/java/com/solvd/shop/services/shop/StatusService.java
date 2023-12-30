@@ -1,47 +1,42 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IStatusDAO;
-import com.solvd.shop.jdbc.dao.shop.StatusDAO;
+import com.solvd.shop.interfaces.shop.IStatusDAO;
 import com.solvd.shop.models.shop.Status;
-import com.solvd.shop.util.ConnectionPool;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.shop.StatusDAO;
 
 import java.util.List;
 
 public class StatusService implements IStatusDAO<Status> {
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final Logger LOGGER = LogManager.getLogger(StatusService.class);
-    private static final StatusDAO statusDAO = new StatusDAO(connectionPool);
+    private static final StatusDAO batisDAO = new StatusDAO();
 
     @Override
     public void insert(Status status) {
-        statusDAO.insert(status);
+        batisDAO.insert(status);
     }
 
     @Override
     public void update(Status status) {
-        statusDAO.update(status);
+        batisDAO.update(status);
     }
 
     @Override
     public void delete(Status status) {
-        statusDAO.delete(status);
+        batisDAO.delete(status);
     }
 
     @Override
     public Status getByID(int id) {
-        return statusDAO.getByID(id);
+        return batisDAO.getByID(id);
     }
 
     @Override
     public List<Status> getAll() {
-        return statusDAO.getAll();
+        return batisDAO.getAll();
     }
 
     @Override
     public Status getByStatusName(String name) {
-        return statusDAO.getByStatusName(name);
+        return batisDAO.getByStatusName(name);
     }
 }
