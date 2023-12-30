@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.shop.interfaces.address.IAddressDAO">
+
+    <resultMap id="AddressMap" type="com.solvd.shop.models.address.Address">
+        <id property="addressId" column="id_address"/>
+        <result property="firstLine" column="first_line"/>
+        <result property="secondLine" column="second_line"/>
+        <result property="zipCode" column="zip_code"/>
+        <association property="city" column="id_city"
+                     javaType="com.solvd.shop.models.address.City"
+                     select="com.solvd.shop.interfaces.address.ICityDAO.getByID"
+                     fetchType="eager"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.solvd.shop.models.address.Address">
+        INSERT INTO addresses (first_line, second_line, zip_code, id_city)
+        VALUES (#{firstLine}, #{secondLine}, #{zipCode}, #{city.cityId})
+    </insert>
+
+    <update id="update" parameterType="com.solvd.shop.models.address.Address">
+        UPDATE addresses
+        SET first_line  = #{firstLine},
+            second_line = #{secondLine},
+            zip_code    = #{zipCode},
+            id_city     = #{city.cityId}
+        WHERE id_address = #{addressId}
+    </update>
+
+    <delete id="delete" parameterType="com.solvd.shop.models.address.Address">
+        DELETE
+        FROM addresses
+        WHERE id_address = #{addressId}
+    </delete>
+
+    <select id="getByID" parameterType="java.lang.Integer" resultMap="AddressMap">
+        SELECT *
+        FROM addresses
+        WHERE id_address = #{id}
+    </select>
+
+    <select id="getAll" resultMap="AddressMap">
+        SELECT *
+        FROM addresses
+    </select>
+
+    <select id="getByFirstLine" parameterType="java.lang.String" resultMap="AddressMap">
+        SELECT *
+        FROM addresses
+        WHERE first_line = #{firstLine}
+    </select>
+
+</mapper>
+

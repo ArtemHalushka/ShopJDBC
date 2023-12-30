@@ -1,20 +1,14 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IPositionDAO;
-import com.solvd.shop.jdbc.dao.shop.PositionDAO;
+import com.solvd.shop.interfaces.shop.IPositionDAO;
 import com.solvd.shop.models.shop.Position;
-import com.solvd.shop.util.ConnectionPool;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.shop.PositionDAO;
 
 import java.util.List;
 
 public class PositionService implements IPositionDAO<Position> {
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final Logger LOGGER = LogManager.getLogger(PositionService.class);
-
-    private static final PositionDAO positionDAO = new PositionDAO(connectionPool);
+    private static final PositionDAO positionDAO = new PositionDAO();
 
     @Override
     public void insert(Position position) {

@@ -1,19 +1,14 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IProductDAO;
-import com.solvd.shop.jdbc.dao.shop.ProductDAO;
+import com.solvd.shop.interfaces.shop.IProductDAO;
 import com.solvd.shop.models.shop.Product;
-import com.solvd.shop.util.ConnectionPool;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.shop.ProductDAO;
 
 import java.util.List;
 
 public class ProductService implements IProductDAO<Product> {
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final Logger LOGGER = LogManager.getLogger(ProductService.class);
-    private static final ProductDAO productDAO = new ProductDAO(connectionPool);
+    private static final ProductDAO productDAO = new ProductDAO();
 
     @Override
     public void insert(Product product) {

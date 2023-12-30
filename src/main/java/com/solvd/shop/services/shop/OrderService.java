@@ -1,20 +1,15 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.interafaces.shop.IOrderDAO;
-import com.solvd.shop.jdbc.dao.shop.OrderDAO;
+import com.solvd.shop.interfaces.shop.IOrderDAO;
 import com.solvd.shop.models.shop.Order;
-import com.solvd.shop.util.ConnectionPool;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.solvd.shop.mybatis.dao.shop.OrderDAO;
 
 import java.sql.Date;
 import java.util.List;
 
 public class OrderService implements IOrderDAO<Order> {
 
-    private static final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static final Logger LOGGER = LogManager.getLogger(OrderService.class);
-    private static final OrderDAO orderDAO = new OrderDAO(connectionPool);
+    private static final OrderDAO orderDAO = new OrderDAO();
 
     @Override
     public void insert(Order order) {
