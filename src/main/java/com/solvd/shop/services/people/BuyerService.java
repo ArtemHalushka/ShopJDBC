@@ -8,35 +8,35 @@ import java.util.List;
 
 public class BuyerService implements IBuyerDAO<Buyer> {
 
-    private static final BuyerDAO batisDAO = new BuyerDAO();
+    private static final BuyerDAO buyerDAO = new BuyerDAO();
 
     @Override
     public void insert(Buyer buyer) {
-        batisDAO.insert(buyer);
+        buyerDAO.insert(buyer);
     }
 
     @Override
     public void update(Buyer buyer) {
-        batisDAO.update(buyer);
+        buyerDAO.update(buyer);
     }
 
     @Override
     public void delete(Buyer buyer) {
-        batisDAO.delete(buyer);
+        buyerDAO.delete(buyer);
     }
 
     @Override
     public Buyer getByID(int id) {
-        return batisDAO.getByID(id);
+        return buyerDAO.getByID(id);
     }
 
     @Override
     public List<Buyer> getAll() {
-        return batisDAO.getAll();
+        return buyerDAO.getAll();
     }
 
     @Override
     public Buyer getByName(String name) {
-        return batisDAO.getByName(name);
+        return buyerDAO.getByName(name);
     }
 }

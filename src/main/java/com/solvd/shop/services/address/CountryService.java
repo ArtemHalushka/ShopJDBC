@@ -8,35 +8,35 @@ import java.util.List;
 
 public class CountryService implements ICountryDAO<Country> {
 
-    private static final CountryDAO batisDAO = new CountryDAO();
+    private static final CountryDAO countryDAO = new CountryDAO();
 
     @Override
     public void insert(Country country) {
-        batisDAO.insert(country);
+        countryDAO.insert(country);
     }
 
     @Override
     public void update(Country country) {
-        batisDAO.update(country);
+        countryDAO.update(country);
     }
 
     @Override
     public void delete(Country country) {
-        batisDAO.delete(country);
+        countryDAO.delete(country);
     }
 
     @Override
     public Country getByID(int id) {
-        return batisDAO.getByID(id);
+        return countryDAO.getByID(id);
     }
 
     @Override
     public List<Country> getAll() {
-        return batisDAO.getAll();
+        return countryDAO.getAll();
     }
 
     @Override
     public Country getByCountryName(String countryName) {
-        return batisDAO.getByCountryName(countryName);
+        return countryDAO.getByCountryName(countryName);
     }
 }

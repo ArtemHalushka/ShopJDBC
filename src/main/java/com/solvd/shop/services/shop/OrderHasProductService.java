@@ -9,35 +9,35 @@ import java.util.List;
 
 public class OrderHasProductService implements IOrderHasProductDAO<OrderHasProduct, Product> {
 
-    private static final OrderHasProductDAO batisDAO = new OrderHasProductDAO();
+    private static final OrderHasProductDAO orderHasProductDAO = new OrderHasProductDAO();
 
     @Override
     public void insert(OrderHasProduct orderHasProduct) {
-        batisDAO.insert(orderHasProduct);
+        orderHasProductDAO.insert(orderHasProduct);
     }
 
     @Override
     public void update(OrderHasProduct orderHasProduct) {
-        batisDAO.update(orderHasProduct);
+        orderHasProductDAO.update(orderHasProduct);
     }
 
     @Override
     public void delete(OrderHasProduct orderHasProduct) {
-        batisDAO.delete(orderHasProduct);
+        orderHasProductDAO.delete(orderHasProduct);
     }
 
     @Override
     public OrderHasProduct getByID(int id) {
-        return batisDAO.getByID(id);
+        return orderHasProductDAO.getByID(id);
     }
 
     @Override
     public List<OrderHasProduct> getAll() {
-        return batisDAO.getAll();
+        return orderHasProductDAO.getAll();
     }
 
     @Override
     public List<Product> getAllByOrderId(int id) {
-        return batisDAO.getAllByOrderId(id);
+        return orderHasProductDAO.getAllByOrderId(id);
     }
 }

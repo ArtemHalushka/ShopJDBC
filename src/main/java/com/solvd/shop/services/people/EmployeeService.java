@@ -8,36 +8,35 @@ import java.util.List;
 
 public class EmployeeService implements IEmployeeDAO<Employee> {
 
-    private static final EmployeeDAO batisDAO = new EmployeeDAO();
-
+    private static final EmployeeDAO employeeDAO = new EmployeeDAO();
 
     @Override
     public void insert(Employee employee) {
-        batisDAO.insert(employee);
+        employeeDAO.insert(employee);
     }
 
     @Override
     public void update(Employee employee) {
-        batisDAO.update(employee);
+        employeeDAO.update(employee);
     }
 
     @Override
     public void delete(Employee employee) {
-        batisDAO.delete(employee);
+        employeeDAO.delete(employee);
     }
 
     @Override
     public Employee getByID(int id) {
-        return batisDAO.getByID(id);
+        return employeeDAO.getByID(id);
     }
 
     @Override
     public List<Employee> getAll() {
-        return batisDAO.getAll();
+        return employeeDAO.getAll();
     }
 
     @Override
     public Employee getByName(String name) {
-        return batisDAO.getByName(name);
+        return employeeDAO.getByName(name);
     }
 }

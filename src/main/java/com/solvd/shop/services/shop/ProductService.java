@@ -8,35 +8,35 @@ import java.util.List;
 
 public class ProductService implements IProductDAO<Product> {
 
-    private static final ProductDAO batisDAO = new ProductDAO();
+    private static final ProductDAO productDAO = new ProductDAO();
 
     @Override
     public void insert(Product product) {
-        batisDAO.insert(product);
+        productDAO.insert(product);
     }
 
     @Override
     public void update(Product product) {
-        batisDAO.update(product);
+        productDAO.update(product);
     }
 
     @Override
     public void delete(Product product) {
-        batisDAO.delete(product);
+        productDAO.delete(product);
     }
 
     @Override
     public Product getByID(int id) {
-        return batisDAO.getByID(id);
+        return productDAO.getByID(id);
     }
 
     @Override
     public List<Product> getAll() {
-        return batisDAO.getAll();
+        return productDAO.getAll();
     }
 
     @Override
     public Product getByProductName(String name) {
-        return batisDAO.getByProductName(name);
+        return productDAO.getByProductName(name);
     }
 }

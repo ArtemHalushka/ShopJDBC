@@ -9,35 +9,35 @@ import java.util.List;
 
 public class OrderService implements IOrderDAO<Order> {
 
-    private static final OrderDAO batisDAO = new OrderDAO();
+    private static final OrderDAO orderDAO = new OrderDAO();
 
     @Override
     public void insert(Order order) {
-        batisDAO.insert(order);
+        orderDAO.insert(order);
     }
 
     @Override
     public void update(Order order) {
-        batisDAO.update(order);
+        orderDAO.update(order);
     }
 
     @Override
     public void delete(Order order) {
-        batisDAO.delete(order);
+        orderDAO.delete(order);
     }
 
     @Override
     public Order getByID(int id) {
-        return batisDAO.getByID(id);
+        return orderDAO.getByID(id);
     }
 
     @Override
     public List<Order> getAll() {
-        return batisDAO.getAll();
+        return orderDAO.getAll();
     }
 
     @Override
     public Order getByDate(Date date) {
-        return batisDAO.getByDate(date);
+        return orderDAO.getByDate(date);
     }
 }

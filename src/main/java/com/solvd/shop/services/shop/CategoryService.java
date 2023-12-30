@@ -8,35 +8,35 @@ import java.util.List;
 
 public class CategoryService implements ICategoryDAO<Category> {
 
-    private static final CategoryDAO batisDAO = new CategoryDAO();
+    private static final CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     public void insert(Category category) {
-        batisDAO.insert(category);
+        categoryDAO.insert(category);
     }
 
     @Override
     public void update(Category category) {
-        batisDAO.update(category);
+        categoryDAO.update(category);
     }
 
     @Override
     public void delete(Category category) {
-        batisDAO.delete(category);
+        categoryDAO.delete(category);
     }
 
     @Override
     public Category getByID(int id) {
-        return batisDAO.getByID(id);
+        return categoryDAO.getByID(id);
     }
 
     @Override
     public List<Category> getAll() {
-        return batisDAO.getAll();
+        return categoryDAO.getAll();
     }
 
     @Override
     public Category getByCategoryName(String name) {
-        return batisDAO.getByCategoryName(name);
+        return categoryDAO.getByCategoryName(name);
     }
 }

@@ -8,36 +8,36 @@ import java.util.List;
 
 public class AddressService implements IAddressDAO<Address> {
 
-    private static final AddressDAO batisDAO = new AddressDAO();
+    private static final AddressDAO addressDAO = new AddressDAO();
 
     @Override
     public void insert(Address address) {
-        batisDAO.insert(address);
+        addressDAO.insert(address);
     }
 
     @Override
     public void update(Address address) {
-        batisDAO.update(address);
+        addressDAO.update(address);
     }
 
     @Override
     public void delete(Address address) {
-        batisDAO.delete(address);
+        addressDAO.delete(address);
     }
 
     @Override
     public Address getByID(int id) {
-        return batisDAO.getByID(id);
+        return addressDAO.getByID(id);
 
     }
 
     @Override
     public List<Address> getAll() {
-        return batisDAO.getAll();
+        return addressDAO.getAll();
     }
 
     @Override
     public Address getByFirstLine(String firstLine) {
-        return batisDAO.getByFirstLine(firstLine);
+        return addressDAO.getByFirstLine(firstLine);
     }
 }

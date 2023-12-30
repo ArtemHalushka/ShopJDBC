@@ -8,35 +8,35 @@ import java.util.List;
 
 public class PositionService implements IPositionDAO<Position> {
 
-    private static final PositionDAO batisDAO = new PositionDAO();
+    private static final PositionDAO positionDAO = new PositionDAO();
 
     @Override
     public void insert(Position position) {
-        batisDAO.insert(position);
+        positionDAO.insert(position);
     }
 
     @Override
     public void update(Position position) {
-        batisDAO.update(position);
+        positionDAO.update(position);
     }
 
     @Override
     public void delete(Position position) {
-        batisDAO.delete(position);
+        positionDAO.delete(position);
     }
 
     @Override
     public Position getByID(int id) {
-        return batisDAO.getByID(id);
+        return positionDAO.getByID(id);
     }
 
     @Override
     public List<Position> getAll() {
-        return batisDAO.getAll();
+        return positionDAO.getAll();
     }
 
     @Override
     public Position getBySalary(double salary) {
-        return batisDAO.getBySalary(salary);
+        return positionDAO.getBySalary(salary);
     }
 }

@@ -8,35 +8,35 @@ import java.util.List;
 
 public class SupplierService implements ISupplierDAO<Supplier> {
 
-    private static final SupplierDAO batisDAO = new SupplierDAO();
+    private static final SupplierDAO supplierDAO = new SupplierDAO();
 
     @Override
     public void insert(Supplier supplier) {
-        batisDAO.insert(supplier);
+        supplierDAO.insert(supplier);
     }
 
     @Override
     public void update(Supplier supplier) {
-        batisDAO.update(supplier);
+        supplierDAO.update(supplier);
     }
 
     @Override
     public void delete(Supplier supplier) {
-        batisDAO.delete(supplier);
+        supplierDAO.delete(supplier);
     }
 
     @Override
     public Supplier getByID(int id) {
-        return batisDAO.getByID(id);
+        return supplierDAO.getByID(id);
     }
 
     @Override
     public List<Supplier> getAll() {
-        return batisDAO.getAll();
+        return supplierDAO.getAll();
     }
 
     @Override
     public Supplier getByName(String name) {
-        return batisDAO.getByName(name);
+        return supplierDAO.getByName(name);
     }
 }

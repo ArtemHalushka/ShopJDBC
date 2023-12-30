@@ -8,35 +8,35 @@ import java.util.List;
 
 public class CityService implements ICityDAO<City> {
 
-    private static final CityDAO batisDAO = new CityDAO();
+    private static final CityDAO cityDAO = new CityDAO();
 
     @Override
     public void insert(City city) {
-        batisDAO.insert(city);
+        cityDAO.insert(city);
     }
 
     @Override
     public void update(City city) {
-        batisDAO.update(city);
+        cityDAO.update(city);
     }
 
     @Override
     public void delete(City city) {
-        batisDAO.delete(city);
+        cityDAO.delete(city);
     }
 
     @Override
     public City getByID(int id) {
-        return batisDAO.getByID(id);
+        return cityDAO.getByID(id);
     }
 
     @Override
     public List<City> getAll() {
-        return batisDAO.getAll();
+        return cityDAO.getAll();
     }
 
     @Override
     public City getByCityName(String cityName) {
-        return batisDAO.getByCityName(cityName);
+        return cityDAO.getByCityName(cityName);
     }
 }
