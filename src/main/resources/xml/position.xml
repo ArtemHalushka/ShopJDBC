@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<position id="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="xsd/position.xsd">
+    <positionName>Engineer</positionName>
+    <salary>15000</salary>
+</position>

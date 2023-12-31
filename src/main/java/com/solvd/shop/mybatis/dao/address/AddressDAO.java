@@ -18,7 +18,6 @@ public class AddressDAO implements IAddressDAO<Address> {
 
     public AddressDAO() {
         sqlSessionFactory = MyBatisConfig.getSqlSessionFactory();
-
     }
 
     @Override

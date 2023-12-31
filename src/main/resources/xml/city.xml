@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<city id="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="xsd/city.xsd">
+    <cityName>Moscow</cityName>
+    <country id="1">
+        <countryName>Russia</countryName>
+    </country>
+</city>

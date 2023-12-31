@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<buyer id="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="xsd/buyer.xsd">
+    <buyerName>Ivan Semenov</buyerName>
+    <phoneNumber>123333333</phoneNumber>
+    <address id="1">
+        <firstLine>123 th se</firstLine>
+        <secondLine>apt 4</secondLine>
+        <zipCode>123123</zipCode>
+        <city id="1">
+            <cityName>Moscow</cityName>
+            <country id="1">
+                <countryName>Russia</countryName>
+            </country>
+        </city>
+    </address>
+</buyer>
