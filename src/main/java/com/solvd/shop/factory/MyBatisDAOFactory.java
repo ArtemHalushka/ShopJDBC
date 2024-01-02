@@ -5,7 +5,7 @@ import com.solvd.shop.mybatis.dao.address.*;
 import com.solvd.shop.mybatis.dao.people.*;
 import com.solvd.shop.mybatis.dao.shop.*;
 
-public class MyBatisDAOFactory implements BaseDAOFactory {
+public class MyBatisDAOFactory implements IBaseDAOFactory {
 
     @Override
     public IBaseDAO getDAO(String tableName) {

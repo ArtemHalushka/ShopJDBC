@@ -1,15 +1,14 @@
 package com.solvd.shop.factory;
 
-import com.solvd.shop.util.ConnectionPool;
-
 public class ConnectionDAOFactory {
 
-    public BaseDAOFactory getDAOFactory(FactoryEnum factoryEnum) {
-        if (factoryEnum == FactoryEnum.JDBC) {
-            return new JDBCDAOFactory(ConnectionPool.getInstance());
-        } else if (factoryEnum == FactoryEnum.MYBATIS) {
+    public IBaseDAOFactory getDAOFactory(DBConnectionType DBConnectionType) throws ConnectionDAOException {
+
+        if (DBConnectionType == DBConnectionType.JDBC) {
+            return new JDBCDAOFactory();
+        } else if (DBConnectionType == DBConnectionType.MYBATIS) {
             return new MyBatisDAOFactory();
         }
-        return null;
+        throw new ConnectionDAOException("This Connection Type not available...");
     }
 }

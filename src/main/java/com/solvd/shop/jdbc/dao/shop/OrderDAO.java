@@ -18,21 +18,12 @@ import java.util.List;
 
 public class OrderDAO implements IOrderDAO<Order> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(OrderDAO.class);
-    private final EmployeeDAO employeeDAO;
-    private final BuyerDAO buyerDAO;
-    private final StatusDAO statusDAO;
-    private final OrderHasProductDAO orderHasProductDAO;
-
-    public OrderDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-        this.employeeDAO = new EmployeeDAO(connectionPool);
-        this.buyerDAO = new BuyerDAO(connectionPool);
-        this.statusDAO = new StatusDAO(connectionPool);
-        this.orderHasProductDAO = new OrderHasProductDAO(connectionPool);
-        this.orderHasProductDAO.setOrderDAO(this);
-    }
+    private final EmployeeDAO employeeDAO = new EmployeeDAO();
+    private final BuyerDAO buyerDAO = new BuyerDAO();
+    private final StatusDAO statusDAO = new StatusDAO();
+    private final OrderHasProductDAO orderHasProductDAO = new OrderHasProductDAO();
 
     @Override
     public void insert(Order order) {

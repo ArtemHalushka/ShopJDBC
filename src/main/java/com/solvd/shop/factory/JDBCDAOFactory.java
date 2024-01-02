@@ -1,34 +1,31 @@
 package com.solvd.shop.factory;
 
 import com.solvd.shop.interfaces.IBaseDAO;
-import com.solvd.shop.jdbc.dao.address.*;
-import com.solvd.shop.jdbc.dao.people.*;
+import com.solvd.shop.jdbc.dao.address.AddressDAO;
+import com.solvd.shop.jdbc.dao.address.CityDAO;
+import com.solvd.shop.jdbc.dao.address.CountryDAO;
+import com.solvd.shop.jdbc.dao.people.BuyerDAO;
+import com.solvd.shop.jdbc.dao.people.EmployeeDAO;
+import com.solvd.shop.jdbc.dao.people.SupplierDAO;
 import com.solvd.shop.jdbc.dao.shop.*;
-import com.solvd.shop.util.ConnectionPool;
 
-public class JDBCDAOFactory implements BaseDAOFactory {
-
-    private final ConnectionPool connectionPool;
-
-    public JDBCDAOFactory(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
+public class JDBCDAOFactory implements IBaseDAOFactory {
 
     @Override
     public IBaseDAO getDAO(String tableName) {
         return switch (tableName) {
-            case "cities" -> new CityDAO(connectionPool);
-            case "countries" -> new CountryDAO(connectionPool);
-            case "addresses" -> new AddressDAO(connectionPool);
-            case "buyers" -> new BuyerDAO(connectionPool);
-            case "employees" -> new EmployeeDAO(connectionPool);
-            case "suppliers" -> new SupplierDAO(connectionPool);
-            case "categories" -> new CategoryDAO(connectionPool);
-            case "orders" -> new OrderDAO(connectionPool);
-            case "orders_has_products" -> new OrderHasProductDAO(connectionPool);
-            case "positions" -> new PositionDAO(connectionPool);
-            case "products" -> new ProductDAO(connectionPool);
-            case "statuses" -> new StatusDAO(connectionPool);
+            case "cities" -> new CityDAO();
+            case "countries" -> new CountryDAO();
+            case "addresses" -> new AddressDAO();
+            case "buyers" -> new BuyerDAO();
+            case "employees" -> new EmployeeDAO();
+            case "suppliers" -> new SupplierDAO();
+            case "categories" -> new CategoryDAO();
+            case "orders" -> new OrderDAO();
+            case "orders_has_products" -> new OrderHasProductDAO();
+            case "positions" -> new PositionDAO();
+            case "products" -> new ProductDAO();
+            case "statuses" -> new StatusDAO();
             default -> null;
         };
     }

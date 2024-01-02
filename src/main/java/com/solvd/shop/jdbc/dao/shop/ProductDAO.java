@@ -18,15 +18,10 @@ import java.util.List;
 
 public class ProductDAO implements IProductDAO<Product> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(ProductDAO.class);
-    private final CategoryDAO categoryDAO;
-    private final SupplierDAO supplierDAO;
-    public ProductDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-        this.supplierDAO = new SupplierDAO(connectionPool);
-        this.categoryDAO = new CategoryDAO(connectionPool);
-    }
+    private final CategoryDAO categoryDAO = new CategoryDAO();
+    private final SupplierDAO supplierDAO = new SupplierDAO();
 
     @Override
     public void insert(Product product) {

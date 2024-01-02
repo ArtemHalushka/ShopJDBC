@@ -17,16 +17,10 @@ import java.util.List;
 
 public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, Product> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(OrderHasProductDAO.class);
-    private OrderDAO orderDAO;
-    private ProductDAO productDAO;
-
-    public OrderHasProductDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-        this.productDAO = new ProductDAO(connectionPool);
-
-    }
+    private OrderDAO orderDAO = new OrderDAO();
+    private ProductDAO productDAO = new ProductDAO();
 
     @Override
     public void insert(OrderHasProduct orderHasProduct) {

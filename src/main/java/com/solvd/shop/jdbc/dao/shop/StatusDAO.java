@@ -15,12 +15,8 @@ import java.util.List;
 
 public class StatusDAO implements IStatusDAO<Status> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(StatusDAO.class);
-
-    public StatusDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
 
     @Override
     public void insert(Status status) {

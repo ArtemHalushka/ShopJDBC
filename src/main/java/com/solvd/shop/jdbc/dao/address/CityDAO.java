@@ -17,14 +17,9 @@ import java.util.List;
 public class CityDAO implements ICityDAO<City> {
 
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(CityDAO.class);
-    private final CountryDAO countryDAO;
-
-    public CityDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-        this.countryDAO = new CountryDAO(connectionPool);
-    }
+    private final CountryDAO countryDAO = new CountryDAO();
 
     @Override
     public void insert(City city) {

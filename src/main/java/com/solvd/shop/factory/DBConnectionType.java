@@ -1,6 +1,6 @@
 package com.solvd.shop.factory;
 
-public enum FactoryEnum {
+public enum DBConnectionType {
 
     JDBC,
     MYBATIS
