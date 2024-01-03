@@ -1,11 +1,23 @@
 package com.solvd.shop.models.address;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "address")
+@XmlType(propOrder = {"addressId", "firstLine", "secondLine", "zipCode", "city"})
 public class Address {
 
+    @XmlAttribute(name = "id")
     private int addressId;
+    @XmlElement(name = "firstLine")
     private String firstLine;
+    @XmlElement(name = "secondLine")
     private String secondLine;
+    @XmlElement(name = "zipCode")
     private String zipCode;
+    @XmlElement(name = "city")
     private City city;
 
     public Address() {
@@ -57,5 +69,16 @@ public class Address {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "addressId=" + addressId +
+                ", firstLine='" + firstLine + '\'' +
+                ", secondLine='" + secondLine + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city=" + city +
+                '}';
     }
 }

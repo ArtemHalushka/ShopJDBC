@@ -1,11 +1,20 @@
 package com.solvd.shop.models.people;
 
 import com.solvd.shop.models.address.Address;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
+@XmlRootElement(name = "supplier")
+@XmlType(propOrder = {"supplierId", "supplierName", "address"})
 public class Supplier {
 
+    @XmlAttribute(name = "id")
     private int supplierId;
+    @XmlElement(name = "supplierName")
     private String supplierName;
+    @XmlElement(name = "address")
     private Address address;
 
     public Supplier() {
