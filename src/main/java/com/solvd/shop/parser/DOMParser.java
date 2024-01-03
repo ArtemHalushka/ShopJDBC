@@ -84,9 +84,9 @@ public class DOMParser {
         NodeList addressNodeList = addressElement.getElementsByTagName("firstLine");
         parseAddress.setFirstLine(addressNodeList.item(0).getTextContent());
         addressNodeList = addressElement.getElementsByTagName("secondLine");
-        parseAddress.setSecondLine(addressNodeList.item(0).getTextContent()); // Исправлено
+        parseAddress.setSecondLine(addressNodeList.item(0).getTextContent()); 
         addressNodeList = addressElement.getElementsByTagName("zipCode");
-        parseAddress.setZipCode(addressNodeList.item(0).getTextContent()); // Исправлено
+        parseAddress.setZipCode(addressNodeList.item(0).getTextContent());
         //City
         Element cityElement = (Element) addressElement.getElementsByTagName("city").item(0);
         parseCity.setCityId(Integer.parseInt(cityElement.getAttribute("id")));
