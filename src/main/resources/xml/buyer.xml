@@ -2,7 +2,7 @@
 
 <buyer id="1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:noNamespaceSchemaLocation="xsd/buyer.xsd">
-    <buyerName>Ivan Semenov</buyerName>
+    <buyerName>Ivan Semyonov</buyerName>
     <phoneNumber>123333333</phoneNumber>
     <address id="1">
         <firstLine>123 th se</firstLine>
@@ -15,4 +15,26 @@
             </country>
         </city>
     </address>
+    <product id = "1">
+        <productName>Iphone</productName>
+        <price>900.0</price>
+        <supplier id="1">
+            <supplierName>Apple</supplierName>
+            <address id = "2">
+                <firstLine>999 th ne</firstLine>
+                <secondLine></secondLine>
+                <zipCode>99999</zipCode>
+                <city id = "2">
+                    <cityName>California</cityName>
+                    <country id = "2">
+                        <countryName>USA</countryName>
+                    </country>
+                </city>
+            </address>
+        </supplier>
+        <category id = "1">
+            <categoryName>Smartphones</categoryName>
+        </category>
+        <availableQuantity>1</availableQuantity>
+    </product>
 </buyer>
