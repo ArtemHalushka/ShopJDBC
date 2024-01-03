@@ -7,23 +7,40 @@ import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Supplier;
 import com.solvd.shop.models.shop.Category;
 import com.solvd.shop.models.shop.Product;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
 
 public class DOMParser {
 
+    private static final Logger LOGGER = LogManager.getLogger(DOMParser.class);
+
     public static void main(String[] args) {
         try {
+            //Validate Schema
+            String xsdPath = "src/main/resources/xml/xsd/buyer.xsd";
+            String xmlPath = "src/main/resources/xml/buyer.xml";
+            if (validate(xsdPath, xmlPath)) {
+                LOGGER.info("Validation Successful!");
+            } else {
+                LOGGER.info("Validation failed...");
+            }
             //DOM
-            File inputFile = new File("src/main/resources/xml/buyer.xml");
+            File inputFile = new File(xmlPath);
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(inputFile);
@@ -68,8 +85,8 @@ public class DOMParser {
             NodeList categoryNodeList = categoryElement.getElementsByTagName("categoryName");
             parseCategory.setCategoryName(categoryNodeList.item(0).getTextContent());
             parseProduct.setCategory(parseCategory);
-            System.out.println(parseBuyer);
-            System.out.println(parseProduct);
+            LOGGER.info(parseBuyer);
+            LOGGER.info(parseProduct);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -84,7 +101,7 @@ public class DOMParser {
         NodeList addressNodeList = addressElement.getElementsByTagName("firstLine");
         parseAddress.setFirstLine(addressNodeList.item(0).getTextContent());
         addressNodeList = addressElement.getElementsByTagName("secondLine");
-        parseAddress.setSecondLine(addressNodeList.item(0).getTextContent()); 
+        parseAddress.setSecondLine(addressNodeList.item(0).getTextContent());
         addressNodeList = addressElement.getElementsByTagName("zipCode");
         parseAddress.setZipCode(addressNodeList.item(0).getTextContent());
         //City
@@ -101,6 +118,19 @@ public class DOMParser {
         parseAddress.setCity(parseCity);
         parseCity.setCountry(parseCountry);
         return parseAddress;
+    }
+
+    public static boolean validate(String xsdPath, String xmlPath) {
+        try {
+            SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = factory.newSchema(new File(xsdPath));
+            Validator validator = schema.newValidator();
+            validator.validate(new StreamSource(new File(xmlPath)));
+        } catch (IOException | SAXException e) {
+            LOGGER.info(e);
+            return false;
+        }
+        return true;
     }
 }
 
