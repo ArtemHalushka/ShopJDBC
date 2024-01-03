@@ -17,14 +17,9 @@ import java.util.List;
 
 public class EmployeeDAO implements IEmployeeDAO<Employee> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(EmployeeDAO.class);
-    private final PositionDAO positionDAO;
-
-    public EmployeeDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-        this.positionDAO = new PositionDAO(connectionPool);
-    }
+    private final PositionDAO positionDAO = new PositionDAO();
 
     @Override
     public void insert(Employee employee) {

@@ -13,15 +13,10 @@ import java.util.List;
 
 public class AddressDAO implements IAddressDAO<Address> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(AddressDAO.class);
 
-    private final CityDAO cityDAO;
-
-    public AddressDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-        this.cityDAO = new CityDAO(connectionPool);
-    }
+    private final CityDAO cityDAO = new CityDAO();
 
     @Override
     public void insert(Address address) {

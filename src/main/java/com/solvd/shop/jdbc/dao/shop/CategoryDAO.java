@@ -15,12 +15,8 @@ import java.util.List;
 
 public class CategoryDAO implements ICategoryDAO<Category> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(CategoryDAO.class);
-
-    public CategoryDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
 
     @Override
     public void insert(Category category) {

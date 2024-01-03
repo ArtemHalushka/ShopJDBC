@@ -15,12 +15,8 @@ import java.util.List;
 
 public class PositionDAO implements IPositionDAO<Position> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(PositionDAO.class);
-
-    public PositionDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
 
     @Override
     public void insert(Position position) {

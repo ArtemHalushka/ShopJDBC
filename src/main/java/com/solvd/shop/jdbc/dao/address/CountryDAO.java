@@ -15,12 +15,8 @@ import java.util.List;
 
 public class CountryDAO implements ICountryDAO<Country> {
 
-    private final ConnectionPool connectionPool;
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(CountryDAO.class);
-
-    public CountryDAO(ConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
-    }
 
     @Override
     public void insert(Country country) {
