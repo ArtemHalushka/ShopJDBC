@@ -1,9 +1,19 @@
 package com.solvd.shop.models.shop;
 
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "position")
+@XmlType(propOrder = {"positionId", "positionName", "salary"})
 public class Position {
 
+    @XmlAttribute(name = "id")
     private int positionId;
+    @XmlElement(name = "positionName")
     private String positionName;
+    @XmlElement(name = "salary")
     private double salary;
 
     public Position() {

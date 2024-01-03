@@ -2,18 +2,33 @@ package com.solvd.shop.models.shop;
 
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
+import com.solvd.shop.parser.adapter.DateAdapter;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.sql.Date;
 import java.util.List;
 
+@XmlRootElement(name = "order")
+@XmlType(propOrder = {"orderId", "date", "status", "orderTotal", "buyer", "employee", "products"})
 public class Order {
 
+    @XmlAttribute(name = "id")
     private int orderId;
+    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date date;
+    @XmlElement(name = "status")
     private Status status;
+    @XmlElement(name = "orderTotal")
     private double orderTotal;
+    @XmlElement(name = "buyer")
     private Buyer buyer;
+    @XmlElement(name = "employee")
     private Employee employee;
+    @XmlElement(name = "products")
     private List<Product> products;
 
     public Order() {
