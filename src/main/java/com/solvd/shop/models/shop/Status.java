@@ -9,6 +9,7 @@ public class Status {
 
     @XmlAttribute(name = "id")
     private int statusId;
+
     @XmlElement(name = "statusName")
     private String statusName;
 

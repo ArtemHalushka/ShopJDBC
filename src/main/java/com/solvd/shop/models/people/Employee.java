@@ -10,8 +10,10 @@ public class Employee {
 
     @XmlAttribute(name = "id")
     private int employeeId;
+
     @XmlElement(name = "name")
     private String name;
+
     @XmlElement(name = "position")
     private Position position;
 

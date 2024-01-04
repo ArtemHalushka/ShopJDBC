@@ -10,10 +10,13 @@ public class Buyer {
 
     @XmlAttribute(name = "id")
     private int buyerId;
+
     @XmlElement(name = "name")
     private String name;
+
     @XmlElement(name = "phoneNumber")
     private String phoneNumber;
+
     @XmlElement(name = "address")
     private Address address;
 

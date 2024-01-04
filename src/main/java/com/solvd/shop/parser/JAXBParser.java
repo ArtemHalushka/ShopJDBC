@@ -7,13 +7,9 @@ import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.models.people.Supplier;
 import com.solvd.shop.models.shop.*;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,19 +17,10 @@ import java.util.List;
 
 public class JAXBParser {
 
-    public static void marshal(Order order) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(Order.class);
-        Marshaller mar= context.createMarshaller();
-        mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-        mar.marshal(order, new File("src/main/resources/order.xml"));
-    }
+    private static final Logger LOGGER = LogManager.getLogger(JAXBParser.class);
 
-    public static Order unmarshal() throws JAXBException, FileNotFoundException {
-        JAXBContext context = JAXBContext.newInstance(Order.class);
-        return (Order) context.createUnmarshaller().unmarshal(new FileReader("src/main/resources/order.xml"));
-    }
-
-    public static void main (String[] args) throws ParseException, JAXBException, FileNotFoundException {
+    public static void main(String[] args) throws ParseException {
+        String path = "src/main/resources/order.xml";
         Order order = new Order();
         order.setOrderId(1);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -52,7 +39,7 @@ public class JAXBParser {
         order.setEmployee(employee);
         List<Product> products = new ArrayList<>();
         City city2 = new City(2, "California", country1);
-        Address address2 = new Address(2 , "222 th ne", "building A", "7777", city2);
+        Address address2 = new Address(2, "222 th ne", "building A", "7777", city2);
         Supplier supplier = new Supplier(1, "Apple", address2);
         Category category = new Category(1, "Smartphones");
         Product product1 = new Product(1, "Iphone X", 200.2, supplier, category, 1);
@@ -60,8 +47,10 @@ public class JAXBParser {
         products.add(product1);
         products.add(product2);
         order.setProducts(products);
-        marshal(order);
-        Order order2 = unmarshal();
-        System.out.println(order2);
+        JAXBUtil jaxbUtil = new JAXBUtil();
+
+        jaxbUtil.marshal(order, path);
+        Order order2 = (Order) jaxbUtil.unmarshal(path);
+        LOGGER.info(order2);
     }
 }

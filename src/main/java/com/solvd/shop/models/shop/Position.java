@@ -9,8 +9,10 @@ public class Position {
 
     @XmlAttribute(name = "id")
     private int positionId;
+
     @XmlElement(name = "positionName")
     private String positionName;
+
     @XmlElement(name = "salary")
     private double salary;
 

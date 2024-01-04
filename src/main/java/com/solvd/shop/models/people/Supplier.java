@@ -10,8 +10,10 @@ public class Supplier {
 
     @XmlAttribute(name = "id")
     private int supplierId;
+
     @XmlElement(name = "supplierName")
     private String supplierName;
+
     @XmlElement(name = "address")
     private Address address;
 

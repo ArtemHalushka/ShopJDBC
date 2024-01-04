@@ -16,18 +16,25 @@ public class Order {
 
     @XmlAttribute(name = "id")
     private int orderId;
+
     @XmlJavaTypeAdapter(DateAdapter.class)
+    @XmlElement(name = "date")
     private Date date;
+
     @XmlElement(name = "status")
     private Status status;
+
     @XmlElement(name = "orderTotal")
     private double orderTotal;
+
     @XmlElement(name = "buyer")
     private Buyer buyer;
+
     @XmlElement(name = "employee")
     private Employee employee;
+
     @XmlElementWrapper(name = "products")
-    @XmlElement(name = "product")
+    @XmlElement(name = "product", type = Product.class)
     private List<Product> products;
 
     public Order() {

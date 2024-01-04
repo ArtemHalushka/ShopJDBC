@@ -9,6 +9,7 @@ public class Category {
 
     @XmlAttribute(name = "id")
     private int categoryId;
+
     @XmlElement(name = "categoryName")
     private String categoryName;
 
