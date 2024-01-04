@@ -1,10 +1,8 @@
 package com.solvd.shop.models.shop;
 
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlType;
+import jakarta.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "status")
 @XmlType(propOrder = {"statusId", "statusName"})
 public class Status {
