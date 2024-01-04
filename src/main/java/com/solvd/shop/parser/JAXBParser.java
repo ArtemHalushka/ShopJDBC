@@ -56,7 +56,7 @@ public class JAXBParser {
         Supplier supplier = new Supplier(1, "Apple", address2);
         Category category = new Category(1, "Smartphones");
         Product product1 = new Product(1, "Iphone X", 200.2, supplier, category, 1);
-        Product product2 = new Product(1, "Airpods pro", 50.99, supplier, category, 1);
+        Product product2 = new Product(2, "Airpods pro", 50.99, supplier, category, 1);
         products.add(product1);
         products.add(product2);
         order.setProducts(products);

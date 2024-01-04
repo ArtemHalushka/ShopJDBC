@@ -26,7 +26,8 @@ public class Order {
     private Buyer buyer;
     @XmlElement(name = "employee")
     private Employee employee;
-    @XmlElement(name = "products")
+    @XmlElementWrapper(name = "products")
+    @XmlElement(name = "product")
     private List<Product> products;
 
     public Order() {
