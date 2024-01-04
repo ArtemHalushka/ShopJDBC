@@ -1,8 +1,16 @@
 package com.solvd.shop.models.shop;
 
+import jakarta.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "category")
+@XmlType(propOrder = {"categoryId", "categoryName"})
 public class Category {
 
+    @XmlAttribute(name = "id")
     private int categoryId;
+
+    @XmlElement(name = "categoryName")
     private String categoryName;
 
     public Category() {

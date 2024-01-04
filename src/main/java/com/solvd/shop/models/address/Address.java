@@ -1,11 +1,25 @@
 package com.solvd.shop.models.address;
 
+import jakarta.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "address")
+@XmlType(propOrder = {"addressId", "firstLine", "secondLine", "zipCode", "city"})
 public class Address {
 
+    @XmlAttribute(name = "id")
     private int addressId;
+
+    @XmlElement(name = "firstLine")
     private String firstLine;
+
+    @XmlElement(name = "secondLine")
     private String secondLine;
+
+    @XmlElement(name = "zipCode")
     private String zipCode;
+
+    @XmlElement(name = "city")
     private City city;
 
     public Address() {

@@ -1,8 +1,16 @@
 package com.solvd.shop.models.address;
 
+import jakarta.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "country")
+@XmlType(propOrder = {"countryId", "countryName"})
 public class Country {
 
+    @XmlAttribute(name = "id")
     private int countryId;
+
+    @XmlElement(name = "countryName")
     private String countryName;
 
     public Country() {

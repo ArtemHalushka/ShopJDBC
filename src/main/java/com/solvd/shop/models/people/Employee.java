@@ -1,11 +1,20 @@
 package com.solvd.shop.models.people;
 
 import com.solvd.shop.models.shop.Position;
+import jakarta.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "employee")
+@XmlType(propOrder = {"employeeId", "name", "position"})
 public class Employee {
 
+    @XmlAttribute(name = "id")
     private int employeeId;
+
+    @XmlElement(name = "name")
     private String name;
+
+    @XmlElement(name = "position")
     private Position position;
 
     public Employee() {

@@ -1,12 +1,23 @@
 package com.solvd.shop.models.people;
 
 import com.solvd.shop.models.address.Address;
+import jakarta.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "buyer")
+@XmlType(propOrder = {"buyerId", "name", "phoneNumber", "address"})
 public class Buyer {
 
+    @XmlAttribute(name = "id")
     private int buyerId;
+
+    @XmlElement(name = "name")
     private String name;
+
+    @XmlElement(name = "phoneNumber")
     private String phoneNumber;
+
+    @XmlElement(name = "address")
     private Address address;
 
     public Buyer() {

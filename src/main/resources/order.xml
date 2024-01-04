@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order id="1">
+    <date>2024-01-01</date>
+    <status id="1">
+        <statusName>ordered</statusName>
+    </status>
+    <orderTotal>150.6</orderTotal>
+    <buyer id="1">
+        <name>John Smith</name>
+        <phoneNumber>999999999</phoneNumber>
+        <address id="1">
+            <firstLine>150th</firstLine>
+            <secondLine></secondLine>
+            <zipCode>9999</zipCode>
+            <city id="1">
+                <cityName>Seattle</cityName>
+                <country id="1">
+                    <countryName>USA</countryName>
+                </country>
+            </city>
+        </address>
+    </buyer>
+    <employee id="1">
+        <name>Michael Merser</name>
+        <position id="1">
+            <positionName>Sales manager</positionName>
+            <salary>10000.0</salary>
+        </position>
+    </employee>
+    <products>
+        <product id="1">
+            <productName>Iphone X</productName>
+            <price>200.2</price>
+            <supplier id="1">
+                <supplierName>Apple</supplierName>
+                <address id="2">
+                    <firstLine>222 th ne</firstLine>
+                    <secondLine>building A</secondLine>
+                    <zipCode>7777</zipCode>
+                    <city id="2">
+                        <cityName>California</cityName>
+                        <country id="1">
+                            <countryName>USA</countryName>
+                        </country>
+                    </city>
+                </address>
+            </supplier>
+            <category id="1">
+                <categoryName>Smartphones</categoryName>
+            </category>
+            <availableQuantity>1</availableQuantity>
+        </product>
+        <product id="2">
+            <productName>Airpods pro</productName>
+            <price>50.99</price>
+            <supplier id="1">
+                <supplierName>Apple</supplierName>
+                <address id="2">
+                    <firstLine>222 th ne</firstLine>
+                    <secondLine>building A</secondLine>
+                    <zipCode>7777</zipCode>
+                    <city id="2">
+                        <cityName>California</cityName>
+                        <country id="1">
+                            <countryName>USA</countryName>
+                        </country>
+                    </city>
+                </address>
+            </supplier>
+            <category id="1">
+                <categoryName>Smartphones</categoryName>
+            </category>
+            <availableQuantity>1</availableQuantity>
+        </product>
+    </products>
+</order>

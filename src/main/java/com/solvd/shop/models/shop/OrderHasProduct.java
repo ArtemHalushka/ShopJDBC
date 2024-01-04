@@ -1,10 +1,16 @@
 package com.solvd.shop.models.shop;
 
-import java.util.List;
+import jakarta.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "orderHasProduct")
+@XmlType(propOrder = {"order", "product"})
 public class OrderHasProduct {
 
+    @XmlElement(name = "order")
     private Order order;
+
+    @XmlElement(name = "product")
     private Product product;
 
     public OrderHasProduct() {
