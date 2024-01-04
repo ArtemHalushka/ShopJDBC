@@ -47,10 +47,8 @@ public class JAXBParser {
         products.add(product1);
         products.add(product2);
         order.setProducts(products);
-        JAXBUtil jaxbUtil = new JAXBUtil();
-
-        jaxbUtil.marshal(order, path);
-        Order order2 = (Order) jaxbUtil.unmarshal(path);
+        JAXBUtil.marshal(order, path);
+        Order order2 = (Order) JAXBUtil.unmarshal(path);
         LOGGER.info(order2);
     }
 }

@@ -15,7 +15,7 @@ public class JAXBUtil<T> {
 
     private static final Logger LOGGER = LogManager.getLogger(JAXBUtil.class);
 
-    public void marshal(T object, String path) {
+    public static <T> void marshal(T object, String path) {
         try {
             JAXBContext context = JAXBContext.newInstance(Order.class);
             Marshaller mar = context.createMarshaller();
@@ -26,7 +26,7 @@ public class JAXBUtil<T> {
         }
     }
 
-    public T unmarshal(String path) {
+    public static <T> T unmarshal(String path) {
         try {
             JAXBContext context = JAXBContext.newInstance(Order.class);
             return (T) context.createUnmarshaller().unmarshal(new FileReader(path));
