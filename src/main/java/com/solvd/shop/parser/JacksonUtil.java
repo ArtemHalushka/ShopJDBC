@@ -1,7 +1,6 @@
 package com.solvd.shop.parser;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.solvd.shop.models.shop.Order;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,10 +27,10 @@ public class JacksonUtil<T> {
         }
     }
 
-    public static <T> T unmarshal(String path) {
+    public static <T> T unmarshal(String path, Class<T> type) {
         try {
             File file = new File(path);
-            return (T) objectMapper.readValue(file, Order.class);
+            return (T) objectMapper.readValue(file, type);
         } catch (IOException e) {
             LOGGER.info(e);
         }

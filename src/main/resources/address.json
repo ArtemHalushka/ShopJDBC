@@ -1,0 +1,14 @@
+{
+  "id" : 1,
+  "firstLine" : "150th",
+  "secondLine" : "",
+  "zipCode" : "9999",
+  "city" : {
+    "id" : 1,
+    "cityName" : "Seattle",
+    "country" : {
+      "id" : 1,
+      "countryName" : "USA"
+    }
+  }
+}

@@ -52,7 +52,7 @@ public class JacksonParser {
             String path = "src/main/resources/order.json";
 
             JacksonUtil.marshal(order, path);
-            Order parseOrder = JacksonUtil.unmarshal(path);
+            Order parseOrder = JacksonUtil.unmarshal(path, Order.class);
             LOGGER.info(parseOrder);
         } catch (ParseException e) {
             LOGGER.info(e);
