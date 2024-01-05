@@ -1,29 +1,16 @@
 package com.solvd.shop.services.people;
 
-import com.solvd.shop.factory.ConnectionDAOException;
 import com.solvd.shop.factory.ConnectionDAOFactory;
 import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.people.ISupplierDAO;
 import com.solvd.shop.models.people.Supplier;
 import com.solvd.shop.mybatis.dao.people.SupplierDAO;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class SupplierService implements ISupplierDAO<Supplier> {
 
-    private static final Logger LOGGER = LogManager.getLogger(SupplierService.class);
-
-    private static SupplierDAO supplierDAO = null;
-
-    static {
-        try {
-            supplierDAO = (SupplierDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("suppliers");
-        } catch (ConnectionDAOException e) {
-            LOGGER.info(e);
-        }
-    }
+    private static final SupplierDAO supplierDAO = (SupplierDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("suppliers");
 
     @Override
     public void insert(Supplier supplier) {

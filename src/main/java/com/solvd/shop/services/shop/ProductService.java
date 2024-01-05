@@ -1,29 +1,16 @@
 package com.solvd.shop.services.shop;
 
-import com.solvd.shop.factory.ConnectionDAOException;
 import com.solvd.shop.factory.ConnectionDAOFactory;
 import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.shop.IProductDAO;
 import com.solvd.shop.models.shop.Product;
 import com.solvd.shop.mybatis.dao.shop.ProductDAO;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class ProductService implements IProductDAO<Product> {
 
-    private static final Logger LOGGER = LogManager.getLogger(ProductService.class);
-
-    private static ProductDAO productDAO = null;
-
-    static {
-        try {
-            productDAO = (ProductDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("products");
-        } catch (ConnectionDAOException e) {
-            LOGGER.info(e);
-        }
-    }
+    private static final ProductDAO productDAO = (ProductDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("products");
 
     @Override
     public void insert(Product product) {
