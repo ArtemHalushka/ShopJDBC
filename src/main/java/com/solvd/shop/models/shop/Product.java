@@ -2,24 +2,34 @@ package com.solvd.shop.models.shop;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.solvd.shop.models.people.Supplier;
+import jakarta.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "product")
+@XmlType(propOrder = {"productId", "productName", "price", "supplier", "category", "availableQuantity"})
 public class Product {
 
+    @XmlAttribute(name = "id")
     @JsonProperty("id")
     private int productId;
 
+    @XmlElement(name = "productName")
     @JsonProperty("productName")
     private String productName;
 
+    @XmlElement(name = "price")
     @JsonProperty("price")
     private double price;
 
+    @XmlElement(name = "supplier")
     @JsonProperty("supplier")
     private Supplier supplier;
 
+    @XmlElement(name = "category")
     @JsonProperty("category")
     private Category category;
 
+    @XmlElement(name = "availableQuantity")
     @JsonProperty("availableQuantity")
     private int availableQuantity;
 

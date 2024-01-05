@@ -1,6 +1,5 @@
 package com.solvd.shop.parser;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.solvd.shop.models.address.Address;
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.models.address.Country;
@@ -11,14 +10,10 @@ import com.solvd.shop.models.shop.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.fasterxml.jackson.databind.SerializationFeature.INDENT_OUTPUT;
 
 
 public class JacksonParser {
@@ -55,13 +50,11 @@ public class JacksonParser {
             order.setProducts(products);
             //parser
             String path = "src/main/resources/order.json";
-            File file = new File(path);
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.enable(INDENT_OUTPUT);
-            objectMapper.writeValue(file, order);
-            Order parseOrder = objectMapper.readValue(file, Order.class);
+
+            JacksonUtil.marshal(order, path);
+            Order parseOrder = JacksonUtil.unmarshal(path);
             LOGGER.info(parseOrder);
-        } catch (IOException | ParseException e) {
+        } catch (ParseException e) {
             LOGGER.info(e);
         }
     }

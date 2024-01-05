@@ -1,12 +1,18 @@
 package com.solvd.shop.models.shop;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.xml.bind.annotation.*;
 
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "category")
+@XmlType(propOrder = {"categoryId", "categoryName"})
 public class Category {
 
+    @XmlAttribute(name = "id")
     @JsonProperty("id")
     private int categoryId;
 
+    @XmlElement(name = "categoryName")
     @JsonProperty("categoryName")
     private String categoryName;
 
