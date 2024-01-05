@@ -18,8 +18,10 @@ import java.util.List;
 
 public class OrderDAO implements IOrderDAO<Order> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(OrderDAO.class);
+
+
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final EmployeeDAO employeeDAO = new EmployeeDAO();
     private final BuyerDAO buyerDAO = new BuyerDAO();
     private final StatusDAO statusDAO = new StatusDAO();

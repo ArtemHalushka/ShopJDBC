@@ -30,7 +30,7 @@
         WHERE id_supplier = #{supplierId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="SupplierMap">
+    <select id="getByID" parameterType="int" resultMap="SupplierMap">
         SELECT *
         FROM suppliers
         WHERE id_supplier = #{id}
@@ -41,7 +41,7 @@
         FROM suppliers
     </select>
 
-    <select id="getByName" parameterType="java.lang.String" resultMap="SupplierMap">
+    <select id="getByName" parameterType="String" resultMap="SupplierMap">
         SELECT *
         FROM suppliers
         WHERE supplier = #{name}

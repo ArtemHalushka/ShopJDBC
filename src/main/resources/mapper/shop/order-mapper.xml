@@ -50,7 +50,7 @@
         WHERE id_order = #{orderId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="OrderMap">
+    <select id="getByID" parameterType="int" resultMap="OrderMap">
         SELECT *
         FROM orders
         WHERE id_order = #{id}

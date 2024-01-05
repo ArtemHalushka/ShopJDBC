@@ -46,7 +46,7 @@
         WHERE id_order = #{order.orderId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="OrderHasProductMap">
+    <select id="getByID" parameterType="int" resultMap="OrderHasProductMap">
         SELECT *
         FROM orders_has_products
         WHERE id_order = #{id}
@@ -57,7 +57,7 @@
         FROM orders_has_products
     </select>
 
-    <select id="getAllByOrderId" parameterType="java.lang.Integer" resultMap="ProductMap">
+    <select id="getAllByOrderId" parameterType="int" resultMap="ProductMap">
         SELECT *
         FROM orders_has_products
         WHERE id_order = #{id}

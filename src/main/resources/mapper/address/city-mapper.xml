@@ -30,7 +30,7 @@
         WHERE id_city = #{cityId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="CityMap">
+    <select id="getByID" parameterType="int" resultMap="CityMap">
         SELECT *
         FROM cities
         WHERE id_city = #{id}
@@ -41,7 +41,7 @@
         FROM cities
     </select>
 
-    <select id="getByCityName" parameterType="java.lang.String" resultMap="CityMap">
+    <select id="getByCityName" parameterType="String" resultMap="CityMap">
         SELECT *
         FROM cities
         WHERE city = #{cityName}

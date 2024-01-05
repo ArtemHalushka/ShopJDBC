@@ -17,8 +17,9 @@ import java.util.List;
 
 public class BuyerDAO implements IBuyerDAO<Buyer> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(BuyerDAO.class);
+
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final AddressDAO addressDAO = new AddressDAO();
 
     @Override

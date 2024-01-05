@@ -17,8 +17,9 @@ import java.util.List;
 
 public class SupplierDAO implements ISupplierDAO<Supplier> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(SupplierDAO.class);
+
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final AddressDAO addressDAO = new AddressDAO();
 
     @Override

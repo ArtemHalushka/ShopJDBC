@@ -1,92 +1,14 @@
 {
   "id" : 1,
-  "date" : "2024-01-01",
-  "status" : {
+  "firstLine" : "150th",
+  "secondLine" : "",
+  "zipCode" : "9999",
+  "city" : {
     "id" : 1,
-    "statusName" : "ordered"
-  },
-  "orderTotal" : 150.6,
-  "buyer" : {
-    "id" : 1,
-    "name" : "John Smith",
-    "phoneNumber" : "999999999",
-    "address" : {
+    "cityName" : "Seattle",
+    "country" : {
       "id" : 1,
-      "firstLine" : "150th",
-      "secondLine" : "",
-      "zipCode" : "9999",
-      "city" : {
-        "id" : 1,
-        "cityName" : "Seattle",
-        "country" : {
-          "id" : 1,
-          "countryName" : "USA"
-        }
-      }
+      "countryName" : "USA"
     }
-  },
-  "employee" : {
-    "id" : 1,
-    "name" : "Michael Merser",
-    "position" : {
-      "id" : 1,
-      "positionName" : "Sales manager",
-      "salary" : 10000.0
-    }
-  },
-  "products" : [ {
-    "id" : 1,
-    "productName" : "Iphone X",
-    "price" : 200.2,
-    "supplier" : {
-      "id" : 1,
-      "supplierName" : "Apple",
-      "address" : {
-        "id" : 2,
-        "firstLine" : "222 th ne",
-        "secondLine" : "building A",
-        "zipCode" : "7777",
-        "city" : {
-          "id" : 2,
-          "cityName" : "California",
-          "country" : {
-            "id" : 1,
-            "countryName" : "USA"
-          }
-        }
-      }
-    },
-    "category" : {
-      "id" : 1,
-      "categoryName" : "Smartphones"
-    },
-    "availableQuantity" : 1
-  }, {
-    "id" : 2,
-    "productName" : "Airpods pro",
-    "price" : 50.99,
-    "supplier" : {
-      "id" : 1,
-      "supplierName" : "Apple",
-      "address" : {
-        "id" : 2,
-        "firstLine" : "222 th ne",
-        "secondLine" : "building A",
-        "zipCode" : "7777",
-        "city" : {
-          "id" : 2,
-          "cityName" : "California",
-          "country" : {
-            "id" : 1,
-            "countryName" : "USA"
-          }
-        }
-      }
-    },
-    "category" : {
-      "id" : 1,
-      "categoryName" : "Smartphones"
-    },
-    "availableQuantity" : 1
-  } ]
+  }
 }

@@ -26,9 +26,9 @@ public class JAXBUtil<T> {
         }
     }
 
-    public static <T> T unmarshal(String path) {
+    public static <T> T unmarshal(String path, Class<T> type) {
         try {
-            JAXBContext context = JAXBContext.newInstance(Order.class);
+            JAXBContext context = JAXBContext.newInstance(type);
             return (T) context.createUnmarshaller().unmarshal(new FileReader(path));
         } catch (JAXBException | IOException e) {
             LOGGER.info(e);

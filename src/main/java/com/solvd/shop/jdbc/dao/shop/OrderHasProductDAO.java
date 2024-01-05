@@ -17,8 +17,9 @@ import java.util.List;
 
 public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, Product> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(OrderHasProductDAO.class);
+
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private OrderDAO orderDAO = new OrderDAO();
     private ProductDAO productDAO = new ProductDAO();
 
@@ -129,9 +130,5 @@ public class OrderHasProductDAO implements IOrderHasProductDAO<OrderHasProduct, 
             connectionPool.releaseConnection(conn);
         }
         return productList;
-    }
-
-    public void setOrderDAO(OrderDAO orderDAO) {
-        this.orderDAO = orderDAO;
     }
 }

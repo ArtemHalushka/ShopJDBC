@@ -18,8 +18,9 @@ import java.util.List;
 
 public class ProductDAO implements IProductDAO<Product> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(ProductDAO.class);
+
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final CategoryDAO categoryDAO = new CategoryDAO();
     private final SupplierDAO supplierDAO = new SupplierDAO();
 

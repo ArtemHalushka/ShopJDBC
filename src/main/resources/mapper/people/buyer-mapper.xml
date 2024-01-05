@@ -32,7 +32,7 @@
         WHERE id_buyer = #{buyerId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="BuyerMap">
+    <select id="getByID" parameterType="int" resultMap="BuyerMap">
         SELECT *
         FROM buyers
         WHERE id_buyer = #{id}
@@ -43,7 +43,7 @@
         FROM buyers
     </select>
 
-    <select id="getByName" parameterType="java.lang.String" resultMap="BuyerMap">
+    <select id="getByName" parameterType="String" resultMap="BuyerMap">
         SELECT *
         FROM buyers
         WHERE name = #{name}

@@ -39,7 +39,7 @@
         WHERE id_product = #{productId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="ProductMap">
+    <select id="getByID" parameterType="int" resultMap="ProductMap">
         SELECT *
         FROM products
         WHERE id_product = #{id}
@@ -50,7 +50,7 @@
         FROM products
     </select>
 
-    <select id="getByProductName" parameterType="java.lang.String" resultMap="ProductMap">
+    <select id="getByProductName" parameterType="String" resultMap="ProductMap">
         SELECT *
         FROM products
         WHERE name = #{name}

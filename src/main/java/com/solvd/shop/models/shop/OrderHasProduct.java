@@ -19,7 +19,7 @@ public class OrderHasProduct {
     public OrderHasProduct() {
     }
 
-    public OrderHasProduct(Order order, Product products) {
+    public OrderHasProduct(Order order, Product product) {
         this.order = order;
         this.product = product;
     }

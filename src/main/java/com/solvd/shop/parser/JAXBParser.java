@@ -48,7 +48,7 @@ public class JAXBParser {
         products.add(product2);
         order.setProducts(products);
         JAXBUtil.marshal(order, path);
-        Order order2 = (Order) JAXBUtil.unmarshal(path);
+        Order order2 = (Order) JAXBUtil.unmarshal(path, Order.class);
         LOGGER.info(order2);
     }
 }

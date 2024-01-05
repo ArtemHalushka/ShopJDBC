@@ -27,7 +27,7 @@
         WHERE id_position = #{positionId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="PositionMap">
+    <select id="getByID" parameterType="int" resultMap="PositionMap">
         SELECT *
         FROM positions
         WHERE id_position = #{positionId}
@@ -38,7 +38,7 @@
         FROM positions
     </select>
 
-    <select id="getBySalary" parameterType="java.lang.Double" resultMap="PositionMap">
+    <select id="getBySalary" parameterType="double" resultMap="PositionMap">
         SELECT *
         FROM positions
         WHERE salary = #{salary}

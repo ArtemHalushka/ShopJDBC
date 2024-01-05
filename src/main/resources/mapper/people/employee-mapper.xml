@@ -30,7 +30,7 @@
         WHERE id_employee = #{employeeId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="EmployeeMap">
+    <select id="getByID" parameterType="int" resultMap="EmployeeMap">
         SELECT *
         FROM employees
         WHERE id_employee = #{id}
@@ -41,7 +41,7 @@
         FROM employees
     </select>
 
-    <select id="getByName" parameterType="java.lang.String" resultMap="EmployeeMap">
+    <select id="getByName" parameterType="String" resultMap="EmployeeMap">
         SELECT *
         FROM employees
         WHERE name = #{name}
