@@ -1,16 +1,13 @@
 package com.solvd.shop.models.shop;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "orderHasProduct")
-@XmlType(propOrder = {"order", "product"})
 public class OrderHasProduct {
 
-    @XmlElement(name = "order")
+    @JsonProperty("order")
     private Order order;
 
-    @XmlElement(name = "product")
+    @JsonProperty("product")
     private Product product;
 
     public OrderHasProduct() {

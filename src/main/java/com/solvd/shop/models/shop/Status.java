@@ -1,16 +1,13 @@
 package com.solvd.shop.models.shop;
 
-import jakarta.xml.bind.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name = "status")
-@XmlType(propOrder = {"statusId", "statusName"})
 public class Status {
 
-    @XmlAttribute(name = "id")
+    @JsonProperty("id")
     private int statusId;
 
-    @XmlElement(name = "statusName")
+    @JsonProperty("statusName")
     private String statusName;
 
     public Status() {
