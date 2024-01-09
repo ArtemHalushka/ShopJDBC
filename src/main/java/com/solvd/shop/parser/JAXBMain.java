@@ -15,9 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JAXBParser {
+public class JAXBMain {
 
-    private static final Logger LOGGER = LogManager.getLogger(JAXBParser.class);
+    private static final Logger LOGGER = LogManager.getLogger(JAXBMain.class);
 
     public static void main(String[] args) throws ParseException {
         String path = "src/main/resources/order.xml";

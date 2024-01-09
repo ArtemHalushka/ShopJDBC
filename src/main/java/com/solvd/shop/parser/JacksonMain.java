@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class JacksonParser {
+public class JacksonMain {
 
-    private static final Logger LOGGER = LogManager.getLogger(JAXBParser.class);
+    private static final Logger LOGGER = LogManager.getLogger(JAXBMain.class);
 
     public static void main(String[] args) {
         try {
