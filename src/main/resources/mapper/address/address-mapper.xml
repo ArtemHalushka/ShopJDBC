@@ -34,7 +34,7 @@
         WHERE id_address = #{addressId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="AddressMap">
+    <select id="getByID" parameterType="int" resultMap="AddressMap">
         SELECT *
         FROM addresses
         WHERE id_address = #{id}
@@ -45,7 +45,7 @@
         FROM addresses
     </select>
 
-    <select id="getByFirstLine" parameterType="java.lang.String" resultMap="AddressMap">
+    <select id="getByFirstLine" parameterType="String" resultMap="AddressMap">
         SELECT *
         FROM addresses
         WHERE first_line = #{firstLine}

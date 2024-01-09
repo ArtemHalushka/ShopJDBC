@@ -1,5 +1,7 @@
 package com.solvd.shop.services.shop;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.shop.IOrderDAO;
 import com.solvd.shop.models.shop.Order;
 import com.solvd.shop.mybatis.dao.shop.OrderDAO;
@@ -9,7 +11,7 @@ import java.util.List;
 
 public class OrderService implements IOrderDAO<Order> {
 
-    private static final OrderDAO orderDAO = new OrderDAO();
+    private static final OrderDAO orderDAO = (OrderDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("orders");
 
     @Override
     public void insert(Order order) {

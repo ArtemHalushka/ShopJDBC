@@ -17,8 +17,9 @@ import java.util.List;
 
 public class EmployeeDAO implements IEmployeeDAO<Employee> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(EmployeeDAO.class);
+
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final PositionDAO positionDAO = new PositionDAO();
 
     @Override

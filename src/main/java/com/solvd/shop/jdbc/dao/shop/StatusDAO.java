@@ -15,8 +15,9 @@ import java.util.List;
 
 public class StatusDAO implements IStatusDAO<Status> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(StatusDAO.class);
+
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
     public void insert(Status status) {
@@ -88,7 +89,6 @@ public class StatusDAO implements IStatusDAO<Status> {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-
                     Status status = new Status(resultSet.getInt("id_status"), resultSet.getString("status"));
                     statusList.add(status);
                 }

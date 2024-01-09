@@ -13,4 +13,5 @@ public interface IBaseDAO<Entity> {
     Entity getByID(int id);
 
     List<Entity> getAll();
+
 }

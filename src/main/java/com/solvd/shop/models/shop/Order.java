@@ -1,8 +1,10 @@
 package com.solvd.shop.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.models.people.Employee;
-import com.solvd.shop.parser.adapter.DateAdapter;
+import com.solvd.shop.parser.adapter.JAXBDateAdapter;
 import jakarta.xml.bind.annotation.*;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -15,26 +17,34 @@ import java.util.List;
 public class Order {
 
     @XmlAttribute(name = "id")
+    @JsonProperty("id")
     private int orderId;
 
-    @XmlJavaTypeAdapter(DateAdapter.class)
+    @XmlJavaTypeAdapter(JAXBDateAdapter.class)
     @XmlElement(name = "date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonProperty("date")
     private Date date;
 
     @XmlElement(name = "status")
+    @JsonProperty("status")
     private Status status;
 
     @XmlElement(name = "orderTotal")
+    @JsonProperty("orderTotal")
     private double orderTotal;
 
     @XmlElement(name = "buyer")
+    @JsonProperty("buyer")
     private Buyer buyer;
 
     @XmlElement(name = "employee")
+    @JsonProperty("employee")
     private Employee employee;
 
     @XmlElementWrapper(name = "products")
     @XmlElement(name = "product", type = Product.class)
+    @JsonProperty("products")
     private List<Product> products;
 
     public Order() {

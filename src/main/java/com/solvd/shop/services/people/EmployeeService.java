@@ -1,5 +1,7 @@
 package com.solvd.shop.services.people;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.people.IEmployeeDAO;
 import com.solvd.shop.models.people.Employee;
 import com.solvd.shop.mybatis.dao.people.EmployeeDAO;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class EmployeeService implements IEmployeeDAO<Employee> {
 
-    private static final EmployeeDAO employeeDAO = new EmployeeDAO();
+    private static final EmployeeDAO employeeDAO = (EmployeeDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("employees");
 
     @Override
     public void insert(Employee employee) {

@@ -1,5 +1,7 @@
 package com.solvd.shop.services.address;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.address.ICountryDAO;
 import com.solvd.shop.models.address.Country;
 import com.solvd.shop.mybatis.dao.address.CountryDAO;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class CountryService implements ICountryDAO<Country> {
 
-    private static final CountryDAO countryDAO = new CountryDAO();
+    private static final CountryDAO countryDAO = (CountryDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("countries");
 
     @Override
     public void insert(Country country) {

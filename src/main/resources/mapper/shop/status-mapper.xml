@@ -25,7 +25,7 @@
         WHERE id_status = #{statusId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="StatusMap">
+    <select id="getByID" parameterType="int" resultMap="StatusMap">
         SELECT *
         FROM statuses
         WHERE id_status = #{id}
@@ -36,7 +36,7 @@
         FROM statuses
     </select>
 
-    <select id="getByStatusName" parameterType="java.lang.String" resultMap="StatusMap">
+    <select id="getByStatusName" parameterType="String" resultMap="StatusMap">
         SELECT *
         FROM statuses
         WHERE status = #{statusName}

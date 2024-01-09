@@ -1,5 +1,7 @@
 package com.solvd.shop.services.shop;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.shop.ICategoryDAO;
 import com.solvd.shop.models.shop.Category;
 import com.solvd.shop.mybatis.dao.shop.CategoryDAO;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class CategoryService implements ICategoryDAO<Category> {
 
-    private static final CategoryDAO categoryDAO = new CategoryDAO();
+    private static final CategoryDAO categoryDAO = (CategoryDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("categories");
 
     @Override
     public void insert(Category category) {

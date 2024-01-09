@@ -1,15 +1,17 @@
 package com.solvd.shop.services.shop;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.shop.IOrderHasProductDAO;
+import com.solvd.shop.jdbc.dao.shop.OrderHasProductDAO;
 import com.solvd.shop.models.shop.OrderHasProduct;
 import com.solvd.shop.models.shop.Product;
-import com.solvd.shop.mybatis.dao.shop.OrderHasProductDAO;
 
 import java.util.List;
 
 public class OrderHasProductService implements IOrderHasProductDAO<OrderHasProduct, Product> {
 
-    private static final OrderHasProductDAO orderHasProductDAO = new OrderHasProductDAO();
+    private static final OrderHasProductDAO orderHasProductDAO = (OrderHasProductDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("orders_has_products");
 
     @Override
     public void insert(OrderHasProduct orderHasProduct) {

@@ -1,5 +1,6 @@
 package com.solvd.shop.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -8,15 +9,17 @@ import jakarta.xml.bind.annotation.*;
 public class OrderHasProduct {
 
     @XmlElement(name = "order")
+    @JsonProperty("order")
     private Order order;
 
     @XmlElement(name = "product")
+    @JsonProperty("product")
     private Product product;
 
     public OrderHasProduct() {
     }
 
-    public OrderHasProduct(Order order, Product products) {
+    public OrderHasProduct(Order order, Product product) {
         this.order = order;
         this.product = product;
     }

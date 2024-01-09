@@ -13,9 +13,9 @@ import java.util.List;
 
 public class AddressDAO implements IAddressDAO<Address> {
 
-    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static final Logger LOGGER = LogManager.getLogger(AddressDAO.class);
 
+    private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final CityDAO cityDAO = new CityDAO();
 
     @Override

@@ -1,5 +1,6 @@
 package com.solvd.shop.models.shop;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -8,9 +9,11 @@ import jakarta.xml.bind.annotation.*;
 public class Status {
 
     @XmlAttribute(name = "id")
+    @JsonProperty("id")
     private int statusId;
 
     @XmlElement(name = "statusName")
+    @JsonProperty("statusName")
     private String statusName;
 
     public Status() {

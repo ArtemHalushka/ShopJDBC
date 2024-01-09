@@ -25,7 +25,7 @@
         WHERE id_country = #{countryId}
     </delete>
 
-    <select id="getByID" parameterType="java.lang.Integer" resultMap="CountryMap">
+    <select id="getByID" parameterType="int" resultMap="CountryMap">
         SELECT *
         FROM countries
         WHERE id_country = #{id}
@@ -36,7 +36,7 @@
         FROM countries
     </select>
 
-    <select id="getByCountryName" parameterType="java.lang.String" resultMap="CountryMap">
+    <select id="getByCountryName" parameterType="String" resultMap="CountryMap">
         SELECT *
         FROM countries
         WHERE country = #{countryName}

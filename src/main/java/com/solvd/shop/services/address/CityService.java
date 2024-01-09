@@ -1,5 +1,7 @@
 package com.solvd.shop.services.address;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.address.ICityDAO;
 import com.solvd.shop.models.address.City;
 import com.solvd.shop.mybatis.dao.address.CityDAO;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class CityService implements ICityDAO<City> {
 
-    private static final CityDAO cityDAO = new CityDAO();
+    private static final CityDAO cityDAO = (CityDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("cities");
 
     @Override
     public void insert(City city) {

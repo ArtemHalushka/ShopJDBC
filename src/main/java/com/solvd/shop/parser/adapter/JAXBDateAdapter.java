@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.sql.Date;
 
-public class DateAdapter extends XmlAdapter<String, Date> {
+public class JAXBDateAdapter extends XmlAdapter<String, Date> {
     private static final ThreadLocal<DateFormat> dateFormat = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
 
     @Override

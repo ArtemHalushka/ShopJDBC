@@ -1,5 +1,7 @@
 package com.solvd.shop.services.shop;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.shop.IStatusDAO;
 import com.solvd.shop.models.shop.Status;
 import com.solvd.shop.mybatis.dao.shop.StatusDAO;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class StatusService implements IStatusDAO<Status> {
 
-    private static final StatusDAO statusDAO = new StatusDAO();
+    private static final StatusDAO statusDAO =  (StatusDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("statuses");
 
     @Override
     public void insert(Status status) {

@@ -1,5 +1,7 @@
 package com.solvd.shop.services.people;
 
+import com.solvd.shop.factory.ConnectionDAOFactory;
+import com.solvd.shop.factory.DBConnectionType;
 import com.solvd.shop.interfaces.people.IBuyerDAO;
 import com.solvd.shop.models.people.Buyer;
 import com.solvd.shop.mybatis.dao.people.BuyerDAO;
@@ -8,7 +10,7 @@ import java.util.List;
 
 public class BuyerService implements IBuyerDAO<Buyer> {
 
-    private static final BuyerDAO buyerDAO = new BuyerDAO();
+    private static final BuyerDAO buyerDAO = (BuyerDAO) new ConnectionDAOFactory().getDAOFactory(DBConnectionType.MYBATIS).getDAO("buyers");
 
     @Override
     public void insert(Buyer buyer) {
